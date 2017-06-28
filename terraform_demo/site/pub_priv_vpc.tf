@@ -30,7 +30,7 @@ output "vpc_id" {
 # NAT Instance
 #
 resource "aws_instance" "nat" {
-  ami = "ami-75ae8245" # this is a special ami preconfigured to do NAT
+  ami = "${lookup(var.amis, var.region)}" # this is a special ami preconfigured to do NAT
   availability_zone = "${element(var.availability_zones, 0)}"
   instance_type = "t2.small"
   key_name = "${var.key_name}"

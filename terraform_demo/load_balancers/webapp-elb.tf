@@ -8,8 +8,10 @@
 # or in the "license" file accompanying this file. This file is distributed on an "AS IS"
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
-resource "aws_elb" "webapp_elb" {
-  name = "demo-webapp-elb"
+
+# https://www.terraform.io/docs/providers/aws/r/elb.html
+resource "aws_elb" "terraform_demo_elb" {
+  name = "terraform-demo-elb"
   subnets = ["${var.public_subnet_id}"]
   listener {
     instance_port = 80
@@ -24,11 +26,17 @@ resource "aws_elb" "webapp_elb" {
     target = "HTTP:80/"
     interval = 10
   }
-  security_groups = ["${var.webapp_http_inbound_sg_id}"]
+  security_groups = ["${var.elb_http_inbound_sg_id}"]
   tags {
-      Name = "terraform_elb"
+      Name = "terraform_demo_elb"
   }
 }
 output "webapp_elb_name" {
-  value = "${aws_elb.webapp_elb.name}"
+  value = "${aws_elb.terraform_demo_elb.name}"
+}
+output "webapp_elb_security_group" {
+  value = "${aws_elb.terraform_demo_elb.source_security_group}"
+}
+output "webapp_elb_security_group_id" {
+  value = "${aws_elb.terraform_demo_elb.source_security_group_id}"
 }

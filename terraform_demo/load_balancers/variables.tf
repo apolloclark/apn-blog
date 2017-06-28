@@ -17,4 +17,4 @@ variable "availability_zones" {
 # From other modules
 #
 variable "public_subnet_id" {}
-variable "webapp_http_inbound_sg_id" {}
+variable "elb_http_inbound_sg_id" {}
