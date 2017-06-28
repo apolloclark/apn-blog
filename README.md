@@ -1,2 +1,3 @@
-# apn-blog
-APN Blog article code and configurations. 
+# aws-terraform
+
+Terraform based Amazon AWS Cloud demo site. 

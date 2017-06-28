@@ -1,6 +1,0 @@
-- hosts: database_servers
-  become: yes
-  vars_files:
-    - vars/mysql.yml
-  roles:
-    - { role: geerlingguy.mysql }
