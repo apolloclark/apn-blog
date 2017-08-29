@@ -11,45 +11,45 @@
 provider "aws" {
   region = "${var.region}"
 }
-module "site" {
-  source = "./site"
-  key_name = "${var.key_name}"
-  region = "${var.region}"
-  amis = "${var.amis}"
-  instance_type = "${var.instance_type}"
-  ip_range = "${var.ip_range}"
+
+module "network" {
+  source              = "./network"
+  key_name            = "${var.key_name}"
+  region              = "${var.region}"
+  availability_zones  = "${var.availability_zones}"
+  amis                = "${var.amis}"
+  instance_type       = "${var.instance_type}"
+  trusted_ip_range    = "${var.trusted_ip_range}"
+  vpc_cidr            = "${var.vpc_cidr}"
+  public_subnet_cidr  = "${var.public_subnet_cidr}"
+  private_subnet_cidr = "${var.private_subnet_cidr}"
 }
-module "load_balancers" {
-  source = "./load_balancers"
-  public_subnet_id = "${module.site.public_subnet_id}"
-  elb_http_inbound_sg_id = "${module.site.elb_http_inbound_sg_id}"
+
+module "bastion" {
+  source            = "./bastion"
+  key_name          = "${var.key_name}"
+  region            = "${var.region}"
+  amis              = "${var.amis}"
+  instance_type     = "${var.instance_type}"
+  trusted_ip_range  = "${var.trusted_ip_range}"
+  vpc_id            = "${module.network.vpc_id}"
+  public_subnet_id  = "${module.network.public_subnet_id}"
+  nat_sg_id         = "${module.network.nat_sg_id}"
 }
-module "launch_configurations" {
-  source = "./launch_configurations"
-  key_name = "${var.key_name}"
-  region = "${var.region}"
-  amis = "${var.amis}"
-  instance_type = "${var.instance_type}"
-  webapp_http_inbound_sg_id = "${module.site.webapp_http_inbound_sg_id}"
-  webapp_ssh_inbound_sg_id = "${module.site.webapp_ssh_inbound_sg_id}"
-  webapp_outbound_sg_id = "${module.site.webapp_outbound_sg_id}"
-}
-module "autoscaling_groups" {
-  source = "./autoscaling_groups"
-  public_subnet_id = "${module.site.public_subnet_id}"
-  webapp_lc_id = "${module.launch_configurations.webapp_lc_id}"
-  webapp_lc_name = "${module.launch_configurations.webapp_lc_name}"
-  webapp_elb_name = "${module.load_balancers.webapp_elb_name}"
-}
-module "instances" {
-  source = "./instances"
-  key_name = "${var.key_name}"
-  region = "${var.region}"
-  amis = "${var.amis}"
-  instance_type = "${var.instance_type}"
-  public_subnet_id = "${module.site.public_subnet_id}"
-  bastion_ssh_sg_id = "${module.site.bastion_ssh_sg_id}"
-  private_subnet_id = "${module.site.private_subnet_id}"
-  ssh_from_bastion_sg_id = "${module.site.ssh_from_bastion_sg_id}"
-  web_access_from_nat_sg_id = "${module.site.web_access_from_nat_sg_id}"
+
+
+module "webapp" {
+  source                    = "./webapp"
+  key_name                  = "${var.key_name}"
+  region                    = "${var.region}"
+  amis                      = "${var.amis}"
+  instance_type             = "${var.instance_type}"
+  availability_zones        = "${var.availability_zones}"
+  vpc_id                    = "${module.network.vpc_id}"
+  public_subnet_id          = "${module.network.public_subnet_id}"
+  private_subnet_id         = "${module.network.private_subnet_id}"
+  sg_ssh_from_bastion_id    = "${module.bastion.sg_ssh_from_bastion_id}"
+  asg_min                   = "${var.asg_min}"
+  asg_max                   = "${var.asg_max}"
+  asg_desired               = "${var.asg_desired}"
 }

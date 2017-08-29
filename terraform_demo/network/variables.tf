@@ -8,13 +8,16 @@
 # or in the "license" file accompanying this file. This file is distributed on an "AS IS"
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
-variable "availability_zones" {
-  # No spaces allowed between az names!
-  default = ["us-west-2a","us-west-2b","us-west-2c"]
-}
 
-#
-# From other modules
-#
-variable "public_subnet_id" {}
-variable "elb_http_inbound_sg_id" {}
+variable "key_name" {}
+variable "region" {}
+variable "availability_zones" {
+  type = "list"}
+variable "amis" {
+  type = "map"
+}
+variable "instance_type" {}
+variable "trusted_ip_range" {}
+variable "vpc_cidr" {}
+variable "public_subnet_cidr" {}
+variable "private_subnet_cidr" {}

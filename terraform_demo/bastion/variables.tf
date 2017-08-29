@@ -8,15 +8,14 @@
 # or in the "license" file accompanying this file. This file is distributed on an "AS IS"
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
+
 variable "key_name" {}
 variable "region" {}
 variable "amis" {
   type = "map"
 }
 variable "instance_type" {}
-#
-# From other modules
-#
-variable "webapp_http_inbound_sg_id" {}
-variable "webapp_ssh_inbound_sg_id" {}
-variable "webapp_outbound_sg_id" {}
+variable "trusted_ip_range" {}
+variable "vpc_id" {}
+variable "public_subnet_id" {}
+variable "nat_sg_id" {}

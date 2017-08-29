@@ -10,33 +10,40 @@
 # License for the specific language governing permissions and limitations under the License.
 
 # https://www.terraform.io/docs/providers/aws/r/elb.html
-resource "aws_elb" "terraform_demo_elb" {
-  name = "terraform-demo-elb"
+resource "aws_elb" "webapp_elb" {
+  name    = "tf-webapp-elb"
   subnets = ["${var.public_subnet_id}"]
+
   listener {
-    instance_port = 80
+    instance_port     = 80
     instance_protocol = "http"
-    lb_port = 80
-    lb_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
   }
+
   health_check {
-    healthy_threshold = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout = 3
-    target = "HTTP:80/"
-    interval = 10
+    timeout             = 3
+    target              = "HTTP:80/"
+    interval            = 10
   }
-  security_groups = ["${var.elb_http_inbound_sg_id}"]
+
+  security_groups = ["${aws_security_group.sg_http_for_webapp-elb.id}"]
+
   tags {
-      Name = "terraform_demo_elb"
+    Name = "tf_webapp_elb"
   }
 }
+
 output "webapp_elb_name" {
-  value = "${aws_elb.terraform_demo_elb.name}"
+  value = "${aws_elb.webapp_elb.name}"
 }
-output "webapp_elb_security_group" {
-  value = "${aws_elb.terraform_demo_elb.source_security_group}"
+
+output "webapp_elb_sg_name" {
+  value = "${aws_elb.webapp_elb.source_security_group}"
 }
-output "webapp_elb_security_group_id" {
-  value = "${aws_elb.terraform_demo_elb.source_security_group_id}"
+
+output "webapp_elb_sg_id" {
+  value = "${aws_elb.webapp_elb.source_security_group_id}"
 }

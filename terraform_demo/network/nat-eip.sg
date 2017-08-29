@@ -1,0 +1,16 @@
+#
+# NAT Elastic IP
+#
+# https://www.terraform.io/docs/providers/aws/r/eip.html
+resource "aws_eip" "nat_eip" {
+  instance = "${aws_instance.nat_ec2.id}"
+  vpc      = true
+}
+
+output "nat_eip_id" {
+  value = "${aws_eip.nat_eip.id}"
+}
+
+output "nat_eip_ip" {
+  value = "${aws_eip.nat_eip.public_ip}"
+}

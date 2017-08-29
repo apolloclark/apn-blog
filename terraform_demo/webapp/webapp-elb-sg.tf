@@ -9,26 +9,31 @@
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
-resource "aws_security_group" "elb_http_inbound_sg" {
-  name = "terraform_demo_elb_http_inbound"
-  description = "Allow HTTP from Anywhere"
+resource "aws_security_group" "sg_http_for_webapp-elb" {
+  name        = "tf_http_for_webapp-elb"
+  description = "Allow HTTP from anywhere for the webapp-elb"
+
   ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  vpc_id = "${aws_vpc.default.id}"
+
+  vpc_id = "${var.vpc_id}"
+
   tags {
-      Name = "terraform_demo_elb_http_inbound"
+    Name = "tf_http_for_webapp-elb"
   }
 }
-output "elb_http_inbound_sg_id" {
-  value = "${aws_security_group.elb_http_inbound_sg.id}"
+
+output "sg_http_for_webapp-elb_id" {
+  value = "${aws_security_group.sg_http_for_webapp-elb.id}"
 }
