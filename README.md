@@ -1,4 +1,4 @@
-# Overview
+# aws-terraform
 
 Terraform project for deploying a webservice including:
 - Amazon AWS
