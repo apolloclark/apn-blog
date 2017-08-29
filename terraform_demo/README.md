@@ -1,4 +1,4 @@
-# Overview
+# aws-terraform
 WARNING:  LAUNCHING THIS WILL COST YOU MONEY
 
 This is a demo of using Terraform (https://terraform.io) to provision a sample
