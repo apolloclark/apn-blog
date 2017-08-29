@@ -26,7 +26,7 @@ resource "aws_route_table" "subnet_private" {
 
   route {
     cidr_block  = "0.0.0.0/0"
-    instance_id = "${aws_instance.nat_ec2.id}"
+    instance_id = "${aws_instance.nat-ec2.id}"
   }
 
   tags {

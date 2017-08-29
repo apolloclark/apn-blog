@@ -1,7 +1,7 @@
 #
 # Bastion EC2 Instance
 #
-resource "aws_instance" "bastion_ec2" {
+resource "aws_instance" "bastion-ec2" {
   key_name      = "${var.key_name}"
   ami           = "${lookup(var.amis, var.region)}"
   instance_type = "${var.instance_type}"
@@ -15,6 +15,6 @@ resource "aws_instance" "bastion_ec2" {
   }
 }
 
-output "bastion_ec2_id" {
-  value = "${aws_instance.bastion_ec2.id}"
+output "bastion-ec2_id" {
+  value = "${aws_instance.bastion-ec2.id}"
 }

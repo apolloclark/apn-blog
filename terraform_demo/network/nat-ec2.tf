@@ -2,7 +2,7 @@
 # NAT EC2 Instance
 #
 # https://www.terraform.io/docs/providers/aws/d/instance.html
-resource "aws_instance" "nat_ec2" {
+resource "aws_instance" "nat-ec2" {
   # this is a special ami preconfigured to do NAT
   ami                         = "${lookup(var.amis, var.region)}"
   availability_zone           = "${element(var.availability_zones, 0)}"
@@ -18,6 +18,6 @@ resource "aws_instance" "nat_ec2" {
   }
 }
 
-output "nat_ec2_id" {
-  value = "${aws_instance.nat_ec2.id}"
+output "nat-ec2_id" {
+  value = "${aws_instance.nat-ec2.id}"
 }

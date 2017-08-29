@@ -18,8 +18,6 @@ output "public_subnet_id" {
 
 
 
-
-
 # https://www.terraform.io/docs/providers/aws/r/route_table.html
 resource "aws_route_table" "subnet_public" {
   vpc_id = "${aws_vpc.default.id}"
@@ -33,8 +31,6 @@ resource "aws_route_table" "subnet_public" {
     Name = "tf_public_subnet_route_table"
   }
 }
-
-
 
 
 
