@@ -53,10 +53,8 @@ output "nat_sg_id" {
 
 
 
-
-
-resource "aws_security_group" "web_access_from_nat_sg" {
-  name        = "private_subnet_web_access"
+resource "aws_security_group" "sg_nat-public_to_nat-private" {
+  name        = "tf_nat-public_to_nat-private"
   description = "Allow web access to the private subnet from the public subnet (via NAT instance)"
 
   ingress {
@@ -90,10 +88,10 @@ resource "aws_security_group" "web_access_from_nat_sg" {
   vpc_id = "${aws_vpc.default.id}"
 
   tags {
-    Name = "tf_webapp"
+    Name = "tf_nat-public_to_nat-private"
   }
 }
 
-output "web_access_from_nat_sg_id" {
-  value = "${aws_security_group.web_access_from_nat_sg.id}"
+output "sg_nat-public_to_nat-private_id" {
+  value = "${aws_security_group.sg_nat-public_to_nat-private.id}"
 }

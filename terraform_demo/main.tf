@@ -19,6 +19,7 @@ module "network" {
   availability_zones  = "${var.availability_zones}"
   amis                = "${var.amis}"
   instance_type       = "${var.instance_type}"
+  
   trusted_ip_range    = "${var.trusted_ip_range}"
   vpc_cidr            = "${var.vpc_cidr}"
   public_subnet_cidr  = "${var.public_subnet_cidr}"
@@ -31,6 +32,7 @@ module "bastion" {
   region            = "${var.region}"
   amis              = "${var.amis}"
   instance_type     = "${var.instance_type}"
+  
   trusted_ip_range  = "${var.trusted_ip_range}"
   vpc_id            = "${module.network.vpc_id}"
   public_subnet_id  = "${module.network.public_subnet_id}"
@@ -45,11 +47,27 @@ module "webapp" {
   amis                      = "${var.amis}"
   instance_type             = "${var.instance_type}"
   availability_zones        = "${var.availability_zones}"
+  
   vpc_id                    = "${module.network.vpc_id}"
   public_subnet_id          = "${module.network.public_subnet_id}"
   private_subnet_id         = "${module.network.private_subnet_id}"
-  sg_ssh_from_bastion_id    = "${module.bastion.sg_ssh_from_bastion_id}"
+  sg_ssh_for_bastion_id     = "${module.bastion.sg_ssh_for_bastion_id}"
+  
   asg_min                   = "${var.asg_min}"
   asg_max                   = "${var.asg_max}"
   asg_desired               = "${var.asg_desired}"
+}
+
+module "network-private" {
+  source                          = "./network-private"
+  key_name                        = "${var.key_name}"
+  region                          = "${var.region}"
+  amis                            = "${var.amis}"
+  instance_type                   = "${var.instance_type}"
+
+  vpc_id                          = "${module.network.vpc_id}"
+  public_subnet_id                = "${module.network.public_subnet_id}"
+  private_subnet_id               = "${module.network.private_subnet_id}"
+  sg_ssh_from_bastion_id          = "${module.bastion.sg_ssh_from_bastion_id}"
+  sg_nat-public_to_nat-private_id = "${module.network.sg_nat-public_to_nat-private_id}"
 }
