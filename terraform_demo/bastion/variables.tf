@@ -11,11 +11,15 @@
 
 variable "key_name" {}
 variable "region" {}
+
 variable "amis" {
   type = "map"
 }
+
 variable "instance_type" {}
 variable "trusted_ip_range" {}
 variable "vpc_id" {}
-variable "public_subnet_id" {}
+variable "public_subnet_ids" {
+  type = "list"
+}
 variable "nat_sg_id" {}

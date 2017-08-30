@@ -9,14 +9,16 @@
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
 variable "key_name" {}
+
 variable "region" {}
+
 variable "amis" {
   type = "map"
 }
+
 variable "instance_type" {}
 
 variable "vpc_id" {}
-variable "public_subnet_id" {}
 variable "private_subnet_id" {}
 variable "sg_ssh_from_bastion_id" {}
 variable "sg_nat-public_to_nat-private_id" {}

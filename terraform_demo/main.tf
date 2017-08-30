@@ -13,13 +13,14 @@ provider "aws" {
 }
 
 module "network" {
-  source              = "./network"
-  key_name            = "${var.key_name}"
-  region              = "${var.region}"
-  availability_zones  = "${var.availability_zones}"
-  amis                = "${var.amis}"
-  instance_type       = "${var.instance_type}"
+  source             = "./network"
+  key_name           = "${var.key_name}"
   
+  region             = "${var.region}"
+  availability_zones = "${var.availability_zones}"
+  amis               = "${var.amis}"
+  instance_type      = "${var.instance_type}"
+
   trusted_ip_range    = "${var.trusted_ip_range}"
   vpc_cidr            = "${var.vpc_cidr}"
   public_subnet_cidr  = "${var.public_subnet_cidr}"
@@ -27,46 +28,90 @@ module "network" {
 }
 
 module "bastion" {
-  source            = "./bastion"
-  key_name          = "${var.key_name}"
-  region            = "${var.region}"
-  amis              = "${var.amis}"
-  instance_type     = "${var.instance_type}"
+  source        = "./bastion"
+  key_name      = "${var.key_name}"
   
-  trusted_ip_range  = "${var.trusted_ip_range}"
-  vpc_id            = "${module.network.vpc_id}"
-  public_subnet_id  = "${module.network.public_subnet_id}"
-  nat_sg_id         = "${module.network.nat_sg_id}"
+  # EC2
+  region        = "${var.region}"
+  amis          = "${var.amis}"
+  instance_type = "${var.instance_type}"
+
+  # Network
+  trusted_ip_range = "${var.trusted_ip_range}"
+  vpc_id           = "${module.network.vpc_id}"
+  public_subnet_ids = "${module.network.public_subnet_ids}"
+  nat_sg_id        = "${module.network.nat_sg_id}"
 }
 
+module "db_sql" {
+  source = "github.com/terraform-community-modules/tf_aws_rds"
+
+  # RDS
+  rds_engine_type         = "${var.rds_engine_type}"
+  rds_engine_version      = "${var.rds_engine_version}"
+  rds_instance_class      = "${var.rds_instance_class}"
+  rds_instance_identifier = "${var.rds_instance_identifier}"
+  rds_allocated_storage   = "${var.rds_allocated_storage}"
+  db_parameter_group      = "${var.db_parameter_group}"
+
+  # Database
+  database_name     = "${var.database_name}"
+  database_user     = "${var.database_user}"
+  database_password = "${var.database_password}"
+  database_port     = "${var.database_port}"
+
+  # Upgrades
+  allow_major_version_upgrade = "${var.allow_major_version_upgrade}"
+  auto_minor_version_upgrade  = "${var.auto_minor_version_upgrade}"
+  apply_immediately  = "${var.apply_immediately}"
+  maintenance_window = "${var.maintenance_window}"
+
+  # Snapshots and backups
+  skip_final_snapshot   = "${var.skip_final_snapshot}"
+  copy_tags_to_snapshot = "${var.copy_tags_to_snapshot}"
+  backup_window  = "${var.backup_window}"
+  backup_retention_period  = "${var.backup_retention_period}"
+
+  # Network
+  rds_is_multi_az = "${var.rds_is_multi_az}"
+  subnets      = "${module.network.public_subnet_ids}"
+  rds_vpc_id   = "${module.network.vpc_id}"
+  private_cidr = "${var.public_subnet_cidr}"
+}
 
 module "webapp" {
-  source                    = "./webapp"
-  key_name                  = "${var.key_name}"
-  region                    = "${var.region}"
-  amis                      = "${var.amis}"
-  instance_type             = "${var.instance_type}"
-  availability_zones        = "${var.availability_zones}"
+  source             = "./webapp"
+  key_name           = "${var.key_name}"
   
-  vpc_id                    = "${module.network.vpc_id}"
-  public_subnet_id          = "${module.network.public_subnet_id}"
-  private_subnet_id         = "${module.network.private_subnet_id}"
-  sg_ssh_for_bastion_id     = "${module.bastion.sg_ssh_for_bastion_id}"
-  
-  asg_min                   = "${var.asg_min}"
-  asg_max                   = "${var.asg_max}"
-  asg_desired               = "${var.asg_desired}"
+  # EC2
+  region             = "${var.region}"
+  amis               = "${var.amis}"
+  instance_type      = "${var.instance_type}"
+  availability_zones = "${var.availability_zones}"
+
+  # Network Settings
+  vpc_id                = "${module.network.vpc_id}"
+  public_subnet_ids     = "${module.network.public_subnet_ids}"
+  private_subnet_id     = "${module.network.private_subnet_id}"
+  sg_ssh_for_bastion_id = "${module.bastion.sg_ssh_for_bastion_id}"
+
+  # Auto-scaling Group
+  asg_min     = "${var.asg_min}"
+  asg_max     = "${var.asg_max}"
+  asg_desired = "${var.asg_desired}"
 }
 
 module "network-private" {
-  source                          = "./network-private"
-  key_name                        = "${var.key_name}"
-  region                          = "${var.region}"
-  amis                            = "${var.amis}"
-  instance_type                   = "${var.instance_type}"
+  source        = "./network-private"
+  key_name      = "${var.key_name}"
+  
+  # EC2
+  region        = "${var.region}"
+  amis          = "${var.amis}"
+  instance_type = "${var.instance_type}"
 
+  # Network
   vpc_id                          = "${module.network.vpc_id}"
-  public_subnet_id                = "${module.network.public_subnet_id}"
   private_subnet_id               = "${module.network.private_subnet_id}"
   sg_ssh_from_bastion_id          = "${module.bastion.sg_ssh_from_bastion_id}"
   sg_nat-public_to_nat-private_id = "${module.network.sg_nat-public_to_nat-private_id}"

@@ -11,13 +11,19 @@
 
 variable "key_name" {}
 variable "region" {}
+
 variable "availability_zones" {
-  type = "list"}
+  type = "list"
+}
+
 variable "amis" {
   type = "map"
 }
+
 variable "instance_type" {}
 variable "trusted_ip_range" {}
 variable "vpc_cidr" {}
-variable "public_subnet_cidr" {}
+variable "public_subnet_cidr" {
+  type = "list"
+}
 variable "private_subnet_cidr" {}

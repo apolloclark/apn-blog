@@ -38,8 +38,6 @@ output "sg_http_webapp-elb_and_webapp-ec2_id" {
   value = "${aws_security_group.sg_http_webapp-elb_and_webapp-ec2.id}"
 }
 
-
-
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
 resource "aws_security_group" "sg_ssh_bastion_and_webapp-ec2" {
   name        = "tf_ssh_bastion_and_webapp-ec2"

@@ -12,7 +12,7 @@
 # https://www.terraform.io/docs/providers/aws/r/elb.html
 resource "aws_elb" "webapp_elb" {
   name    = "tf-webapp-elb"
-  subnets = ["${var.public_subnet_id}"]
+  subnets = ["${var.public_subnet_ids}"]
 
   listener {
     instance_port     = 80

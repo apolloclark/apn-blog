@@ -11,16 +11,22 @@
 
 variable "key_name" {}
 variable "region" {}
+
 variable "amis" {
   type = "map"
 }
+
 variable "instance_type" {}
+
 variable "availability_zones" {
   # No spaces allowed between az names!
   default = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
+
 variable "vpc_id" {}
-variable "public_subnet_id" {}
+variable "public_subnet_ids" {
+  type = "list"
+}
 variable "private_subnet_id" {}
 variable "sg_ssh_for_bastion_id" {}
 variable "asg_min" {}

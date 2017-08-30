@@ -11,5 +11,6 @@
 # License for the specific language governing permissions and limitations under the License.
 yum -y update
 yum -y install nginx
+yum -y install mysql
 service nginx start
 chkconfig nginx on

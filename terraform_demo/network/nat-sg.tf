@@ -51,8 +51,6 @@ output "nat_sg_id" {
   value = "${aws_security_group.nat_sg.id}"
 }
 
-
-
 resource "aws_security_group" "sg_nat-public_to_nat-private" {
   name        = "tf_nat-public_to_nat-private"
   description = "Allow web access to the private subnet from the public subnet (via NAT instance)"
@@ -61,21 +59,21 @@ resource "aws_security_group" "sg_nat-public_to_nat-private" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["${aws_subnet.subnet_public.cidr_block}"]
+    cidr_blocks = ["${aws_subnet.subnet_public.*.cidr_block}"]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${aws_subnet.subnet_public.cidr_block}"]
+    cidr_blocks = ["${aws_subnet.subnet_public.*.cidr_block}"]
   }
 
   ingress {
     from_port   = -1
     to_port     = -1
     protocol    = "icmp"
-    cidr_blocks = ["${aws_subnet.subnet_public.cidr_block}"]
+    cidr_blocks = ["${aws_subnet.subnet_public.*.cidr_block}"]
   }
 
   egress {

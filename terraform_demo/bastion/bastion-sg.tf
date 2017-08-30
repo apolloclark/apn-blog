@@ -31,8 +31,6 @@ output "sg_ssh_for_bastion_id" {
   value = "${aws_security_group.sg_ssh_for_bastion.id}"
 }
 
-
-
 resource "aws_security_group" "sg_ssh_from_bastion" {
   name        = "tf_ssh_from_bastion"
   description = "Allow SSH from Bastion host"

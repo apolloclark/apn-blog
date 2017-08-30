@@ -9,7 +9,7 @@ resource "aws_instance" "nat-ec2" {
   instance_type               = "t2.small"
   key_name                    = "${var.key_name}"
   security_groups             = ["${aws_security_group.nat_sg.id}"]
-  subnet_id                   = "${aws_subnet.subnet_public.id}"
+  subnet_id                   = "${aws_subnet.subnet_public.0.id}"
   associate_public_ip_address = true
   source_dest_check           = false
 

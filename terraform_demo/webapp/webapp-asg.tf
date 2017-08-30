@@ -6,7 +6,7 @@ resource "aws_autoscaling_group" "webapp_asg" {
     create_before_destroy = true
   }
 
-  vpc_zone_identifier   = ["${var.public_subnet_id}"]
+  vpc_zone_identifier   = ["${var.public_subnet_ids}"]
   name                  = "tf_webapp-asg_${aws_launch_configuration.webapp_lc.name}"
   max_size              = "${var.asg_max}"
   min_size              = "${var.asg_min}"
@@ -25,8 +25,6 @@ resource "aws_autoscaling_group" "webapp_asg" {
 output "webapp_asg_id" {
   value = "${aws_autoscaling_group.webapp_asg.id}"
 }
-
-
 
 #
 # Scale Up Policy and Alarm
@@ -57,8 +55,6 @@ resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
   alarm_description = "EC2 CPU Utilization"
   alarm_actions     = ["${aws_autoscaling_policy.scale_up.arn}"]
 }
-
-
 
 #
 # Scale Down Policy and Alarm
