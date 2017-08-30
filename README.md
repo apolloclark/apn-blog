@@ -5,6 +5,7 @@ Terraform project for deploying a webservice including:
 - VPC (Virtual Private Cloud)
 - SSH Bastion Host, with EIP (Elastic IP)
 - Private-network only SSH Bastion access
+- RDS (Relational Database Service)
 - ELB (Elastic Load Balancer)
 - Auto-scaling Groups
 - Cloudwatch Metric Alarms
