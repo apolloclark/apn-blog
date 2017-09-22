@@ -1,23 +1,16 @@
-# Copyright 2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file
-# except in compliance with the License. A copy of the License is located at
+# Webapp Security Group
 #
-#     http://aws.amazon.com/apache2.0/
-#
-# or in the "license" file accompanying this file. This file is distributed on an "AS IS"
-# BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-# License for the specific language governing permissions and limitations under the License.
-# https://www.terraform.io/docs/providers/aws/r/security_group.html
-resource "aws_security_group" "sg_http_webapp-elb_and_webapp-ec2" {
-  name        = "tf_http_webapp-elb_and_webapp-ec2"
-  description = "Allow HTTP between webapp-elb and webapp-ec2 instances"
+
+resource "aws_security_group" "sg_http_webapp_alb_and_webapp_ec2" {
+  name        = "tf_http_webapp_alb_and_webapp_ec2"
+  description = "Allow HTTP between webapp-alb and webapp-ec2 instances"
 
   ingress {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.sg_http_for_webapp-elb.id}"]
+    security_groups = ["${aws_security_group.sg_http_for_webapp_alb.id}"]
   }
 
   egress {
@@ -30,13 +23,15 @@ resource "aws_security_group" "sg_http_webapp-elb_and_webapp-ec2" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "tf_http_webapp-elb_and_webapp-ec2"
+    Name = "tf_http_webapp_alb_and_webapp_ec2"
   }
 }
 
-output "sg_http_webapp-elb_and_webapp-ec2_id" {
-  value = "${aws_security_group.sg_http_webapp-elb_and_webapp-ec2.id}"
+output "sg_http_webapp-alb_and_webapp_ec2_id" {
+  value = "${aws_security_group.sg_http_webapp_alb_and_webapp_ec2.id}"
 }
+
+
 
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
 resource "aws_security_group" "sg_ssh_bastion_and_webapp-ec2" {

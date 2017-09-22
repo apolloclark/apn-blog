@@ -1,6 +1,10 @@
 #
 # Webapp Auto-scaling Group
 #
+
+# http://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-register-targets.html
+# http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html#as-add-load-balancer-aws-cli
+# https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html
 resource "aws_autoscaling_group" "webapp_asg" {
   lifecycle {
     create_before_destroy = true
@@ -13,7 +17,8 @@ resource "aws_autoscaling_group" "webapp_asg" {
   wait_for_elb_capacity = false
   force_delete          = true
   launch_configuration  = "${aws_launch_configuration.webapp_lc.id}"
-  load_balancers        = ["${aws_elb.webapp_elb.name}"]
+  # load_balancers        = ["${aws_alb.webapp_alb.name}"]
+  target_group_arns      = ["${aws_alb_target_group.webapp_alb_tg.arn}"]
 
   tag {
     key                 = "Name"
@@ -25,6 +30,12 @@ resource "aws_autoscaling_group" "webapp_asg" {
 output "webapp_asg_id" {
   value = "${aws_autoscaling_group.webapp_asg.id}"
 }
+
+output "webapp_asg_arn" {
+  value = "${aws_autoscaling_group.webapp_asg.arn}"
+}
+
+
 
 #
 # Scale Up Policy and Alarm
@@ -55,6 +66,8 @@ resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
   alarm_description = "EC2 CPU Utilization"
   alarm_actions     = ["${aws_autoscaling_policy.scale_up.arn}"]
 }
+
+
 
 #
 # Scale Down Policy and Alarm

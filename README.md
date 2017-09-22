@@ -6,7 +6,7 @@ Terraform project for deploying a webservice including:
 - SSH Bastion Host, with EIP (Elastic IP)
 - Private-network only SSH Bastion access
 - RDS (Relational Database Service)
-- ELB (Elastic Load Balancer)
+- ALB (Application Load Balancer)
 - Auto-scaling Groups
 - Cloudwatch Metric Alarms
 - Auto-scaling Policy Triggers
@@ -25,4 +25,5 @@ cd aws-terraform/terraform_demo
 terraform get
 terraform plan
 terraform apply
+terraform show
 ```
