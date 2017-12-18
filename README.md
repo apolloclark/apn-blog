@@ -59,17 +59,17 @@ To Do:
 - [ntp](https://github.com/geerlingguy/ansible-role-ntp)
 - [git](https://github.com/geerlingguy/ansible-role-git)
 
-&nbsp;&nbsp;&nbsp;&nbsp;**packer-aws-webapp**
+- **packer-aws-webapp**
   - [apache](https://github.com/geerlingguy/ansible-role-apache)
   - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
   - [php](https://github.com/geerlingguy/ansible-role-php)
   - [php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
   - [mysql](https://github.com/apolloclark/ansible-role-mysql)
 
-&nbsp;&nbsp;&nbsp;&nbsp;**packer-aws-java**
+- **packer-aws-java**
   - java
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**packer-aws-elk**
+  - **packer-aws-elk**
     - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
     - Logstash
     - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
