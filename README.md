@@ -1,6 +1,24 @@
 # aws-terraform
 
-Terraform project for deploying a webservice including:
+## Before You Begin
+If you haven't already configured the AWS CLI, or another SDK, on the machine
+where you will be running Terraform you should follow these instructions to
+setup the AWS CLI and create a credential profile which Terraform will use for
+authentication:  
+http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+
+## Deploy
+```shell
+git clone https://github.com/apolloclark/aws-terraform/
+cd aws-terraform/terraform_demo
+terraform get
+terraform plan
+terraform apply
+terraform show
+```
+
+## Overview
+Terraform project for deploying a multi-tier webservice including:
 - Amazon AWS
 - VPC (Virtual Private Cloud)
 - SSH Bastion Host, with EIP (Elastic IP)
@@ -25,21 +43,32 @@ To Do:
 - Packer
 - Varnish Cache HTTP cache
 
+## Network Diagram
+
 ![AWS Network Diagram](https://github.com/apolloclark/aws-terraform/blob/master/aws_e2e_web.jpg)
 
-# Before You Begin
-If you haven't already configured the AWS CLI, or another SDK, on the machine
-where you will be running Terraform you should follow these instructions to
-setup the AWS CLI and create a credential profile which Terraform will use for
-authentication:  
-http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+## VM Images, Ansible Roles
 
-# Launching
-```shell
-git clone https://github.com/apolloclark/aws-terraform/
-cd aws-terraform/terraform_demo
-terraform get
-terraform plan
-terraform apply
-terraform show
-```
+**[packer-aws-base](https://github.com/apolloclark/packer-aws-base)**
+- [osquery](https://github.com/apolloclark/ansible-role-osquery)
+- [filebeat](https://github.com/apolloclark/ansible-role-filebeat)
+- [metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
+- [heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
+- [packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
+- [firewall](https://github.com/geerlingguy/ansible-role-firewall)
+- [ntp](https://github.com/geerlingguy/ansible-role-ntp)
+- [git](https://github.com/geerlingguy/ansible-role-git)
+  **packer-aws-webapp**
+  - [apache](https://github.com/geerlingguy/ansible-role-apache)
+  - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
+  - [php](https://github.com/geerlingguy/ansible-role-php)
+  - [php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
+  - [mysql](https://github.com/apolloclark/ansible-role-mysql)
+  **packer-aws-java**
+  - java
+    **packer-aws-elk**
+    - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
+    - Logstash
+    - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
+    - Beats Dashboards
+    - X-Pack
