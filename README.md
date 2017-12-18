@@ -1,4 +1,4 @@
-# aws-terraform
+# tf-aws
 
 ## Before You Begin
 If you haven't already configured the AWS CLI, or another SDK, on the machine
@@ -9,8 +9,8 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
 ## Deploy
 ```shell
-git clone https://github.com/apolloclark/aws-terraform/
-cd aws-terraform/terraform_demo
+git clone https://github.com/apolloclark/tf-aws/
+cd tf-aws/terraform_demo
 terraform get
 terraform plan
 terraform apply
@@ -58,7 +58,7 @@ To Do:
 - [firewall](https://github.com/geerlingguy/ansible-role-firewall)
 - [ntp](https://github.com/geerlingguy/ansible-role-ntp)
 - [git](https://github.com/geerlingguy/ansible-role-git)
-  **packer-aws-webapp**
+&nbsp;&nbsp;**packer-aws-webapp**
   - [apache](https://github.com/geerlingguy/ansible-role-apache)
   - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
   - [php](https://github.com/geerlingguy/ansible-role-php)
