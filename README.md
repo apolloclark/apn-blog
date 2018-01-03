@@ -7,6 +7,8 @@ setup the AWS CLI and create a credential profile which Terraform will use for
 authentication:  
 http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
+
+
 ## Deploy
 ```shell
 git clone https://github.com/apolloclark/tf-aws/
@@ -16,6 +18,8 @@ terraform plan
 terraform apply
 terraform show
 ```
+
+
 
 ## Network Diagram
 
@@ -37,15 +41,51 @@ To Do:
 - ELK cluster
 - S3 bucket for log collection
 - IAM role for accessing S3 logs bucket
-- S3 bucket for file hosting
-- ElasticCache for Redis
 - AWS WAF (Web Application Firewall)
 - Lamda rules for dynamic WAF rules
+- CloudTrail Logs
+- VPC Flow Logs
+---
 - SES (Simple Email Service) for alerts
+- S3 bucket for file hosting
+- ElasticCache for Redis
 - Gitlab
 - Jenkins
 - Packer
 - Varnish Cache HTTP cache
+
+
+
+## VM Images, Ansible Roles
+
+**[packer-aws-base](https://github.com/apolloclark/packer-aws-base)**
+- [osquery](https://github.com/apolloclark/ansible-role-osquery)
+- [filebeat](https://github.com/apolloclark/ansible-role-filebeat)
+- [metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
+- [heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
+- [packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
+- [firewall](https://github.com/geerlingguy/ansible-role-firewall)
+- [ntp](https://github.com/geerlingguy/ansible-role-ntp)
+- [git](https://github.com/geerlingguy/ansible-role-git)
+
+- **packer-aws-webapp**
+  - [apache](https://github.com/geerlingguy/ansible-role-apache)
+  - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
+  - [php](https://github.com/geerlingguy/ansible-role-php)
+  - [php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
+  - [mysql](https://github.com/apolloclark/ansible-role-mysql)
+
+- **packer-aws-java**
+  - java
+
+  - **packer-aws-elk**
+    - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
+    - Logstash
+    - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
+    - Beats Dashboards
+    - X-Pack
+
+
 
 ## Dashboards
 
@@ -84,31 +124,3 @@ Baseline the system, and create alerts for anything that's out of the ordinary.
 
 After the alerts have been proven reliable, responses can be automated.
 
-## VM Images, Ansible Roles
-
-**[packer-aws-base](https://github.com/apolloclark/packer-aws-base)**
-- [osquery](https://github.com/apolloclark/ansible-role-osquery)
-- [filebeat](https://github.com/apolloclark/ansible-role-filebeat)
-- [metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
-- [heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
-- [packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
-- [firewall](https://github.com/geerlingguy/ansible-role-firewall)
-- [ntp](https://github.com/geerlingguy/ansible-role-ntp)
-- [git](https://github.com/geerlingguy/ansible-role-git)
-
-- **packer-aws-webapp**
-  - [apache](https://github.com/geerlingguy/ansible-role-apache)
-  - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
-  - [php](https://github.com/geerlingguy/ansible-role-php)
-  - [php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
-  - [mysql](https://github.com/apolloclark/ansible-role-mysql)
-
-- **packer-aws-java**
-  - java
-
-  - **packer-aws-elk**
-    - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
-    - Logstash
-    - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
-    - Beats Dashboards
-    - X-Pack
