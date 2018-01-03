@@ -43,6 +43,7 @@ To Do:
 - IAM role for accessing S3 logs bucket
 - AWS WAF (Web Application Firewall)
 - Lamda rules for dynamic WAF rules
+- Guard Duty
 - CloudTrail Logs
 - VPC Flow Logs
 ---
