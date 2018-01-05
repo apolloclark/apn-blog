@@ -41,18 +41,21 @@ To Do:
 - ELK cluster
 - S3 bucket for log collection
 - IAM role for accessing S3 logs bucket
+- CloudTrail Logs
+- VPC Flow Logs
 - AWS WAF (Web Application Firewall)
 - Lamda rules for dynamic WAF rules
 - Guard Duty
-- CloudTrail Logs
-- VPC Flow Logs
 ---
 - SES (Simple Email Service) for alerts
 - S3 bucket for file hosting
 - ElasticCache for Redis
-- Gitlab
 - Jenkins
 - Packer
+- JMeter
+- Gitlab
+- HAProxy
+- ProxySQL
 - Varnish Cache HTTP cache
 
 
@@ -85,6 +88,30 @@ To Do:
     - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
     - Beats Dashboards
     - X-Pack
+---
+  - **packer-aws-elk_node**
+    - Elasticsearch node
+  - **packer-aws-logstash_node**
+    - Logstash node
+  - **packer-aws-builder**
+    - Jenkins
+    - Packer
+  - **packer-aws-builder_node**
+    - Jenkins node
+  - **packer-aws-stresser**
+    - JMeter
+  - **packer-aws-stresser_node**
+    - JMeter node
+---
+- **packer-aws-repo**
+  - gitlab
+  - apt-get
+- **packer-aws-tcp_proxy**
+  - HAProxy
+- **packer-aws-sql_proxy**
+  - ProxySQL
+- **packer-aws-http_cache**
+  - Varnishcache
 
 
 
