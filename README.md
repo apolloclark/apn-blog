@@ -57,27 +57,31 @@ To Do:
 - HAProxy
 - ProxySQL
 - Varnish Cache HTTP cache
+- Kafka, for Logstash message queuing
 
 
 
 ## VM Images, Ansible Roles
 
 **[packer-aws-base](https://github.com/apolloclark/packer-aws-base)**
-- [osquery](https://github.com/apolloclark/ansible-role-osquery)
-- [filebeat](https://github.com/apolloclark/ansible-role-filebeat)
-- [metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
-- [heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
-- [packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
-- [firewall](https://github.com/geerlingguy/ansible-role-firewall)
-- [ntp](https://github.com/geerlingguy/ansible-role-ntp)
-- [git](https://github.com/geerlingguy/ansible-role-git)
+- [geerlingguy.firewall](https://github.com/geerlingguy/ansible-role-firewall)
+- [geerlingguy.git](https://github.com/geerlingguy/ansible-role-git)
+- [apolloclark.nano-highlighting](https://github.com/apolloclark/ansible-role-nano-highlighting)
+- [apolloclark.osquery](https://github.com/apolloclark/ansible-role-osquery)
+- [apolloclark.filebeat](https://github.com/apolloclark/ansible-role-filebeat)
+- [apolloclark.metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
+- [apolloclark.heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
+- [apolloclark.packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
 
 - **[packer-aws-webapp](https://github.com/apolloclark/packer-aws-webapp)**
-  - [apache](https://github.com/geerlingguy/ansible-role-apache)
-  - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
-  - [php](https://github.com/geerlingguy/ansible-role-php)
-  - [php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
-  - [mysql](https://github.com/apolloclark/ansible-role-mysql)
+  - [geerlingguy.apache](https://github.com/geerlingguy/ansible-role-apache)
+  - [apolloclark.apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
+  - [apolloclark.mysql](https://github.com/apolloclark/ansible-role-mysql)
+  - [apolloclark.mysql-mcafee-audit](https://github.com/apolloclark/ansible-role-mysql-mcafee-audit)
+  - apolloclark.mysql-deploy
+  - [geerlingguy.php-versions](https://github.com/geerlingguy/ansible-role-php-versions)
+  - [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php)
+  - [geerlingguy.apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
 
 - **packer-aws-java**
   - java
