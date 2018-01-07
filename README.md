@@ -39,14 +39,14 @@ Terraform project for deploying a multi-tier webservice including:
 
 To Do:
 - ELK cluster
-- S3 bucket for log collection
-- IAM role for accessing S3 logs bucket
 - CloudTrail Logs
 - VPC Flow Logs
 - AWS WAF (Web Application Firewall)
 - Lamda rules for dynamic WAF rules
 - Guard Duty
 ---
+- S3 bucket for log collection
+- IAM role for accessing S3 logs bucket
 - SES (Simple Email Service) for alerts
 - S3 bucket for file hosting
 - ElasticCache for Redis
@@ -72,7 +72,7 @@ To Do:
 - [ntp](https://github.com/geerlingguy/ansible-role-ntp)
 - [git](https://github.com/geerlingguy/ansible-role-git)
 
-- **packer-aws-webapp**
+- **[packer-aws-webapp](https://github.com/apolloclark/packer-aws-webapp)**
   - [apache](https://github.com/geerlingguy/ansible-role-apache)
   - [apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
   - [php](https://github.com/geerlingguy/ansible-role-php)
