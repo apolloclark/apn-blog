@@ -1,5 +1,23 @@
 # tf-aws
 
+## Description
+
+This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier webstack,
+with ELK metrics and log monitoring, integrating osquery, and multiple AWS
+security features. It enables groups to deploy a fully secured web stack, and
+perform threat hunting. It is dpeloyed with:
+- Packer
+- Ansible
+- Serverspec
+- Terraform
+- Ubuntu 16.04
+
+It is intended to fulfil security requirements for:
+- PCI
+- FIPS
+- HIPAA
+- FedRAMP
+
 ## Before You Begin
 If you haven't already configured the AWS CLI, or another SDK, on the machine
 where you will be running Terraform you should follow these instructions to
