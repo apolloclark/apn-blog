@@ -5,8 +5,16 @@ global_start=`date +%s`
 cd ../packer-aws-base
 source ./build_packer_aws.sh
 
-# build Virtualbox webapp image
+# build AWS webapp image
 cd ../packer-aws-webapp
+source ./build_packer_aws.sh
+
+# build AWS java image
+cd ../packer-aws-java
+source ./build_packer_aws.sh
+
+# build AWS elk image
+cd ../packer-aws-elk
 source ./build_packer_aws.sh
 
 
