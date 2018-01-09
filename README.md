@@ -101,10 +101,10 @@ Terraform project for deploying a multi-tier webservice including:
   - [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php)
   - [geerlingguy.apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
 
-- **packer-aws-java**
-  - java
+- **[packer-aws-java](https://github.com/apolloclark/packer-aws-java)**
+  - [geerlingguy.java](https://github.com/geerlingguy/ansible-role-java)
 
-  - **packer-aws-elk**
+  - **[packer-aws-elk](https://github.com/apolloclark/packer-aws-elk)**
     - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
     - Logstash
     - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
