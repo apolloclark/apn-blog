@@ -37,7 +37,7 @@ Terraform project for deploying a multi-tier webservice including:
 - Cloudwatch Metric Alarms
 - Auto-scaling Policy Triggers
 
-To Do:
+## Roadmap:
 - ELK cluster
 - CloudTrail Logs
 - VPC Flow Logs
