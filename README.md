@@ -5,7 +5,7 @@
 This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier webstack,
 with ELK metrics and log monitoring, integrating osquery, and multiple AWS
 security features. It enables groups to deploy a fully secured web stack, and
-perform threat hunting. It is dpeloyed with:
+perform threat hunting. It is deployed with:
 - Packer
 - Ansible
 - Serverspec
