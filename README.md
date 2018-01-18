@@ -30,7 +30,7 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 ## Deploy
 ```shell
 git clone https://github.com/apolloclark/tf-aws/
-cd tf-aws/terraform_demo
+cd tf-aws/terraform
 terraform get
 terraform plan
 terraform apply
@@ -106,7 +106,7 @@ Terraform project for deploying a multi-tier webservice including:
 
   - **[packer-aws-elk](https://github.com/apolloclark/packer-aws-elk)**
     - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
-    - Logstash
+    - [Logstash](https://github.com/apolloclark/ansible-role-logstash)
     - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
     - Beats Dashboards
     - X-Pack
@@ -176,4 +176,19 @@ Baseline the system, and create alerts for anything that's out of the ordinary.
 **7. Automated Remediation**
 
 After the alerts have been proven reliable, responses can be automated.
+
+
+
+## References
+- [Security Onion - ELK Threat Hunting, for Windows](https://github.com/Security-Onion-Solutions/security-onion/wiki/Elastic)
+- [SIEMonster - ELK SIEM](https://siemonster.com/)
+- [HELK - Hunting ELK for Windows, w/ Hadoop, Spark, GraphFrames, Jupyer](https://github.com/Cyb3rWard0g/HELK)
+- [Skew - package for identifying and enumerating cloud resources.](https://github.com/scopely-devops/skew)
+- [411 - ELK alert managmenet](https://github.com/etsy/411)
+- [ESQuery - query parser for Elasticsearch](https://github.com/kiwiz/esquery)
+- [Elastalert - alerting with Elasticsearch](https://github.com/Yelp/elastalert)
+- [VulnWhisperer - vulnerability data and report aggregator](https://github.com/austin-taylor/VulnWhisperer)
+- [Elasticsearch and SIEM: implementing host portscan detection](https://www.elastic.co/blog/elasticsearch-and-siem-implementing-host-portscan-detection)
+- [CloudWatch Logs Subscription Consumer + Elasticsearch + Kibana Dashboards](https://aws.amazon.com/blogs/aws/cloudwatch-logs-subscription-consumer-elasticsearch-kibana-dashboards/)
+- [VPC Flow Log Analysis with the ELK Stack](https://logz.io/blog/vpc-flow-log-analysis/)
 
