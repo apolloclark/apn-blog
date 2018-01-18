@@ -143,29 +143,29 @@ Terraform project for deploying a multi-tier webservice including:
 
 **1. Inventory Management**
 
-If you want to protect a system, you need to protect everything everywhere.
+If you want to protect a network, you need to protect everything everywhere.
 Attacks target the oldest and most obscure system on your network.
 
 **2. Access Management**
 
 Even if you're running the latest patched version of everything, a default login,
-weak login, or reused login will make you vulnerable.
+weak login, or reused login is easily exploited.
 
 **3. Patch Management**
 
 If you're running End-of-Life (EOL) operating systems or packages that are more
-than 1 week old, you are vulnerable to CRITICAL and HIGH severity vulnerabilities.
+than 1 month old, you are vulnerable to CRITICAL and HIGH severity vulnerabilities.
 
 **4. Resource State Management**
 
 Accounting for everything, keeping logins secure, and patching everything, is
-useless if the service is configured in an insecure way. Additionally, all
-configuration changes need to be tracked.
+useless if the service is configured in an insecure way. All configuration
+changes need to be tracked.
 
 **5. Metrics and Logging**
 
 How will you know something is being attacked if you're not monitoring it? Logs
-provide a lot of value, but they should be easily correlated with metrics to
+provide a lot of value, and should be easily correlated with metrics to
 add more context to the event.
 
 **6. Automated Alerts**
