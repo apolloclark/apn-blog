@@ -85,7 +85,7 @@ module "webapp" {
   
   # EC2
   region             = "${var.region}"
-  amis               = "${var.amis}"
+  webapp_ami         = "${var.webapp_ami}"
   instance_type      = "${var.instance_type}"
   availability_zones = "${var.availability_zones}"
 
