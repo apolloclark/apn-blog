@@ -59,9 +59,9 @@ Terraform project for deploying a multi-tier webservice including:
 - ELK cluster
 - CloudTrail Logs
 - VPC Flow Logs
+- Guard Duty
 - AWS WAF (Web Application Firewall)
 - Lamda rules for dynamic WAF rules
-- Guard Duty
 ---
 - S3 bucket for log collection
 - IAM role for accessing S3 logs bucket
@@ -96,7 +96,6 @@ Terraform project for deploying a multi-tier webservice including:
   - [apolloclark.apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
   - [apolloclark.mysql](https://github.com/apolloclark/ansible-role-mysql)
   - [apolloclark.mysql-mcafee-audit](https://github.com/apolloclark/ansible-role-mysql-mcafee-audit)
-  - apolloclark.mysql-deploy
   - [geerlingguy.php-versions](https://github.com/geerlingguy/ansible-role-php-versions)
   - [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php)
   - [geerlingguy.apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
@@ -105,10 +104,10 @@ Terraform project for deploying a multi-tier webservice including:
   - [geerlingguy.java](https://github.com/geerlingguy/ansible-role-java)
 
   - **[packer-aws-elk](https://github.com/apolloclark/packer-aws-elk)**
-    - [Elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
-    - [Logstash](https://github.com/apolloclark/ansible-role-logstash)
-    - [Kibana](https://github.com/apolloclark/ansible-role-kibana)
-    - Beats Dashboards
+    - [apolloclark.elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
+    - [apolloclark.logstash](https://github.com/apolloclark/ansible-role-logstash)
+    - [apoloclark.kibana](https://github.com/apolloclark/ansible-role-kibana)
+    - [apolloclark.beats-dashboards]()
     - X-Pack
 ---
 
