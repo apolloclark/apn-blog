@@ -12,9 +12,7 @@
 variable "key_name" {}
 variable "region" {}
 
-variable "amis" {
-  type = "map"
-}
+variable "webapp_ami" {}
 
 variable "instance_type" {}
 

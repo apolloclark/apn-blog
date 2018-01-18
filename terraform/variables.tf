@@ -28,6 +28,10 @@ variable "amis" {
   }
 }
 
+variable "webapp_ami" {
+  default = "ami-c58c1dd3"
+}
+
 
 
 #
