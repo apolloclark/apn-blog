@@ -2,15 +2,15 @@
 # Bastion Security Groups
 #
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
-resource "aws_security_group" "sg_ssh_for_bastion" {
-  name        = "tf_ssh_for_bastion"
+resource "aws_security_group" "sg_ssh_to_bastion" {
+  name        = "tf_ssh_to_bastion"
   description = "Allow SSH to Bastion host from approved IP ranges"
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.trusted_ip_range}"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -23,12 +23,12 @@ resource "aws_security_group" "sg_ssh_for_bastion" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "tf_ssh_for_bastion"
+    Name = "tf_ssh_to_bastion"
   }
 }
 
-output "sg_ssh_for_bastion_id" {
-  value = "${aws_security_group.sg_ssh_for_bastion.id}"
+output "sg_ssh_to_bastion_id" {
+  value = "${aws_security_group.sg_ssh_to_bastion.id}"
 }
 
 resource "aws_security_group" "sg_ssh_from_bastion" {
@@ -41,9 +41,16 @@ resource "aws_security_group" "sg_ssh_from_bastion" {
     protocol  = "tcp"
 
     security_groups = [
-      "${aws_security_group.sg_ssh_for_bastion.id}",
+      "${aws_security_group.sg_ssh_to_bastion.id}",
       "${var.nat_sg_id}",
     ]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   vpc_id = "${var.vpc_id}"

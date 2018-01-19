@@ -18,18 +18,29 @@ variable "key_name" {
 }
 
 variable "instance_type" {
-  default = "t2.nano"
+  default = "t2.medium"
 }
 
 # Amazon Linux AMI, most recent as of 2017-06-15
 variable "amis" {
   default = {
-    us-east-1 = "ami-c58c1dd3"
+    us-east-1 = "ami-41e0b93b"
   }
 }
-
-variable "webapp_ami" {
-  default = "ami-c58c1dd3"
+variable "bastion_amis" {
+  default = {
+    us-east-1 = "ami-41e0b93b"
+    us-east-2 = "ami-2581aa40"
+  }
+}
+variable "base_ami_id" {
+  default = "ami-41e0b93b"
+}
+variable "elk_ami_id" {
+  default = "ami-41e0b93b"
+}
+variable "webapp_ami_id" {
+  default = "ami-41e0b93b"
 }
 
 

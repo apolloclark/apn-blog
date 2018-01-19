@@ -42,7 +42,7 @@ resource "aws_security_group" "sg_ssh_bastion_and_webapp-ec2" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = ["${var.sg_ssh_for_bastion_id}"]
+    security_groups = ["${var.sg_ssh_from_bastion_id}"]
   }
 
   egress {

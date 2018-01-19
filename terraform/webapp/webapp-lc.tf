@@ -7,7 +7,7 @@ resource "aws_launch_configuration" "webapp_lc" {
     create_before_destroy = true
   }
 
-  image_id      = "${var.webapp_ami}"
+  image_id      = "${var.webapp_ami_id}"
   instance_type = "${var.instance_type}"
 
   security_groups = [

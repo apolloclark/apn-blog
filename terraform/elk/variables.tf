@@ -12,21 +12,13 @@
 variable "key_name" {}
 variable "region" {}
 
-variable "webapp_ami_id" {}
+variable "elk_ami_id" {}
 
 variable "instance_type" {}
-
-variable "availability_zones" {
-  # No spaces allowed between az names!
-  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
-}
-
+variable "trusted_ip_range" {}
 variable "vpc_id" {}
 variable "public_subnet_ids" {
   type = "list"
 }
-variable "private_subnet_id" {}
 variable "sg_ssh_from_bastion_id" {}
-variable "asg_min" {}
-variable "asg_max" {}
-variable "asg_desired" {}
+variable "nat_sg_id" {}

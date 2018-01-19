@@ -43,6 +43,23 @@ module "bastion" {
   nat_sg_id        = "${module.network.nat_sg_id}"
 }
 
+module "elk" {
+  source        = "./elk"
+  key_name      = "${var.key_name}"
+  
+  # EC2
+  region        = "${var.region}"
+  elk_ami_id    = "${var.elk_ami_id}"
+  instance_type = "${var.instance_type}"
+
+  # Network
+  trusted_ip_range = "${var.trusted_ip_range}"
+  vpc_id           = "${module.network.vpc_id}"
+  public_subnet_ids = "${module.network.public_subnet_ids}"
+  sg_ssh_from_bastion_id = "${module.bastion.sg_ssh_from_bastion_id}"
+  nat_sg_id        = "${module.network.nat_sg_id}"
+}
+
 module "db_sql" {
   source = "github.com/terraform-community-modules/tf_aws_rds"
 
@@ -85,7 +102,7 @@ module "webapp" {
   
   # EC2
   region             = "${var.region}"
-  webapp_ami         = "${var.webapp_ami}"
+  webapp_ami_id      = "${var.webapp_ami_id}"
   instance_type      = "${var.instance_type}"
   availability_zones = "${var.availability_zones}"
 
@@ -93,7 +110,7 @@ module "webapp" {
   vpc_id                = "${module.network.vpc_id}"
   public_subnet_ids     = "${module.network.public_subnet_ids}"
   private_subnet_id     = "${module.network.private_subnet_id}"
-  sg_ssh_for_bastion_id = "${module.bastion.sg_ssh_for_bastion_id}"
+  sg_ssh_from_bastion_id = "${module.bastion.sg_ssh_from_bastion_id}"
 
   # Auto-scaling Group
   asg_min     = "${var.asg_min}"
