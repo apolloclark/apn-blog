@@ -13,10 +13,12 @@ perform threat hunting. It is deployed with:
 - Ubuntu 16.04
 
 It is intended to fulfil security requirements for:
-- PCI
+- [PCI](https://www.pcisecuritystandards.org/)
 - FIPS
 - HIPAA
 - FedRAMP
+
+
 
 ## Before You Begin
 If you haven't already configured the AWS CLI, or another SDK, on the machine
@@ -43,37 +45,63 @@ terraform show
 
 ![AWS Network Diagram](https://github.com/apolloclark/aws-terraform/blob/master/aws_e2e_web.jpg)
 
+
+
 ## Overview
-Terraform project for deploying a multi-tier webservice including:
+Terraform project for deploying and monitoring a multi-tier webservice including:
 - Amazon AWS
-- VPC (Virtual Private Cloud)
-- SSH Bastion Host, with EIP (Elastic IP)
-- Private-network only SSH Bastion access
-- RDS (Relational Database Service)
-- ALB (Application Load Balancer)
-- Auto-scaling Groups
-- Cloudwatch Metric Alarms
-- Auto-scaling Policy Triggers
+- [AWS VPC (Virtual Private Cloud)](https://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/ExerciseOverview.html)
+- [SSH Bastion Host, with AWS EIP (Elastic IP)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+- [Private Subnet network, with only SSH Bastion access](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario4.html)
+- [AWS RDS (Relational Database Service)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)
+- [AWS ALB (Application Load Balancer)](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
+- [AWS ASG (Auto-scaling Groups)](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html)
+- [AWS Cloudwatch Metric Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)
+- [AWS Autoscaling Policy Triggers](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html)
+- [AWS KMS (Key Management System)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
+- [AWS IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
+- [AWS IAM Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
+- [AWS IAM Instance Profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html)
+- [AWS SSM Parameter Store (System Service Manager)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
+- [ELK Stack](https://www.elastic.co/elk-stack)
+
+
 
 ## Roadmap:
-- ELK cluster
+---
+- ElastAlert
+- Automatic Notifications
+  - Elasticsearch dashboard
+  - Email
+  - SMS
+  - Github ticket
+
+- X-Pack
+
+- Elastic 6.1 upgrade
+
 - CloudTrail Logs
 - VPC Flow Logs
+
 - Guard Duty
 - AWS WAF (Web Application Firewall)
 - Lamda rules for dynamic WAF rules
----
+
 - S3 bucket for log collection
 - IAM role for accessing S3 logs bucket
 - SES (Simple Email Service) for alerts
+
 - S3 bucket for file hosting
 - ElasticCache for Redis
+
 - Jenkins
 - Packer
 - JMeter
+
 - Gitlab
 - HAProxy
 - ProxySQL
+
 - Varnish Cache HTTP cache
 - Kafka, for Logstash message queuing
 
@@ -175,6 +203,49 @@ Baseline the system, and create alerts for anything that's out of the ordinary.
 **7. Automated Remediation**
 
 After the alerts have been proven reliable, responses can be automated.
+
+
+
+## Secrets Management
+
+Deploying infrastructure at scale requires automation. Hostnames, IP addresses,
+usernames, passwords, security certificates, keys, and other credentials should
+not be hardcoded into VM images, be easily revoked, with all access monitored
+and logged. There are multiple services available, such as:
+
+- [Ansible Vault](https://docs.ansible.com/ansible/2.4/vault.html)
+- [HashiCorp Vault](https://www.vaultproject.io/)
+- [Conjur](https://developer.conjur.net/)
+- [Amazon AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
+- [Amazon AWS Parameter Store]
+- [Infrastructure Secret Management Software Overview](https://gist.github.com/maxvt/bb49a6c7243163b8120625fc8ae3f3cd)
+
+Initially I was going to use the AWS Key Management Service, but it has a limit
+of [1024 bytes](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html#API_GenerateDataKey_RequestParameters)
+per key, which is too small for things like SSL Certificates. Instead I chose
+the Amazon Parameter Store (released Jan 2017), which allows up to [4096 bytes](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ssm).
+
+Here's how the process works:
+
+- Generate New Custom KMS Key
+- IAM Role
+  - allow services to assume role
+- IAM Role Policy
+  - allow access to KMS Key, by ARN
+  - allow access to Parameter Store, by Name
+  - attach to IAM Role, by Id
+- IAM Instance Profile
+  - inherit IAM Role, by Name
+- Deploy AWS resources
+- SSM Parameter(s)
+  - store parameters, using KMS Key, by Key Id
+- EC2 / ASG
+  - attach IAM Instance Profile, by Name
+  - configure User Data Shell Script [docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - install AWS-CLI
+  - retrieve Parameter(s), with aws-cli, using IAM Instance Profile
+  - run Ansible, configure services
+  - run Severspec, verify configuration
 
 
 
