@@ -49,7 +49,7 @@ terraform show
 
 ## Overview
 Terraform project for deploying and monitoring a multi-tier webservice including:
-- Amazon AWS
+- [Amazon AWS](https://aws.amazon.com/)
 - [AWS VPC (Virtual Private Cloud)](https://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/ExerciseOverview.html)
 - [SSH Bastion Host, with AWS EIP (Elastic IP)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 - [Private Subnet network, with only SSH Bastion access](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario4.html)
@@ -68,7 +68,7 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 
 ## Roadmap:
----
+
 - ElastAlert
 - Automatic Notifications
   - Elasticsearch dashboard
@@ -217,7 +217,7 @@ and logged. There are multiple services available, such as:
 - [HashiCorp Vault](https://www.vaultproject.io/)
 - [Conjur](https://developer.conjur.net/)
 - [Amazon AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
-- [Amazon AWS Parameter Store]
+- [Amazon AWS Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
 - [Infrastructure Secret Management Software Overview](https://gist.github.com/maxvt/bb49a6c7243163b8120625fc8ae3f3cd)
 
 Initially I was going to use the AWS Key Management Service, but it has a limit
@@ -225,7 +225,7 @@ of [1024 bytes](https://docs.aws.amazon.com/kms/latest/APIReference/API_Generate
 per key, which is too small for things like SSL Certificates. Instead I chose
 the Amazon Parameter Store (released Jan 2017), which allows up to [4096 bytes](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ssm).
 
-Here's how the process works:
+Process:
 
 - Generate New Custom KMS Key
 - IAM Role
@@ -241,12 +241,13 @@ Here's how the process works:
   - store parameters, using KMS Key, by Key Id
 - EC2 / ASG
   - attach IAM Instance Profile, by Name
-  - configure User Data Shell Script [docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - configure User Data Shell Script [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - install AWS-CLI
   - retrieve Parameter(s), with aws-cli, using IAM Instance Profile
   - run Ansible, configure services
   - run Severspec, verify configuration
-
+  - stop instance, if Ansible or Serverspec fail
+  - send alert, if instance fails to startup
 
 
 ## References
