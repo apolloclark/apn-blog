@@ -6,17 +6,17 @@ This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier webstack,
 with ELK metrics and log monitoring, integrating osquery, and multiple AWS
 security features. It enables groups to deploy a fully secured web stack, and
 perform threat hunting. It is deployed with:
-- Packer
-- Ansible
-- Serverspec
-- Terraform
-- Ubuntu 16.04
+- [Packer](https://www.packer.io/)
+- [Ansible](https://www.ansible.com/)
+- [Serverspec](http://serverspec.org/)
+- [Terraform](https://www.terraform.io/)
+- [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 
 It is intended to fulfil security requirements for:
 - [PCI](https://www.pcisecuritystandards.org/)
-- FIPS
-- HIPAA
-- FedRAMP
+- [FIPS](https://www.nist.gov/itl/popular-links/federal-information-processing-standards-fips)
+- [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)
+- [FedRAMP](https://www.fedramp.gov/about-us/about/)
 
 
 
