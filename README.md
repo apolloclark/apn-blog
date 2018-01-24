@@ -259,6 +259,35 @@ Process:
   - run Severspec, verify configuration
   - stop instance, if Ansible or Serverspec fail
   - send alert, if instance fails to startup
+  
+## Deployment Details
+
+Steps:
+- VPC
+- KMS
+  - custom key
+- IAM
+  - Roles
+  - Role Policies
+  - Instance Profiles
+- RDS Aurora
+- Parameter Store
+  - save RDS config
+- Bastion host
+  - Security Groups
+  - Elastic IP
+  - EC2 Instance
+- ELK Master
+  - Elastic IP
+  - EC2 Instance
+- Webapp ASG
+  - ALB Security Groups
+  - Application Load Balancer
+  - Launch Configuration
+  - Auto Scaling Group
+  - Auto Scaling Triggers
+- Private Network
+
 
 
 ## References
