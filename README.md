@@ -6,10 +6,10 @@ This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier webstack,
 with ELK metrics and log monitoring, integrating osquery, and multiple AWS
 security features. It enables groups to deploy a fully secured web stack, and
 perform threat hunting. It is deployed with:
-- [Packer](https://www.packer.io/)
-- [Ansible](https://www.ansible.com/)
-- [Serverspec](http://serverspec.org/)
-- [Terraform](https://www.terraform.io/)
+- [Packer](https://www.packer.io/) - VM image builder
+- [Ansible](https://www.ansible.com/) - service configuration
+- [Serverspec](http://serverspec.org/) - service verification
+- [Terraform](https://www.terraform.io/) - cloud resource builder
 - [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 
 It is intended to fulfil security requirements for:
@@ -17,6 +17,17 @@ It is intended to fulfil security requirements for:
 - [FIPS](https://www.nist.gov/itl/popular-links/federal-information-processing-standards-fips)
 - [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)
 - [FedRAMP](https://www.fedramp.gov/about-us/about/)
+
+Uses:
+- [osquery](https://osquery.io/) - enpoint visibility
+- [Elastic 5.6.5](https://github.com/elastic/beats/releases) (Dec 6, 2017)
+  - [Filebeat](https://www.elastic.co/products/beats/filebeat) - log file collector
+  - [Metricbeat](https://www.elastic.co/products/beats/metricbeat)  - metric collector
+  - [Packetbeat](https://www.elastic.co/products/beats/packetbeat) - network analytics collector
+  - [Heartbeat](https://www.elastic.co/products/beats/heartbeat) - uptime monitor
+  - [Elasticsearch](https://www.elastic.co/products/elasticsearch) - document-store database
+  - [Logstash](https://www.elastic.co/products/logstash) - log file processor
+  - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
 
 
 
