@@ -19,6 +19,10 @@ resource "aws_instance" "bastion-ec2" {
   }
 }
 
+output "bastion-ec2_private_ip" {
+  value = "${aws_instance.bastion-ec2.private_ip}"
+}
+
 output "bastion-ec2_id" {
   value = "${aws_instance.bastion-ec2.id}"
 }

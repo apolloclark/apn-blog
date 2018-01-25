@@ -27,37 +27,14 @@ module "network" {
   private_subnet_cidr = "${var.private_subnet_cidr}"
 }
 
-module "bastion" {
-  source        = "./bastion"
-  key_name      = "${var.key_name}"
-  
-  # EC2
-  region        = "${var.region}"
-  amis          = "${var.amis}"
-  instance_type = "${var.instance_type}"
-
-  # Network
-  trusted_ip_range = "${var.trusted_ip_range}"
-  vpc_id           = "${module.network.vpc_id}"
-  public_subnet_ids = "${module.network.public_subnet_ids}"
-  nat_sg_id        = "${module.network.nat_sg_id}"
+module "kms" {
+  source             = "./kms"
 }
 
-module "elk" {
-  source        = "./elk"
-  key_name      = "${var.key_name}"
-  
-  # EC2
-  region        = "${var.region}"
-  elk_ami_id    = "${var.elk_ami_id}"
-  instance_type = "${var.instance_type}"
+module "iam" {
+  source             = "./iam"
 
-  # Network
-  trusted_ip_range = "${var.trusted_ip_range}"
-  vpc_id           = "${module.network.vpc_id}"
-  public_subnet_ids = "${module.network.public_subnet_ids}"
-  sg_ssh_from_bastion_id = "${module.bastion.sg_ssh_from_bastion_id}"
-  nat_sg_id        = "${module.network.nat_sg_id}"
+  kms_key_parameter-store_arn = "${module.kms.kms_key_parameter-store_arn}"
 }
 
 module "db_sql" {
@@ -96,6 +73,47 @@ module "db_sql" {
   private_cidr = "${var.public_subnet_cidr}"
 }
 
+module "parameter-store" {
+  source             = "./parameter-store"
+  kms_key_parameter-store_id = "${module.kms.kms_key_parameter-store_id}"
+  database_password          = "${var.database_password}"
+}
+
+module "bastion" {
+  source        = "./bastion"
+  key_name      = "${var.key_name}"
+  
+  # EC2
+  region        = "${var.region}"
+  amis          = "${var.amis}"
+  instance_type = "${var.instance_type}"
+
+  # Network
+  trusted_ip_range  = "${var.trusted_ip_range}"
+  vpc_id            = "${module.network.vpc_id}"
+  public_subnet_ids = "${module.network.public_subnet_ids}"
+  nat_sg_id         = "${module.network.nat_sg_id}"
+}
+
+module "elk" {
+  source        = "./elk"
+  key_name      = "${var.key_name}"
+  
+  # EC2
+  region        = "${var.region}"
+  elk_ami_id    = "${var.elk_ami_id}"
+  instance_type = "${var.instance_type}"
+  iam_profile_parameter-store_name = "${module.iam.iam_profile_parameter-store_name}"
+
+  # Network
+  trusted_ip_range = "${var.trusted_ip_range}"
+  vpc_id           = "${module.network.vpc_id}"
+  vpc_cidr         = "${var.vpc_cidr}"
+  public_subnet_ids = "${module.network.public_subnet_ids}"
+  sg_ssh_from_bastion_id = "${module.bastion.sg_ssh_from_bastion_id}"
+  nat_sg_id        = "${module.network.nat_sg_id}"
+}
+
 module "webapp" {
   source             = "./webapp"
   key_name           = "${var.key_name}"
@@ -105,6 +123,7 @@ module "webapp" {
   webapp_ami_id      = "${var.webapp_ami_id}"
   instance_type      = "${var.instance_type}"
   availability_zones = "${var.availability_zones}"
+  iam_profile_parameter-store_name = "${module.iam.iam_profile_parameter-store_name}"
 
   # Network Settings
   vpc_id                = "${module.network.vpc_id}"

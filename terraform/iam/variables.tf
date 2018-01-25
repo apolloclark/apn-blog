@@ -9,23 +9,8 @@
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
 
-variable "key_name" {}
-variable "region" {}
-variable "availability_zones" {
-  # No spaces allowed between az names!
-  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
-}
+#
+# Shared
+#
 
-variable "webapp_ami_id" {}
-variable "instance_type" {}
-variable "iam_profile_parameter-store_name" {}
-
-variable "vpc_id" {}
-variable "public_subnet_ids" {
-  type = "list"
-}
-variable "private_subnet_id" {}
-variable "sg_ssh_from_bastion_id" {}
-variable "asg_min" {}
-variable "asg_max" {}
-variable "asg_desired" {}
+variable "kms_key_parameter-store_arn" {}

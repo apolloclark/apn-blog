@@ -13,9 +13,11 @@ variable "key_name" {}
 variable "region" {}
 
 variable "elk_ami_id" {}
+variable "iam_profile_parameter-store_name" {}
 
 variable "instance_type" {}
 variable "trusted_ip_range" {}
+variable "vpc_cidr" {}
 variable "vpc_id" {}
 variable "public_subnet_ids" {
   type = "list"

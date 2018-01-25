@@ -11,7 +11,7 @@
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
 resource "aws_security_group" "sg_http_for_webapp_alb" {
   name        = "tf_http_for_webapp_alb"
-  description = "Allow HTTP from anywhere for the webapp_alb"
+  description = "Allow HTTP from anywhere to the webapp_alb"
 
   ingress {
     from_port   = 80
@@ -36,8 +36,4 @@ resource "aws_security_group" "sg_http_for_webapp_alb" {
 
 output "sg_http_for_webapp_alb_id" {
   value = "${aws_security_group.sg_http_for_webapp_alb.id}"
-}
-
-output "sg_http_for_webapp_alb_arn" {
-  value = "${aws_security_group.sg_http_for_webapp_alb.arn}"
 }

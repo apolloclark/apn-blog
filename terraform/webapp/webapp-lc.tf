@@ -9,6 +9,7 @@ resource "aws_launch_configuration" "webapp_lc" {
 
   image_id      = "${var.webapp_ami_id}"
   instance_type = "${var.instance_type}"
+  iam_instance_profile = "${var.iam_profile_parameter-store_name}"
 
   security_groups = [
     "${aws_security_group.sg_http_webapp_alb_and_webapp_ec2.id}",
