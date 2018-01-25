@@ -44,6 +44,9 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 ```shell
 git clone https://github.com/apolloclark/tf-aws/
 cd tf-aws/terraform
+
+# create an EC2 keypair named "packer"
+
 terraform get
 terraform plan
 terraform apply
@@ -278,10 +281,11 @@ Steps:
   - Elastic IP
   - EC2 Instance
 - ELK Master
+  - Security Groups
   - Elastic IP
   - EC2 Instance
 - Webapp ASG
-  - ALB Security Groups
+  - Security Groups
   - Application Load Balancer
   - Launch Configuration
   - Auto Scaling Group
