@@ -22,8 +22,11 @@ terraform plan
 terraform apply
 
 terraform output -module=kms
+printf "\n"
 terraform output -module=iam
+printf "\n"
 terraform output -module=bastion
+printf "\n"
 terraform output -module=elk
 
 global_end=`date +%s`
