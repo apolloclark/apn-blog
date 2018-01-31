@@ -6,43 +6,18 @@
 # As of 2018-01-30, the aws_ssm_parameter_store module can only write, edit,
 # and delete keys
 
-whoami
-
 # fix missing Apache page
 mkdir -p /var/www/html/public
 cp /var/www/html/index.html /var/www/html/public/index.html
 
 
 
-
 # install ansible
 pip install ansible
-
-# install aws-cli
-pip install awscli --upgrade --user
-
-# add ~/.local/bin to pathway
-cd ~
-cat <<EOF >> ~/.profile
-
-# set PATH so it includes user's private bin directories
-PATH="/root/bin:/root/.local/bin:$PATH"
-EOF
-
-source ~/.profile
 
 # set the HOME variable
 # https://github.com/ansible/ansible/issues/31617
 export HOME=/root
-
-# configure aws-cli
-mkdir ~/.aws
-
-cat <<EOF >> ~/.aws/config
-[default]
-output = text
-region = us-east-1
-EOF
 
 
 
@@ -52,6 +27,7 @@ RDS_PASSWORD=$(aws ssm get-parameters --name "/rds/database_password" --with-dec
 
 ELK_PRIVATE_IP=$(aws ssm get-parameters --name "/elk/elk-ec2_private_ip" --with-decryption \
   --query "Parameters[].Value"  --output text);
+
 
 
 # download the packer-aws-base project
