@@ -234,27 +234,23 @@ the Amazon Parameter Store (released Jan 2017), which allows up to [4096 bytes](
 
 Process:
 
-- Generate New Custom KMS Key
+- [KMS Key](https://github.com/apolloclark/tf-aws/blob/master/terraform/kms/main.tf#L5-L10)
 - IAM Role
-  - allow services to assume role
+  - [allow services to assume role](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L7-L28)
 - IAM Role Policy
-  - allow access to KMS Key, by ARN
-  - allow access to Parameter Store, by Name
+  - [allow access to KMS Key, by ARN](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L67-L76)
+  - [allow access to Parameter Store, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L89-L99)
   - attach to IAM Role, by Id
 - IAM Instance Profile
-  - inherit IAM Role, by Name
-- Deploy AWS resources
+  - [inherit IAM Role, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L103-L107)
+- [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/terraform/main.tf#L40-L74)
 - SSM Parameter(s)
-  - store parameters, using KMS Key, by Key Id
+  - [store parameters, using KMS Key, by Key Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/parameter-store/parameter-store.tf)
 - EC2 / ASG
-  - attach IAM Instance Profile, by Name
-  - configure User Data Shell Script [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
-  - install AWS-CLI
-  - retrieve Parameter(s), with aws-cli, using IAM Instance Profile
-  - run Ansible, configure services
-  - run Severspec, verify configuration
-  - stop instance, if Ansible or Serverspec fail
-  - send alert, if instance fails to startup
+  - [attach IAM Instance Profile, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L13)
+  - [configure User Data Shell Script](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - [retrieve Parameter(s), with aws-cli, using IAM Instance Profile](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L24-L28)
+  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L38-L42)
 
 
 
