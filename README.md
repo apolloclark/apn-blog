@@ -42,15 +42,16 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
 ## Deploy
 ```shell
-git clone https://github.com/apolloclark/tf-aws/
-cd tf-aws/terraform
-
 # create an EC2 keypair named "packer"
 
-terraform get
-terraform plan
-terraform apply
-terraform show
+git clone https://github.com/apolloclark/tf-aws/
+cd tf-aws
+
+# use Packer to build the AWS AMI's
+./build_packer_aws.sh
+
+# deploy AWS infrastructure with Terraform
+./build_terraform.sh
 ```
 
 
@@ -83,41 +84,33 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 ## Roadmap:
 
-- ElastAlert
+- [Elastic X-Pack](https://www.elastic.co/products/x-pack)
+- [ElastAlert](https://github.com/Yelp/elastalert)
 - Automatic Notifications
   - Elasticsearch dashboard
   - Email
   - SMS
   - Github ticket
-
-- X-Pack
-
-- Elastic 6.1 upgrade
-
-- CloudTrail Logs
-- VPC Flow Logs
-
-- Guard Duty
-- AWS WAF (Web Application Firewall)
-- Lamda rules for dynamic WAF rules
-
-- S3 bucket for log collection
-- IAM role for accessing S3 logs bucket
-- SES (Simple Email Service) for alerts
-
-- S3 bucket for file hosting
-- ElasticCache for Redis
-
-- Jenkins
-- Packer
-- JMeter
-
-- Gitlab
-- HAProxy
-- ProxySQL
-
-- Varnish Cache HTTP cache
-- Kafka, for Logstash message queuing
+- [Elastic 6.1 upgrade](https://www.elastic.co/blog/elasticsearch-6-1-0-released)
+- [AWS CloudTrail Logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
+- [AWS VPC Flow Logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html)
+- [AWS Guard Duty](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html)
+- [AWS WAF (Web Application Firewall)](https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html)
+- [AWS Lamda rules for dynamic WAF rules](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
+- [AWS S3 bucket for log collection](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html)
+- [AWS IAM role for accessing S3 logs bucket](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-identity-based-access-control-cwl.html#w2ab1c21c13c23b9)
+- [AWS SES (Simple Email Service) for alerts](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-using-notifications.html)
+- [AWS S3 bucket for file hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
+- [AWS ElastiCache for Redis](https://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html)
+- [Jenkins](https://jenkins.io/)
+- [Packer](https://www.packer.io/)
+- [JMeter](http://jmeter.apache.org/)
+- [Gitlab](https://about.gitlab.com/)
+- [HAProxy - TCP/HTTP Load Balancer](http://www.haproxy.org/)
+- [Nginx - TCP/UDP Load Balancer](https://www.nginx.com/resources/admin-guide/tcp-load-balancing/)
+- [ProxySQL - SQL Load Balancer](http://www.proxysql.com/)
+- [Varnish Cache - HTTP cache](https://varnish-cache.org/)
+- [Kafka - Logstash message queuing](https://www.elastic.co/blog/just-enough-kafka-for-the-elastic-stack-part1)
 
 
 
