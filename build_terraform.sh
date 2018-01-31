@@ -19,7 +19,7 @@ printenv | grep "TF_VAR"
 
 terraform get
 terraform plan
-terraform apply
+terraform apply -auto-approve
 
 terraform output -module=bastion | grep "ip" --color=never
 printf "\n"
