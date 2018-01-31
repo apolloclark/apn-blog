@@ -13,26 +13,27 @@ cp /var/www/html/index.html /var/www/html/public/index.html
 # set the HOME variable
 # https://github.com/ansible/ansible/issues/31617
 export HOME=/root
+source ~/.profile
 
-
+# install Ansible
+pip install ansible
 
 # download the packer-aws-elk-monitoring project
+pwd
+rm -rf ./packer-aws-elk-monitoring/
 git clone https://github.com/apolloclark/packer-aws-elk-monitoring
 cd packer-aws-elk-monitoring/ansible
 
 # retrieve SSM Parameter Store secret values
-RDS_PASSWORD=$(aws ssm get-parameters --name "/rds/database_password" --with-decryption \
-  --query "Parameters[].Value"  --output text);
-
-ELK_PRIVATE_IP=$(aws ssm get-parameters --name "/elk/elk-ec2_private_ip" --with-decryption \
-  --query "Parameters[].Value"  --output text);
+ELK_PRIVATE_IP=$(aws ssm get-parameters --name "/elk/elk-ec2_private_ip" \
+  --with-decryption --query "Parameters[].Value"  --output text);
 
 # update vars_ssm.yml
 cat <<EOF > vars_ssm.yml
 ---
 hostname: all
 
-elastic_private_ip: "$ELK_PRIVATE_IP"
+elastic_private_ip: $ELK_PRIVATE_IP
 EOF
 
 # download the ansible playbooks into the "roles" folder
