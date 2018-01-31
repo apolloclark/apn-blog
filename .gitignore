@@ -8,12 +8,12 @@
 .git
 
 **/.vagrant
-
 **/.project
 
 **/aws-config.yml
 
 **/terraform.tfvars
 **/terraform.tfstate
+**/terraform.tfstate*
 **/terraform.tfstate.backup
 **/.terraform
