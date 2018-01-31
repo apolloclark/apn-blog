@@ -241,15 +241,15 @@ Process:
   - [allow access to KMS Key, by ARN](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L67-L76)
   - [allow access to Parameter Store, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L89-L99)
 - IAM Role Policy
-  - [attach Policy Document to Role Policy, by Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L103-L107)
+  - [attach Policy Document to Role, by Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L103-L107)
 - IAM Instance Profile
   - [attach Role, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L120-L123)
 - [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/terraform/main.tf#L40-L74)
 - SSM Parameter(s)
-  - [store parameters, using KMS Key, by Key Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/parameter-store/parameter-store.tf)
+  - [store parameters, by KMS Key Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/parameter-store/parameter-store.tf)
 - EC2 / ASG
-  - [attach IAM Instance Profile, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L13)
-  - [configure User Data Shell Script](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L13)
+  - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - [retrieve Parameter(s), with aws-cli, using IAM Instance Profile](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L24-L28)
   - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L38-L42)
 
