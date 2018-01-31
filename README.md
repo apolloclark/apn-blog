@@ -240,9 +240,9 @@ Process:
 - IAM Role Policy
   - [allow access to KMS Key, by ARN](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L67-L76)
   - [allow access to Parameter Store, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L89-L99)
-  - attach to IAM Role, by Id
+  - [attach to IAM Role, by Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L103-L107)
 - IAM Instance Profile
-  - [inherit IAM Role, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L103-L107)
+  - [inherit IAM Role, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L120-L123)
 - [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/terraform/main.tf#L40-L74)
 - SSM Parameter(s)
   - [store parameters, using KMS Key, by Key Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/parameter-store/parameter-store.tf)
