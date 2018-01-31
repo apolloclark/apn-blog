@@ -11,12 +11,12 @@
 
 variable "kms_key_parameter-store_id" {}
 
-# database_name           = "${var.database_name}"
-# database_user           = "${var.database_user}"
+# variable database_name {}
+# variable database_user {}
 variable "database_password" {}
-# database_port           = "${var.database_port}"
+# variable database_port {}
 
-# elk_eip                 = "${var.elk_eip}"
-# elk_elasticsearch_port  = "${var.elk_elasticsearch_port}"
-# elk_logstash_port       = "${var.elk_logstash_port}"
-# elk_kibana_port         = "${var.elk_kibana_port}"
+variable elk-ec2_private_ip {}
+# variable elk_elasticsearch_port {}
+# variable elk_logstash_port {}
+# variable elk_kibana_port {}

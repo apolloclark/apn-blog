@@ -73,12 +73,6 @@ module "db_sql" {
   private_cidr = "${var.public_subnet_cidr}"
 }
 
-module "parameter-store" {
-  source             = "./parameter-store"
-  kms_key_parameter-store_id = "${module.kms.kms_key_parameter-store_id}"
-  database_password          = "${var.database_password}"
-}
-
 module "bastion" {
   source        = "./bastion"
   key_name      = "${var.key_name}"
@@ -112,6 +106,13 @@ module "elk" {
   public_subnet_ids = "${module.network.public_subnet_ids}"
   sg_ssh_from_bastion_id = "${module.bastion.sg_ssh_from_bastion_id}"
   nat_sg_id        = "${module.network.nat_sg_id}"
+}
+
+module "parameter-store" {
+  source                     = "./parameter-store"
+  kms_key_parameter-store_id = "${module.kms.kms_key_parameter-store_id}"
+  database_password          = "${var.database_password}"
+  elk-ec2_private_ip         = "${module.elk.elk-ec2_private_ip}"
 }
 
 module "webapp" {

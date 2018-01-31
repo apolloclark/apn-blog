@@ -1,7 +1,8 @@
 #
 # Webapp Launch Configuration
 #
-
+# https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
+# https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts
 resource "aws_launch_configuration" "webapp_lc" {
   lifecycle {
     create_before_destroy = true

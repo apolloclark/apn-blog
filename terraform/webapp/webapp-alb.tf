@@ -24,6 +24,10 @@ output "webapp_alb_arn" {
   value = "${aws_alb.webapp_alb.arn}"
 }
 
+output "webapp_alb_dns" {
+  value = "${aws_alb.webapp_alb.dns_name}"
+}
+
 
 
 # https://www.terraform.io/docs/providers/aws/r/alb_target_group.html

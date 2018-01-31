@@ -21,13 +21,16 @@ terraform get
 terraform plan
 terraform apply
 
-terraform output -module=kms
+terraform output -module=bastion | grep "ip" --color=never
 printf "\n"
-terraform output -module=iam
+terraform output -module=elk | grep "ip" --color=never
 printf "\n"
-terraform output -module=bastion
+terraform output -module=webapp | grep -F "webapp_alb_dns" --color=never
 printf "\n"
-terraform output -module=elk
+
+aws ec2 describe-instances --filters Name=instance-state-name,Values=running \
+  --query 'Reservations[].Instances[].[PrivateIpAddress, Tags[?Key==`Name`].Value | [0]]' \
+  --output text | sort -k2
 
 global_end=`date +%s`
 secs=$((global_end-global_start))

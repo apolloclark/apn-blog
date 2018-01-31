@@ -4,7 +4,7 @@
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
 resource "aws_security_group" "sg_ssh_bastion_and_elk-ec2" {
   name        = "tf_ssh_bastion_and_elk-ec2"
-  description = "Allow SSH:Bastion->elk-ec2, HTTP:Trusted->elk-ec2, TCP:Internal->elk-ec2"
+  description = "Allow SSH:Bastion:elk-ec2, HTTP:Trusted:elk-ec2, TCP:Internal:elk-ec2"
 
   ingress {
     from_port       = 22
