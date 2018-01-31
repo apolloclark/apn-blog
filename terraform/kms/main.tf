@@ -8,3 +8,11 @@ resource "aws_kms_key" "kms_key_parameter-store" {
     Name = "tf_kms_key_parameter-store"
   }
 }
+
+output "kms_key_parameter-store_id" {
+  value = "${aws_kms_key.kms_key_parameter-store.key_id}"
+}
+
+output "kms_key_parameter-store_arn" {
+  value = "${aws_kms_key.kms_key_parameter-store.arn}"
+}
