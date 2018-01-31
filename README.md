@@ -12,7 +12,7 @@ perform threat hunting. It is deployed with:
 - [Terraform](https://www.terraform.io/) - cloud resource builder
 - [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 
-It is intended to fulfil security requirements for:
+Security requirements for:
 - [PCI](https://www.pcisecuritystandards.org/)
 - [FIPS](https://www.nist.gov/itl/popular-links/federal-information-processing-standards-fips)
 - [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)
@@ -262,7 +262,9 @@ Process:
   - run Severspec, verify configuration
   - stop instance, if Ansible or Serverspec fail
   - send alert, if instance fails to startup
-  
+
+
+
 ## Deployment Details
 
 Steps:
@@ -274,8 +276,6 @@ Steps:
   - Role Policies
   - Instance Profiles
 - RDS Aurora
-- Parameter Store
-  - save RDS config
 - Bastion host
   - Security Groups
   - Elastic IP
@@ -284,6 +284,9 @@ Steps:
   - Security Groups
   - Elastic IP
   - EC2 Instance
+- Parameter Store
+  - save RDS config
+  - save ELK config
 - Webapp ASG
   - Security Groups
   - Application Load Balancer
