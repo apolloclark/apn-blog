@@ -1,16 +1,8 @@
 #!/bin/bash -e
 
-# fix missing Apache page
-mkdir -p /var/www/html/public
-cp /var/www/html/index.html /var/www/html/public/index.html
-
-# set the HOME variable
-# https://github.com/ansible/ansible/issues/31617
-printenv
+# set the HOME variable, https://github.com/ansible/ansible/issues/31617
 export HOME=/root
-export _system_name="Ubuntu"
 source /usr/local/rvm/scripts/rvm
-gem install serverspec
 
 # download the packer-aws-elk-monitoring project
 git clone https://github.com/apolloclark/packer-aws-elk-monitoring /root/packer-aws-elk-monitoring
