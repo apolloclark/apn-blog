@@ -141,6 +141,89 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 
 
+## Log Files
+
+*authlog*
+```
+nano /var/log/auth.log
+```
+
+*apache*
+```
+nano /var/log/apache2/access.log
+nano /var/log/apache2/audit.log
+nano /var/log/apache2/error.log
+```
+
+*mysql*
+```
+/var/log/mysql/audit.log
+```
+
+*osquery*
+```
+nano /var/log/osquery/osqueryd.results.log
+nano /var/log/osquery/osqueryd.INFO
+nano /var/log/osquery/osqueryd.WARNING
+```
+
+*Filebeat*
+```
+service filebeat status
+/usr/share/filebeat/bin/filebeat --version
+nano /etc/filebeat/filebeat.yml
+nano /var/log/filebeat/filebeat.log
+```
+
+*Metricbeat*
+```
+service metricbeat status
+/usr/share/metricbeat/bin/metricbeat --version
+nano /etc/metricbeat/metricbeat.yml
+nano /var/log/metricbeat/metricbeat.log
+```
+
+*Heartbeat*
+```
+service heartbeat status
+/usr/share/heartbeat/bin/heartbeat --version
+nano /etc/heartbeat/heartbeat.yml
+nano /var/log/heartbeat/heartbeat.log
+```
+
+*Packetbeat*
+```
+service packetbeat status
+/usr/share/heartbeat/bin/heartbeat --version
+nano /etc/heartbeat/heartbeat.yml
+nano /var/log/heartbeat/heartbeat.log
+```
+
+*Elasticsearch*
+```
+# Elasticsearch 5.x cheat sheet
+# https://gist.github.com/apolloclark/c9eb0c1a01798ac2e48492ceeb367a4f
+
+service elasticsearch status
+/usr/share/elasticsearch/bin/elasticsearch -version
+nano /etc/elasticsearch/elasticsearch.yml
+nano /var/log/elasticsearch/elasticsearch.log
+
+# list indices
+curl -XGET 'http://127.0.0.1:9200/_cat/indices?v'
+```
+
+*Kibana*
+```
+service kibana status
+/usr/share/kibana/bin/kibana --version
+nano /etc/kibana/kibana.yml
+nano /var/log/kibana/kibana.log
+```
+<br/><br/><br/>
+
+
+
 ## VM Images, Ansible Roles
 
 **[packer-aws-base](https://github.com/apolloclark/packer-aws-base)**
