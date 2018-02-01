@@ -59,6 +59,7 @@ chmod 0600 ~/.ssh/packer.pem
 # add the newly created key to the keychain
 ssh-add ~/.ssh/packer.pem
 
+# download project
 git clone --recurse-submodules https://github.com/apolloclark/tf-aws
 cd tf-aws
 
@@ -205,7 +206,7 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 **1. Inventory Management**
 
 If you want to protect a network, you need to protect everything everywhere.
-Attacks target the oldest and most obscure system on your network.
+Attacks target the oldest and most obscure systems on your network.
 
 **2. Access Management**
 
@@ -312,6 +313,60 @@ Steps:
   - Auto Scaling Group
   - Auto Scaling Triggers
 - Private Network
+<br/><br/><br/>
+
+
+
+## Project Values
+
+I've been developing websites since 2001. Here are the values I've built this
+project around:
+
+1. Measurable value
+
+- usage analytics
+- time spent on feature
+- completed transactions
+- monthly, weekly, daily, hourly reports
+
+2. Maintainable
+
+- automated code quality tests
+- easy for a new engineer to use
+- single step deploy
+- follows RFC standards
+- follows programming language standards
+- follows OS standards
+- documentation is 1/4 of code
+- documentation is standardized
+- uses as few lines as possible
+- doesn't use complex lambda, regex, or obscure functions
+- uses standard language features
+- uses popular libraries
+- is easily tested in an automated way
+
+3. Resilient
+
+- log monitoring
+- input validation
+- error condition handling
+- withstands "Big List of Naughty Strings"
+- error logging, alerts
+
+4. Performant
+
+- metrics monitoring, alerts
+- withstands simulated peak usage
+- auto-scales
+
+5. Secure
+
+- security log monitoring, alerts
+- access control
+- no bypass without authentication
+- doesn't allow privileged access between users
+- no SQL injection
+- no XSS
 <br/><br/><br/>
 
 
