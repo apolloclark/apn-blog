@@ -157,7 +157,7 @@ nano /var/log/apache2/error.log
 
 *mysql*
 ```
-/var/log/mysql/audit.log
+nano /var/log/mysql/audit.log
 ```
 
 *osquery*
@@ -422,8 +422,13 @@ project around:
   - follows RFC standards
   - follows programming language standards
   - follows OS standards
+  - code is less than 80 chars wide
+  - use Ansible instead of Bash
+  - Bash scripts are less than 50 lines
+  - Packer scripts are less than 100 lines
   - documentation is 1/4 of code
   - documentation is standardized
+  - decompose components into seperate projects
   - uses as few lines as possible
   - doesn't use complex lambda, regex, or obscure functions
   - uses standard language features
