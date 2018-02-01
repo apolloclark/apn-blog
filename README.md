@@ -322,14 +322,14 @@ Steps:
 I've been developing websites since 2001. Here are the values I've built this
 project around:
 
-1. Measurable value
+**1. Measurable value**
 
   - usage analytics
   - time spent on feature
   - completed transactions
   - monthly, weekly, daily, hourly reports
 
-2. Maintainable
+**2. Maintainable**
 
   - automated code quality tests
   - easy for a new engineer to use
@@ -345,7 +345,7 @@ project around:
   - uses popular libraries
   - is easily tested in an automated way
 
-3. Resilient
+**3. Resilient**
 
   - log monitoring
   - input validation
@@ -353,13 +353,13 @@ project around:
   - withstands "Big List of Naughty Strings"
   - error logging, alerts
 
-4. Performant
+**4. Performant**
 
   - metrics monitoring, alerts
   - withstands simulated peak usage
   - auto-scales
 
-5. Secure
+**5. Secure**
 
   - security log monitoring, alerts
   - access control
