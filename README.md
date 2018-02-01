@@ -44,7 +44,7 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 ```shell
 # create an EC2 keypair named "packer"
 
-git clone https://github.com/apolloclark/tf-aws/
+git clone --recurse-submodules https://github.com/apolloclark/tf-aws
 cd tf-aws
 
 # use Packer to build the AWS AMI's

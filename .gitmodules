@@ -1,0 +1,12 @@
+[submodule "packer-aws-base"]
+	path = packer-aws-base
+	url = https://github.com/apolloclark/packer-aws-base
+[submodule "packer-aws-webapp"]
+	path = packer-aws-webapp
+	url = https://github.com/apolloclark/packer-aws-webapp
+[submodule "packer-aws-java"]
+	path = packer-aws-java
+	url = https://github.com/apolloclark/packer-aws-java
+[submodule "packer-aws-elk"]
+	path = packer-aws-elk
+	url = https://github.com/apolloclark/packer-aws-elk
