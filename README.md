@@ -423,17 +423,17 @@ project around:
   - follows programming language standards
   - follows OS standards
   - code is less than 80 chars wide
+  - uses as few lines as possible
   - use Ansible instead of Bash
   - Bash scripts are less than 50 lines
   - Packer scripts are less than 100 lines
-  - documentation is 1/4 of code
-  - documentation is standardized
+  - documentation is 1/4 or more of code
+  - documentation is standardized, consistent
   - decompose components into seperate projects
-  - uses as few lines as possible
   - doesn't use complex lambda, regex, or obscure functions
   - uses standard language features
   - uses popular libraries
-  - is easily tested in an automated way
+  - testable in an automated way
 
 **3. Resilient**
 
