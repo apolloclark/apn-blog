@@ -28,6 +28,7 @@ Uses:
   - [Elasticsearch](https://www.elastic.co/products/elasticsearch) - document-store database
   - [Logstash](https://www.elastic.co/products/logstash) - log file processor
   - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
+<br/><br/><br/>
 
 
 
@@ -37,6 +38,7 @@ where you will be running Terraform you should follow these instructions to
 setup the AWS CLI and create a credential profile which Terraform will use for
 authentication:  
 http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+<br/><br/><br/>
 
 
 
@@ -53,12 +55,14 @@ cd tf-aws
 # deploy AWS infrastructure with Terraform
 ./build_terraform.sh
 ```
+<br/><br/><br/>
 
 
 
 ## Network Diagram
 
 ![AWS Network Diagram](https://github.com/apolloclark/aws-terraform/blob/master/aws_e2e_web.jpg)
+<br/><br/><br/>
 
 
 
@@ -79,6 +83,7 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 - [AWS IAM Instance Profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html)
 - [AWS SSM Parameter Store (System Service Manager)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-paramstore.html)
 - [ELK Stack](https://www.elastic.co/elk-stack)
+<br/><br/><br/>
 
 
 
@@ -111,6 +116,7 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 - [ProxySQL - SQL Load Balancer](http://www.proxysql.com/)
 - [Varnish Cache - HTTP cache](https://varnish-cache.org/)
 - [Kafka - Logstash message queuing](https://www.elastic.co/blog/just-enough-kafka-for-the-elastic-stack-part1)
+<br/><br/><br/>
 
 
 
@@ -171,6 +177,7 @@ Terraform project for deploying and monitoring a multi-tier webservice including
   - ProxySQL
 - **packer-aws-http_cache**
   - Varnishcache
+<br/><br/><br/>
 
 
 
@@ -210,6 +217,7 @@ Baseline the system, and create alerts for anything that's out of the ordinary.
 **7. Automated Remediation**
 
 After the alerts have been proven reliable, responses can be automated.
+<br/><br/><br/>
 
 
 
@@ -252,6 +260,7 @@ Process:
   - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - [retrieve Parameter(s), with aws-cli, using IAM Instance Profile](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L24-L28)
   - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L38-L42)
+<br/><br/><br/>
 
 
 
@@ -284,6 +293,7 @@ Steps:
   - Auto Scaling Group
   - Auto Scaling Triggers
 - Private Network
+<br/><br/><br/>
 
 
 
