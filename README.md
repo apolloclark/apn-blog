@@ -324,49 +324,49 @@ project around:
 
 1. Measurable value
 
-- usage analytics
-- time spent on feature
-- completed transactions
-- monthly, weekly, daily, hourly reports
+  - usage analytics
+  - time spent on feature
+  - completed transactions
+  - monthly, weekly, daily, hourly reports
 
 2. Maintainable
 
-- automated code quality tests
-- easy for a new engineer to use
-- single step deploy
-- follows RFC standards
-- follows programming language standards
-- follows OS standards
-- documentation is 1/4 of code
-- documentation is standardized
-- uses as few lines as possible
-- doesn't use complex lambda, regex, or obscure functions
-- uses standard language features
-- uses popular libraries
-- is easily tested in an automated way
+  - automated code quality tests
+  - easy for a new engineer to use
+  - single step deploy
+  - follows RFC standards
+  - follows programming language standards
+  - follows OS standards
+  - documentation is 1/4 of code
+  - documentation is standardized
+  - uses as few lines as possible
+  - doesn't use complex lambda, regex, or obscure functions
+  - uses standard language features
+  - uses popular libraries
+  - is easily tested in an automated way
 
 3. Resilient
 
-- log monitoring
-- input validation
-- error condition handling
-- withstands "Big List of Naughty Strings"
-- error logging, alerts
+  - log monitoring
+  - input validation
+  - error condition handling
+  - withstands "Big List of Naughty Strings"
+  - error logging, alerts
 
 4. Performant
 
-- metrics monitoring, alerts
-- withstands simulated peak usage
-- auto-scales
+  - metrics monitoring, alerts
+  - withstands simulated peak usage
+  - auto-scales
 
 5. Secure
 
-- security log monitoring, alerts
-- access control
-- no bypass without authentication
-- doesn't allow privileged access between users
-- no SQL injection
-- no XSS
+  - security log monitoring, alerts
+  - access control
+  - no bypass without authentication
+  - doesn't allow privileged access between users
+  - no SQL injection
+  - no XSS
 <br/><br/><br/>
 
 
