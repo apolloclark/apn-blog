@@ -44,6 +44,7 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
 ## Single-step Deploy
 ```
+# you trust rando scripts from the internet, right? 😎
 curl -s https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh | bash -c
 ```
 
