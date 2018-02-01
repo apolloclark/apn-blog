@@ -2,7 +2,7 @@
 global_start=`date +%s`
 
 # build Virtualbox ubuntu image
-cd ../packer-ubuntu
+cd ./packer-ubuntu
 source ./build_ubuntu1604-server.sh
 
 # build Virtualbox base image

@@ -2,7 +2,7 @@
 global_start=`date +%s`
 
 # build Virtualbox base image, BASE_AMI_ID
-cd ../packer-aws-base
+cd ./packer-aws-base
 source ./build_packer_aws.sh
 
 # build AWS webapp image, WEBAPP_AMI_ID
