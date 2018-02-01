@@ -19,7 +19,7 @@ Security requirements for:
 - [FedRAMP](https://www.fedramp.gov/about-us/about/)
 
 Uses:
-- [osquery](https://osquery.io/) - enpoint visibility
+- [osquery 2.11.0](https://github.com/facebook/osquery/releases) (Dec 18, 2017) - enpoint visibility
 - [Elastic 5.6.5](https://github.com/elastic/beats/releases) (Dec 6, 2017)
   - [Filebeat](https://www.elastic.co/products/beats/filebeat) - log file collector
   - [Metricbeat](https://www.elastic.co/products/beats/metricbeat)  - metric collector
@@ -279,8 +279,9 @@ Process:
 - EC2 / ASG
   - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L13)
   - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
-  - [retrieve Parameter(s), with aws-cli, using IAM Instance Profile](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L24-L28)
-  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L38-L42)
+  - [retrieve Parameter(s), with Ansible, using IAM Instance Profile](https://github.com/apolloclark/packer-aws-elk-monitoring/blob/master/ansible/vars_ssm.yml#L5)
+  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L23)
+  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L27)
 <br/><br/><br/>
 
 
