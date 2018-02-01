@@ -42,9 +42,22 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
 
 
+## Single-step Deploy
+```
+curl -s https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh | bash -c
+```
+
 ## Deploy
 ```shell
 # create an EC2 keypair named "packer"
+aws ec2 create-key-pair --key-name packet_test --query "KeyMaterial" \
+   --output text | ~/.ssh/packer.pem
+
+# configure key file permissions
+chmod 0600 ~/.ssh/packer.pem
+
+# add the newly created key to the keychain
+ssh-add ~/.ssh/packer.pem
 
 git clone --recurse-submodules https://github.com/apolloclark/tf-aws
 cd tf-aws
@@ -54,6 +67,12 @@ cd tf-aws
 
 # deploy AWS infrastructure with Terraform
 ./build_terraform.sh
+```
+
+## Update
+```
+# update submodules
+git submodule update --recursive --remote
 ```
 <br/><br/><br/>
 
