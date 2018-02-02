@@ -40,7 +40,7 @@ Components:
 If you haven't already configured the AWS CLI, or another SDK, on the machine
 where you will be running Terraform you should follow these instructions to
 setup the AWS CLI and create a credential profile which Terraform will use for
-authentication:  
+authentication:
 http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 <br/><br/><br/>
 
@@ -84,7 +84,7 @@ git submodule update --recursive --remote
 ## Custom website
 ```
 # edit the contents of the webapp "EC2 User Data" startup script:
-https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh
+https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L21
 
 OR
 
@@ -157,10 +157,11 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 
 # Tech Debt
+- [add requirements](https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh) validation rules to single-step deploy script
 - [cosolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
 - [config Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
 - [install X-Pack](https://github.com/apolloclark/packer-aws-elk/blob/master/ansible/vars.yml#L56)
-- [version pin Ansible](https://github.com/apolloclark/packer-aws-base/blob/master/packer_aws.json#L54), after version 2.5.0 is release w/ AWS SSM Parameter Store support
+- [version pin Ansible](https://github.com/apolloclark/packer-aws-base/blob/master/packer_aws.json#L54), after version 2.5.0 is released w/ AWS SSM Parameter Store support
 - [use AWS RDS](https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml#L17-L19)
 <br/><br/><br/>
 
@@ -448,7 +449,7 @@ project around:
   - follows programming language standards
   - follows OS standards
   - code is less than 80 chars wide
-  - uses as few lines as possible
+  - use as few lines as possible
   - use Ansible instead of Bash
   - Bash scripts are less than 50 lines
   - Packer scripts are less than 100 lines
@@ -456,9 +457,7 @@ project around:
   - documentation is standardized, consistent
   - decompose components into seperate projects
   - doesn't use complex lambda, regex, or obscure functions
-  - uses standard language features
   - uses popular libraries
-  - testable in an automated way
 
 **3. Resilient**
 
