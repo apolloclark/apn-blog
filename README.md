@@ -68,10 +68,10 @@ ssh-add ~/.ssh/packer.pem
 git clone --recurse-submodules https://github.com/apolloclark/tf-aws
 cd tf-aws
 
-# use Packer to build the AWS AMI's
+# use Packer to build the AWS AMI's, takes ~ 40 minutes
 ./build_packer_aws.sh
 
-# deploy AWS infrastructure with Terraform
+# deploy AWS infrastructure with Terraform, takes ~ 5 minutes
 ./build_terraform.sh
 ```
 
