@@ -80,6 +80,17 @@ cd tf-aws
 # update submodules
 git submodule update --recursive --remote
 ```
+
+## Custom website
+```
+# edit the contents of the webapp "EC2 User Data" startup script:
+https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh
+
+OR
+
+# fork this repo, and have your website backed into the base EC2 webapp AMI
+https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml
+```
 <br/><br/><br/>
 
 
