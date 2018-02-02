@@ -2,6 +2,8 @@
 
 ## Description
 
+WARNING: LAUNCHING THIS WILL COST YOU MONEY
+
 This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier webstack,
 with ELK metrics and log monitoring, integrating osquery, and multiple AWS
 security features. It enables groups to deploy a fully secured web stack, and
@@ -139,6 +141,16 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 - [ProxySQL - SQL Load Balancer](http://www.proxysql.com/)
 - [Varnish Cache - HTTP cache](https://varnish-cache.org/)
 - [Kafka - Logstash message queuing](https://www.elastic.co/blog/just-enough-kafka-for-the-elastic-stack-part1)
+<br/><br/><br/>
+
+
+
+# Tech Debt
+- [cosolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
+- [config Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
+- [install X-Pack](https://github.com/apolloclark/packer-aws-elk/blob/master/ansible/vars.yml#L56)
+- [version pin Ansible](https://github.com/apolloclark/packer-aws-base/blob/master/packer_aws.json#L54), after version 2.5.0 is release w/ AWS SSM Parameter Store support
+- [use AWS RDS](https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml#L17-L19)
 <br/><br/><br/>
 
 
