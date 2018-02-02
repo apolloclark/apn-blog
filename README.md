@@ -88,7 +88,7 @@ https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L
 
 OR
 
-# fork this repo, and have your website backed into the base EC2 webapp AMI
+# fork this repo, and have your website baked into the base EC2 webapp AMI
 https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml
 ```
 <br/><br/><br/>
@@ -153,8 +153,8 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 # Tech Debt
 - [add requirements validation](https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh) checkes to single-step deploy script
-- [cosolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
-- [config Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
+- [consolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
+- [configure Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
 - [install X-Pack](https://github.com/apolloclark/packer-aws-elk/blob/master/ansible/vars.yml#L56)
 - [version pin Ansible](https://github.com/apolloclark/packer-aws-base/blob/master/packer_aws.json#L54), after version 2.5.0 is released w/ AWS SSM Parameter Store support
 - [use AWS RDS](https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml#L17-L19)
@@ -478,6 +478,15 @@ project around:
   - no SQL injection
   - no XSS
 <br/><br/><br/>
+
+
+
+## Contact
+
+twitter - [@apolloclark](https://twitter.com/apolloclark)
+email - apolloclark@gmail.com
+
+I live in Boston, so am generally available 9 AM EST to 5 PM EST, Mon - Fri.
 
 
 
