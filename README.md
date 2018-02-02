@@ -127,11 +127,6 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 - [Elastic X-Pack](https://www.elastic.co/products/x-pack)
 - [ElastAlert](https://github.com/Yelp/elastalert)
-- Automatic Notifications
-  - Elasticsearch dashboard
-  - Email
-  - SMS
-  - Github ticket
 - [Elastic 6.1 upgrade](https://www.elastic.co/blog/elasticsearch-6-1-0-released)
 - [AWS CloudTrail Logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
 - [AWS VPC Flow Logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html)
@@ -143,21 +138,21 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 - [AWS SES (Simple Email Service) for alerts](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-using-notifications.html)
 - [AWS S3 bucket for file hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
 - [AWS ElastiCache for Redis](https://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html)
-- [Jenkins](https://jenkins.io/)
-- [Packer](https://www.packer.io/)
-- [JMeter](http://jmeter.apache.org/)
-- [Gitlab](https://about.gitlab.com/)
-- [HAProxy - TCP/HTTP Load Balancer](http://www.haproxy.org/)
-- [Nginx - TCP/UDP Load Balancer](https://www.nginx.com/resources/admin-guide/tcp-load-balancing/)
-- [ProxySQL - SQL Load Balancer](http://www.proxysql.com/)
-- [Varnish Cache - HTTP cache](https://varnish-cache.org/)
+- [Jenkins](https://jenkins.io/) - build automation
+- [Packer](https://www.packer.io/) - VM / AMI builder
+- [JMeter](http://jmeter.apache.org/) - stress testing
+- [Gitlab](https://about.gitlab.com/) - source code repo
+- [HAProxy](http://www.haproxy.org/) - TCP/HTTP Load Balancer
+- [Nginx](https://www.nginx.com/resources/admin-guide/tcp-load-balancing/) - TCP/UDP Load Balancer
+- [ProxySQL](http://www.proxysql.com/) - SQL Load Balancer
+- [Varnish Cache](https://varnish-cache.org/) - HTTP cache
 - [Kafka - Logstash message queuing](https://www.elastic.co/blog/just-enough-kafka-for-the-elastic-stack-part1)
 <br/><br/><br/>
 
 
 
 # Tech Debt
-- [add requirements](https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh) validation rules to single-step deploy script
+- [add requirements validation](https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh) checkes to single-step deploy script
 - [cosolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
 - [config Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
 - [install X-Pack](https://github.com/apolloclark/packer-aws-elk/blob/master/ansible/vars.yml#L56)
@@ -381,7 +376,7 @@ Process:
 - IAM Role Policy
   - [attach Policy Document to Role, by Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L103-L107)
 - IAM Instance Profile
-  - [attach Role, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L120-L123)
+  - [attach Role to Instance Profile, by Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/iam/main.tf#L120-L123)
 - [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/terraform/main.tf#L40-L74)
 - SSM Parameter(s)
   - [store parameters, by KMS Key Id](https://github.com/apolloclark/tf-aws/blob/master/terraform/parameter-store/parameter-store.tf)
@@ -389,8 +384,8 @@ Process:
   - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L13)
   - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - [retrieve Parameter(s), with Ansible, using IAM Instance Profile](https://github.com/apolloclark/packer-aws-elk-monitoring/blob/master/ansible/vars_ssm.yml#L5)
-  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L23)
-  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L27)
+  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L15)
+  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L19)
 <br/><br/><br/>
 
 
@@ -403,6 +398,7 @@ Steps:
   - custom key
 - IAM
   - Roles
+  - Policy Documents
   - Role Policies
   - Instance Profiles
 - RDS Aurora
