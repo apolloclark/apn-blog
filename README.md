@@ -4,7 +4,7 @@
 
 WARNING: LAUNCHING THIS WILL COST YOU MONEY
 
-This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier webstack,
+This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier LAMP webstack,
 with ELK metrics and log monitoring, integrating osquery, and multiple AWS
 security features. It enables groups to deploy a fully secured web stack, and
 perform threat hunting. It is deployed with:
@@ -30,8 +30,8 @@ Components:
   - [Elasticsearch](https://www.elastic.co/products/elasticsearch) - document-store database
   - [Logstash](https://www.elastic.co/products/logstash) - log file processor
   - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
-- [ModSecurity](https://www.modsecurity.org/)
-- [McAfee MySQL Audit Plugin](https://github.com/mcafee/mysql-audit)
+- [ModSecurity](https://www.modsecurity.org/) - Apache firewall
+- [McAfee MySQL Audit Plugin](https://github.com/mcafee/mysql-audit) - MySQL security logging
 <br/><br/><br/>
 
 
