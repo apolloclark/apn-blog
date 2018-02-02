@@ -483,10 +483,11 @@ project around:
 
 ## Contact
 
-twitter - [@apolloclark](https://twitter.com/apolloclark)
+twitter - [@apolloclark](https://twitter.com/apolloclark)<br/>
 email - apolloclark@gmail.com
 
 I live in Boston, so am generally available 9 AM EST to 5 PM EST, Mon - Fri.
+<br/><br/><br/>
 
 
 
