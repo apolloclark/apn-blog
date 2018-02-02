@@ -18,7 +18,7 @@ Security requirements for:
 - [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)
 - [FedRAMP](https://www.fedramp.gov/about-us/about/)
 
-Uses:
+Components:
 - [osquery 2.11.0](https://github.com/facebook/osquery/releases) (Dec 18, 2017) - enpoint visibility
 - [Elastic 5.6.5](https://github.com/elastic/beats/releases) (Dec 6, 2017)
   - [Filebeat](https://www.elastic.co/products/beats/filebeat) - log file collector
@@ -28,6 +28,8 @@ Uses:
   - [Elasticsearch](https://www.elastic.co/products/elasticsearch) - document-store database
   - [Logstash](https://www.elastic.co/products/logstash) - log file processor
   - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
+- [ModSecurity](https://www.modsecurity.org/)
+- [McAfee MySQL Audit Plugin](https://github.com/mcafee/mysql-audit)
 <br/><br/><br/>
 
 
