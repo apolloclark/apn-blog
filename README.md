@@ -8,7 +8,7 @@ This is a fully end-to-end encrypted, auto-scaling, AWS Multi-tier LAMP webstack
 with ELK metrics and log monitoring, integrating osquery, and multiple AWS
 security features. It enables groups to deploy a fully secured web stack, and
 perform threat hunting. It is deployed with:
-- [Packer](https://www.packer.io/) - VM image builder
+- [Packer](https://www.packer.io/) - AMI builder
 - [Ansible](https://www.ansible.com/) - service configuration
 - [Serverspec](http://serverspec.org/) - service verification
 - [Terraform](https://www.terraform.io/) - cloud resource builder
@@ -32,6 +32,9 @@ Components:
   - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
 - [ModSecurity](https://www.modsecurity.org/) - Apache firewall
 - [McAfee MySQL Audit Plugin](https://github.com/mcafee/mysql-audit) - MySQL security logging
+
+You can customize configuration by changing the *var.yml* files in the *ansbible* folders.
+
 <br/><br/><br/>
 
 
