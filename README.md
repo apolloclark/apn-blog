@@ -33,9 +33,9 @@ Components:
 - [ModSecurity](https://www.modsecurity.org/) - Apache firewall
 - [McAfee MySQL Audit Plugin](https://github.com/mcafee/mysql-audit) - MySQL security logging
 
-The firewall rules are set to only allow your *personal IP address*. You can
-customize configuration by changing the *var.yml* files in the *ansbible*
-folders. The central Terraform config file is [here](https://github.com/apolloclark/tf-aws/blob/master/terraform/variables.tf).*
+The firewall rules are set to only allow your **personal IP address**. You can
+customize configuration by changing the **var.yml** files in the **ansbible
+folders**. The central Terraform config file is [here](https://github.com/apolloclark/tf-aws/blob/master/terraform/variables.tf).
 
 <br/><br/><br/>
 
