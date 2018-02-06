@@ -4,7 +4,7 @@
 
 # create an EC2 keypair named "packer"
 aws ec2 create-key-pair --key-name packet --query "KeyMaterial" \
-   --output text | ~/.ssh/packer.pem
+   --output text > ~/.ssh/packer.pem
 
 # configure key file permissions
 chmod 0600 ~/.ssh/packer.pem
