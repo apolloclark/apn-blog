@@ -12,7 +12,6 @@ perform threat hunting. It is deployed with:
 - [Ansible](https://www.ansible.com/) - service configuration
 - [Serverspec](http://serverspec.org/) - service verification
 - [Terraform](https://www.terraform.io/) - cloud resource builder
-- [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 
 Security requirements for:
 - [PCI](https://www.pcisecuritystandards.org/)
@@ -21,6 +20,7 @@ Security requirements for:
 - [FedRAMP](https://www.fedramp.gov/about-us/about/)
 
 Components:
+- [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 - [osquery 2.11.0](https://github.com/facebook/osquery/releases) (Dec 18, 2017) - enpoint visibility
 - [Elastic 5.6.5](https://github.com/elastic/beats/releases) (Dec 6, 2017)
   - [Filebeat](https://www.elastic.co/products/beats/filebeat) - log file collector
@@ -84,13 +84,13 @@ cd tf-aws
 ```
 
 ## Update
-```
+```shell
 # update submodules
 git submodule update --recursive --remote
 ```
 
 ## Custom website
-```
+```shell
 # edit the contents of the webapp "EC2 User Data" startup script:
 https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L21
 
