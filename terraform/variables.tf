@@ -14,7 +14,7 @@
 #
 
 variable "key_name" {
-  default = "vagrant"
+  default = "packer"
 }
 
 variable "instance_type" {

@@ -3,7 +3,7 @@
 # single-step deploy script, just to prove that it's possible ;)
 
 # create an EC2 keypair named "packer"
-aws ec2 create-key-pair --key-name packet_test --query "KeyMaterial" \
+aws ec2 create-key-pair --key-name packet --query "KeyMaterial" \
    --output text | ~/.ssh/packer.pem
 
 # configure key file permissions
