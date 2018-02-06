@@ -59,6 +59,9 @@ curl -s https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh 
 
 ## Deploy
 ```shell
+
+# install Terraform, Packer, Ansible, Serverspect
+
 # create an EC2 keypair named "packer"
 aws ec2 create-key-pair --key-name packer --query "KeyMaterial" \
    --output text > ~/.ssh/packer.pem
