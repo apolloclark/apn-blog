@@ -60,7 +60,7 @@ curl -s https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh 
 ## Deploy
 ```shell
 # create an EC2 keypair named "packer"
-aws ec2 create-key-pair --key-name packet_test --query "KeyMaterial" \
+aws ec2 create-key-pair --key-name packet --query "KeyMaterial" \
    --output text | ~/.ssh/packer.pem
 
 # configure key file permissions
