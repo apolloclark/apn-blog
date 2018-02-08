@@ -1,19 +1,19 @@
 #!/bin/bash -eux
 global_start=`date +%s`
 
-# build Virtualbox base image, BASE_AMI_ID
+# build base image, output BASE_AMI_ID
 cd ./packer-aws-base
 source ./build_packer_aws.sh
 
-# build AWS webapp image, WEBAPP_AMI_ID
+# build AWS webapp image, output WEBAPP_AMI_ID
 cd ../packer-aws-webapp
 source ./build_packer_aws.sh
 
-# build AWS java image, JAVA_AMI_ID
+# build AWS java image, output JAVA_AMI_ID
 cd ../packer-aws-java
 source ./build_packer_aws.sh
 
-# build AWS elk image, ELK_AMI_ID
+# build AWS elk image, output ELK_AMI_ID
 cd ../packer-aws-elk
 source ./build_packer_aws.sh
 

@@ -52,7 +52,7 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
 
 ## Single-step Deploy
-```
+```shell
 # you trust rando scripts from the internet, right? 😎
 curl -s https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh | bash -c
 ```
@@ -72,7 +72,7 @@ chmod 0600 ~/.ssh/packer.pem
 # add the newly created key to the keychain
 ssh-add ~/.ssh/packer.pem
 
-# download project
+# download project, and the nested submodules
 git clone --recurse-submodules https://github.com/apolloclark/tf-aws
 cd tf-aws
 
