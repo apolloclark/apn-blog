@@ -228,6 +228,14 @@ nano /etc/heartbeat/heartbeat.yml
 nano /var/log/heartbeat/heartbeat.log
 ```
 
+*Auditbeat*
+```
+service auditbeat status
+/usr/share/auditbeat/bin/auditbeat version
+nano /etc/auditbeat/auditbeat.yml
+nano /var/log/auditbeat/auditbeat.log
+```
+
 *Elasticsearch*
 ```
 # Elasticsearch 5.x cheat sheet
