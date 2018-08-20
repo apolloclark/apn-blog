@@ -5,8 +5,8 @@ global_start=`date +%s`
 cd ./packer-ubuntu
 source ./build_ubuntu1604-server.sh
 
-# build Virtualbox base image
-cd ../packer-aws-base
+# build Virtualbox beats image
+cd ../packer-aws-beats
 source ./build_packer_virtualbox.sh
 
 # build Virtualbox webapp image
