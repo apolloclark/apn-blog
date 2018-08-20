@@ -105,7 +105,9 @@ https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.ym
 
 ## Network Diagram
 
-![AWS Network Diagram](https://github.com/apolloclark/aws-terraform/blob/master/aws_e2e_web.jpg)
+![AWS Network Diagram](https://github.com/apolloclark/aws-terraform/blob/master/aws_e2e_web_h.jpg)
+
+![AWS Network Diagram](https://github.com/apolloclark/aws-terraform/blob/master/aws_e2e_web_v.jpg)
 <br/><br/><br/>
 
 
