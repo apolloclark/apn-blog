@@ -22,7 +22,7 @@ Security requirements for:
 Components:
 - [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 - [osquery 2.11.0](https://github.com/facebook/osquery/releases) (Dec 18, 2017) - enpoint visibility
-- [Elastic 5.6.5](https://github.com/elastic/beats/releases) (Dec 6, 2017)
+- [Elastic 6.3.2](https://github.com/elastic/beats/releases) (July 24, 2019)
   - [Filebeat](https://www.elastic.co/products/beats/filebeat) - log file collector
   - [Metricbeat](https://www.elastic.co/products/beats/metricbeat)  - metric collector
   - [Packetbeat](https://www.elastic.co/products/beats/packetbeat) - network analytics collector
@@ -179,6 +179,7 @@ nano /var/log/auth.log
 
 *apache*
 ```
+service apache2 status | cat
 nano /var/log/apache2/access.log
 nano /var/log/apache2/audit.log
 nano /var/log/apache2/error.log
@@ -198,42 +199,55 @@ nano /var/log/osquery/osqueryd.WARNING
 
 *Filebeat*
 ```
-service filebeat status
-/usr/share/filebeat/bin/filebeat --version
+service filebeat status | cat
+/usr/share/filebeat/bin/filebeat version
 nano /etc/filebeat/filebeat.yml
 nano /var/log/filebeat/filebeat.log
+tail -f /var/log/filebeat/filebeat.log
 ```
 
 *Metricbeat*
 ```
-service metricbeat status
-/usr/share/metricbeat/bin/metricbeat --version
+service metricbeat status | cat
+/usr/share/metricbeat/bin/metricbeat version
 nano /etc/metricbeat/metricbeat.yml
 nano /var/log/metricbeat/metricbeat.log
 ```
 
 *Heartbeat*
 ```
-service heartbeat status
-/usr/share/heartbeat/bin/heartbeat --version
+service heartbeat status | cat
+/usr/share/heartbeat/bin/heartbeat version
 nano /etc/heartbeat/heartbeat.yml
 nano /var/log/heartbeat/heartbeat.log
+tail -f /var/log/heartbeat/heartbeat.log
 ```
 
 *Packetbeat*
 ```
-service packetbeat status
-/usr/share/heartbeat/bin/heartbeat --version
+service packetbeat status | cat
+/usr/share/heartbeat/bin/heartbeat version
 nano /etc/heartbeat/heartbeat.yml
 nano /var/log/heartbeat/heartbeat.log
+tail -f /var/log/heartbeat/heartbeat.log
 ```
 
 *Auditbeat*
 ```
-service auditbeat status
+service auditbeat status | cat
 /usr/share/auditbeat/bin/auditbeat version
 nano /etc/auditbeat/auditbeat.yml
-nano /var/log/auditbeat/auditbeat.log
+nano /var/log/auditbeat/auditbeat
+tail -f /var/log/auditbeat/auditbeat
+```
+
+*Logstash*
+```
+service logstash status | cat
+/usr/share/logstash/bin/logstash --version
+nano /etc/logstash/logstash.yml
+nano /var/log/logstash/logstash-plain.log
+tail -f /var/log/logstash/logstash-plain.log
 ```
 
 *Elasticsearch*
@@ -242,9 +256,10 @@ nano /var/log/auditbeat/auditbeat.log
 # https://gist.github.com/apolloclark/c9eb0c1a01798ac2e48492ceeb367a4f
 
 service elasticsearch status
-/usr/share/elasticsearch/bin/elasticsearch -version
+/usr/share/elasticsearch/bin/elasticsearch --version
 nano /etc/elasticsearch/elasticsearch.yml
 nano /var/log/elasticsearch/elasticsearch.log
+tail -f /var/log/elasticsearch/elasticsearch.log
 
 # list indices
 curl -XGET 'http://127.0.0.1:9200/_cat/indices?v'
@@ -272,6 +287,7 @@ nano /var/log/kibana/kibana.log
 - [apolloclark.metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
 - [apolloclark.heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
 - [apolloclark.packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
+- [apolloclark.auditbeat](https://github.com/apolloclark/ansible-role-auditbeat)
 
 - **[packer-aws-webapp](https://github.com/apolloclark/packer-aws-webapp)**
   - [geerlingguy.apache](https://github.com/geerlingguy/ansible-role-apache)
@@ -293,10 +309,12 @@ nano /var/log/kibana/kibana.log
     - X-Pack
 ---
 
-  - **packer-aws-elk_node**
-    - Elasticsearch node
-  - **packer-aws-logstash_node**
+  - **packer-aws-kafka**
+    - Kafka node
+  - **packer-aws-logstash**
     - Logstash node
+  - **packer-aws-es_node**
+    - Elasticsearch node
   - **packer-aws-builder**
     - Jenkins
     - Packer
