@@ -10,3 +10,9 @@
 [submodule "packer-aws-elk"]
 	path = packer-aws-elk
 	url = https://github.com/apolloclark/packer-aws-elk
+[submodule "packer-aws-beats"]
+	path = packer-aws-beats
+	url = https://github.com/apolloclark/packer-aws-beats
+[submodule "packer-ubuntu"]
+	path = packer-ubuntu
+	url = https://github.com/apolloclark/packer-ubuntu
