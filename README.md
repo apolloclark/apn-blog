@@ -135,38 +135,38 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 ## Roadmap:
 
-- [Elastic X-Pack](https://www.elastic.co/products/x-pack)
 - [ElastAlert](https://github.com/Yelp/elastalert)
-- [Elastic 6.1 upgrade](https://www.elastic.co/blog/elasticsearch-6-1-0-released)
 - [AWS CloudTrail Logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
 - [AWS VPC Flow Logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html)
+<br/>
 - [AWS Guard Duty](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html)
 - [AWS WAF (Web Application Firewall)](https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html)
 - [AWS Lamda rules for dynamic WAF rules](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
+- [AWS SES (Simple Email Service) for alerts](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-using-notifications.html)
+<br/>
 - [AWS S3 bucket for log collection](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html)
 - [AWS IAM role for accessing S3 logs bucket](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-identity-based-access-control-cwl.html#w2ab1c21c13c23b9)
-- [AWS SES (Simple Email Service) for alerts](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-using-notifications.html)
+<br/>
 - [AWS S3 bucket for file hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
 - [AWS ElastiCache for Redis](https://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html)
+<br/>
 - [Jenkins](https://jenkins.io/) - build automation
 - [Packer](https://www.packer.io/) - VM / AMI builder
 - [JMeter](http://jmeter.apache.org/) - stress testing
 - [Gitlab](https://about.gitlab.com/) - source code repo
+<br/>
 - [HAProxy](http://www.haproxy.org/) - TCP/HTTP Load Balancer
 - [Nginx](https://www.nginx.com/resources/admin-guide/tcp-load-balancing/) - TCP/UDP Load Balancer
 - [ProxySQL](http://www.proxysql.com/) - SQL Load Balancer
+<br/>
 - [Varnish Cache](https://varnish-cache.org/) - HTTP cache
-- [Kafka - Logstash message queuing](https://www.elastic.co/blog/just-enough-kafka-for-the-elastic-stack-part1)
 <br/><br/><br/>
 
 
 
 # Tech Debt
-- [add requirements validation](https://github.com/apolloclark/tf-aws/blob/master/single_step_deploy.sh) checkes to single-step deploy script
 - [consolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
 - [configure Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
-- [install X-Pack](https://github.com/apolloclark/packer-aws-elk/blob/master/ansible/vars.yml#L56)
-- [version pin Ansible](https://github.com/apolloclark/packer-aws-base/blob/master/packer_aws.json#L54), after version 2.5.0 is released w/ AWS SSM Parameter Store support
 - [use AWS RDS](https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml#L17-L19)
 <br/><br/><br/>
 
