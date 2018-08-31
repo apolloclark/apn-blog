@@ -2,7 +2,7 @@
 global_start=`date +%s`
 
 # build base image, output BASE_AMI_ID
-cd ./packer-aws-base
+cd ./packer-aws-beats
 source ./build_packer_aws.sh
 
 # build AWS webapp image, output WEBAPP_AMI_ID
@@ -13,9 +13,37 @@ source ./build_packer_aws.sh
 cd ../packer-aws-java
 source ./build_packer_aws.sh
 
+# build AWS kafka image, output KAFKA_AMI_ID
+#cd ../packer-aws-kafka
+#source ./build_packer_aws.sh
+
+# build AWS logstash image, output LOGSTASH_AMI_ID
+#cd ../packer-aws-logstash
+#source ./build_packer_aws.sh
+
 # build AWS elk image, output ELK_AMI_ID
 cd ../packer-aws-elk
 source ./build_packer_aws.sh
+
+# build AWS kibana image, output KIBANA_AMI_ID
+#cd ../packer-aws-kibana
+#source ./build_packer_aws.sh
+
+# build AWS gitlab image, output GITLAB_AMI_ID
+#cd ../packer-aws-gitlab
+#source ./build_packer_aws.sh
+
+# build AWS builder image, output BUILDER_AMI_ID
+#cd ../packer-aws-builder
+#source ./build_packer_aws.sh
+
+# build AWS jenkins image, output JENKINS_AMI_ID
+#cd ../packer-aws-jenkins
+#source ./build_packer_aws.sh
+
+# build AWS jmeter image, output JMETER_AMI_ID
+#cd ../packer-aws-jmeter
+#source ./build_packer_aws.sh
 
 global_end=`date +%s`
 secs=$((global_end-global_start))
