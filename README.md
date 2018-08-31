@@ -22,11 +22,12 @@ Security requirements for:
 Components:
 - [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes)
 - [osquery 2.11.0](https://github.com/facebook/osquery/releases) (Dec 18, 2017) - enpoint visibility
-- [Elastic 6.3.2](https://github.com/elastic/beats/releases) (July 24, 2019)
+- [Elastic 6.4.0](https://github.com/elastic/beats/releases) (Aug 23, 2018)
   - [Filebeat](https://www.elastic.co/products/beats/filebeat) - log file collector
   - [Metricbeat](https://www.elastic.co/products/beats/metricbeat)  - metric collector
   - [Packetbeat](https://www.elastic.co/products/beats/packetbeat) - network analytics collector
   - [Heartbeat](https://www.elastic.co/products/beats/heartbeat) - uptime monitor
+  - [Auditbeat](https://www.elastic.co/products/beats/auditbeat) - security monitor
   - [Elasticsearch](https://www.elastic.co/products/elasticsearch) - document-store database
   - [Logstash](https://www.elastic.co/products/logstash) - log file processor
   - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
