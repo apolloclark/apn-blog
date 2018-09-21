@@ -36,16 +36,21 @@ fi
 
 
 
-# create an EC2 keypair named "packer"
-aws ec2 create-key-pair --key-name packet --query "KeyMaterial" \
-   --output text > ~/.ssh/packer.pem
+# check if the "packer" keypair exists
+if ! aws ec2 describe-key-pairs --output=text | grep 'packer'; then
 
-# configure key file permissions
-chmod 0600 ~/.ssh/packer.pem
+	echo "Creating packer keypair...";
 
-# add the newly created key to the keychain
-ssh-add ~/.ssh/packer.pem
+	# create an EC2 keypair named "packer"
+	aws ec2 create-key-pair --key-name packet --query "KeyMaterial" \
+	   --output text > ~/.ssh/packer.pem
 
+	# configure key file permissions
+	chmod 0600 ~/.ssh/packer.pem
+	
+	# add the newly created key to the keychain
+	ssh-add ~/.ssh/packer.pem
+fi
 
 
 # clone the project, and sub-modules
