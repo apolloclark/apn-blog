@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 global_start=`date +%s`
 
-# build base image, output BASE_AMI_ID
+# build base image, output BEATS_AMI_ID
 cd ./packer-aws-beats
 source ./build_packer_aws.sh
 
