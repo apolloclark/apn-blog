@@ -42,7 +42,7 @@ if ! aws ec2 describe-key-pairs --output=text | grep 'packer'; then
 	echo "Creating packer keypair...";
 
 	# create an EC2 keypair named "packer"
-	aws ec2 create-key-pair --key-name packet --query "KeyMaterial" \
+	aws ec2 create-key-pair --key-name packer --query "KeyMaterial" \
 	   --output text > ~/.ssh/packer.pem
 
 	# configure key file permissions
