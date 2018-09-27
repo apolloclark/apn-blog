@@ -53,7 +53,8 @@ if ! aws ec2 describe-key-pairs --output=text | grep 'packer'; then
 fi
 
 # use Packer to build the AWS AMI's
-./build_packer_aws.sh
+source ./build_packer_aws.sh
+cd ../../
 
 # deploy AWS infrastructure with Terraform
-./build_terraform.sh
+source ./build_terraform.sh
