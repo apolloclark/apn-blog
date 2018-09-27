@@ -16,3 +16,6 @@
 [submodule "packer-ubuntu"]
 	path = packer-ubuntu
 	url = https://github.com/apolloclark/packer-ubuntu
+[submodule "packer-aws-bastion"]
+	path = packer-aws-bastion
+	url = https://github.com/apolloclark/packer-aws-bastion
