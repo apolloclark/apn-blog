@@ -6,7 +6,7 @@ cd ./packer-aws-beats
 source ./build_packer_aws.sh
 
 # build AWS webapp image, output WEBAPP_AMI_ID
-cd ../packer-aws-webapp
+cd ../packer-aws-webapp/base
 source ./build_packer_aws.sh
 
 # build AWS java image, output JAVA_AMI_ID
@@ -22,7 +22,7 @@ source ./build_packer_aws.sh
 #source ./build_packer_aws.sh
 
 # build AWS elk image, output ELK_AMI_ID
-cd ../packer-aws-elk
+cd ../packer-aws-elk/base
 source ./build_packer_aws.sh
 
 # build AWS kibana image, output KIBANA_AMI_ID

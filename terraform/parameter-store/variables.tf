@@ -16,7 +16,7 @@ variable "kms_key_parameter-store_id" {}
 variable "database_password" {}
 # variable database_port {}
 
-variable elk-ec2_private_ip {}
+variable kafka-ec2_private_ip {}
 # variable elk_elasticsearch_port {}
 # variable elk_logstash_port {}
 # variable elk_kibana_port {}

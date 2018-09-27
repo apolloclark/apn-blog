@@ -35,7 +35,7 @@ output "sg_ssh_bastion_and_elk-ec2_id" {
 
 resource "aws_security_group" "sg_http_to_elk" {
   name        = "tf_http_to_elk"
-  description = "Allow HTTP to ELK host from approved IP ranges"
+  description = "Allow HTTP to ELK host from approved external IP ranges"
 
   ingress {
     from_port   = 5601
@@ -73,7 +73,7 @@ output "sg_http_to_elk_id" {
 
 resource "aws_security_group" "sg_tcp_to_elk" {
   name        = "tf_tcp_to_elk"
-  description = "Allow TCP to ELK host from approved IP ranges"
+  description = "Allow TCP to ELK host from internal IP ranges"
 
   ingress {
     from_port   = 5044
@@ -92,6 +92,13 @@ resource "aws_security_group" "sg_tcp_to_elk" {
   ingress {
     from_port   = 9200
     to_port     = 9200
+    protocol    = "tcp"
+    cidr_blocks = ["${var.vpc_cidr}"]
+  }
+
+  ingress {
+    from_port   = 9092
+    to_port     = 9092
     protocol    = "tcp"
     cidr_blocks = ["${var.vpc_cidr}"]
   }

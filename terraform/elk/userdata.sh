@@ -5,8 +5,8 @@ export HOME=/root
 source /usr/local/rvm/scripts/rvm
 
 # download the packer-aws-elk-monitoring project
-git clone https://github.com/apolloclark/packer-aws-webapp /root/packer-aws-webapp
-cd /root/packer-aws-webapp/config/ansible
+git clone https://github.com/apolloclark/packer-aws-elk /root/packer-aws-elk
+cd /root/packer-aws-elk/config/ansible
 
 # download the ansible playbooks into the "roles" folder
 ansible-galaxy install --force -v --roles-path='./roles' --role-file='./requirements.yml'

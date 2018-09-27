@@ -6,13 +6,16 @@ resource "aws_instance" "bastion-ec2" {
   key_name      = "${var.key_name}"
   ami           = "${lookup(var.amis, var.region)}"
   instance_type = "${var.instance_type}"
+  iam_instance_profile = "${var.iam_profile_parameter-store_name}"
 
   subnet_id                   = "${element(var.public_subnet_ids, 0)}"
   associate_public_ip_address = true
   vpc_security_group_ids      = [
     "${aws_security_group.sg_ssh_to_bastion.id}",
-    "${aws_security_group.sg_ssh_from_bastion.id}"
+    "${aws_security_group.sg_ssh_from_bastion.id}",
+    "${aws_security_group.sg_tcp_to_elk.id}"
   ]
+  user_data                   = "${file("./bastion/userdata.sh")}"
 
   tags = {
     Name = "tf_bastion"

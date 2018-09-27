@@ -73,22 +73,6 @@ module "db_sql" {
   private_cidr = "${var.public_subnet_cidr}"
 }
 
-module "bastion" {
-  source        = "./bastion"
-  key_name      = "${var.key_name}"
-  
-  # EC2
-  region        = "${var.region}"
-  amis          = "${var.amis}"
-  instance_type = "${var.instance_type}"
-
-  # Network
-  trusted_ip_range  = "${var.trusted_ip_range}"
-  vpc_id            = "${module.network.vpc_id}"
-  public_subnet_ids = "${module.network.public_subnet_ids}"
-  nat_sg_id         = "${module.network.nat_sg_id}"
-}
-
 module "elk" {
   source        = "./elk"
   key_name      = "${var.key_name}"
@@ -112,7 +96,23 @@ module "parameter-store" {
   source                     = "./parameter-store"
   kms_key_parameter-store_id = "${module.kms.kms_key_parameter-store_id}"
   database_password          = "${var.database_password}"
-  elk-ec2_private_ip         = "${module.elk.elk-ec2_private_ip}"
+  kafka-ec2_private_ip       = "${module.elk.elk-ec2_private_ip}"
+}
+
+module "bastion" {
+  source        = "./bastion"
+  key_name      = "${var.key_name}"
+  
+  # EC2
+  region        = "${var.region}"
+  amis          = "${var.amis}"
+  instance_type = "${var.instance_type}"
+
+  # Network
+  trusted_ip_range  = "${var.trusted_ip_range}"
+  vpc_id            = "${module.network.vpc_id}"
+  public_subnet_ids = "${module.network.public_subnet_ids}"
+  nat_sg_id         = "${module.network.nat_sg_id}"
 }
 
 module "webapp" {

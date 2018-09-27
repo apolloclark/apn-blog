@@ -9,12 +9,13 @@ resource "aws_instance" "elk-ec2" {
   iam_instance_profile = "${var.iam_profile_parameter-store_name}"
 
   subnet_id                   = "${element(var.public_subnet_ids, 0)}"
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   vpc_security_group_ids      = [
     "${aws_security_group.sg_ssh_bastion_and_elk-ec2.id}",
     "${aws_security_group.sg_http_to_elk.id}",
     "${aws_security_group.sg_tcp_to_elk.id}"
   ]
+  user_data                   = "${file("./elk/userdata.sh")}"
 
   tags = {
     Name = "tf_elk-ec2"
