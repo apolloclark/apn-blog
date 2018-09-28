@@ -174,8 +174,6 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 
 
 # Tech Debt
-- [consolidate Security Groups](https://github.com/apolloclark/tf-aws/tree/master/terraform)
-- [configure Bastion](https://github.com/apolloclark/tf-aws/blob/master/terraform/bastion/bastion-ec2.tf#L7) to use Elastic monitored base image
 - [use AWS RDS](https://github.com/apolloclark/packer-aws-webapp/blob/master/ansible/playbook.yml#L17-L19)
 <br/><br/><br/>
 
@@ -445,6 +443,7 @@ Process:
 
 Steps:
 - VPC
+- Security Groups
 - KMS
   - custom key
 - IAM
@@ -453,10 +452,6 @@ Steps:
   - Role Policies
   - Instance Profiles
 - RDS Aurora
-- Bastion host
-  - Security Groups
-  - Elastic IP
-  - EC2 Instance
 - ELK Master
   - Security Groups
   - Elastic IP
@@ -464,6 +459,10 @@ Steps:
 - Parameter Store
   - save RDS config
   - save ELK config
+- Bastion host
+  - Security Groups
+  - Elastic IP
+  - EC2 Instance
 - Webapp ASG
   - Security Groups
   - Application Load Balancer
