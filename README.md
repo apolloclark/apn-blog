@@ -31,14 +31,14 @@ Components:
   - [Elasticsearch](https://www.elastic.co/products/elasticsearch) - document-store database
   - [Logstash](https://www.elastic.co/products/logstash) - log file processor
   - [Kibana](https://www.elastic.co/products/kibana) - metric and log dashboards
-- [Zookeeper](https://zookeeper.apache.org/) - server coordinator
-- [Kafka](https://kafka.apache.org/) - message queue
-- [ModSecurity](https://www.modsecurity.org/) - Apache firewall
+- [Zookeeper 3.4.8](https://zookeeper.apache.org/) (Feb 20, 2016) - server coordinator
+- [Kafka 2.0.0](https://kafka.apache.org/) - message queue
+- [ModSecurity](https://www.modsecurity.org/) (Jul 30, 2018) - Apache firewall
 - [McAfee MySQL Audit Plugin](https://github.com/mcafee/mysql-audit) - MySQL security logging
 
 The firewall rules are set to only allow your **personal IP address**. You can
 customize configuration by changing the **var.yml** files in the **ansbible
-folders**. The central Terraform config file is [here](https://github.com/apolloclark/tf-aws/blob/master/terraform/variables.tf).
+folders**. The central Terraform config file is [here](https://github.com/apolloclark/tf-aws/blob/master/terraform/variables.tf#L60).
 
 <br/><br/><br/>
 
@@ -289,18 +289,19 @@ nano /var/log/kibana/kibana.log
 
 ## VM Images, Ansible Roles
 
-**[packer-aws-base](https://github.com/apolloclark/packer-aws-base)**
+**[packer-aws-beats](https://github.com/apolloclark/packer-aws-beats)**
 - [geerlingguy.firewall](https://github.com/geerlingguy/ansible-role-firewall)
 - [geerlingguy.git](https://github.com/geerlingguy/ansible-role-git)
-- [apolloclark.nano-highlighting](https://github.com/apolloclark/ansible-role-nano-highlighting)
+- [apolloclark.nano_highlighting](https://github.com/apolloclark/ansible-role-nano-highlighting)
 - [apolloclark.osquery](https://github.com/apolloclark/ansible-role-osquery)
-- [apolloclark.filebeat](https://github.com/apolloclark/ansible-role-filebeat)
-- [apolloclark.metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
-- [apolloclark.heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
-- [apolloclark.packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
 - [apolloclark.auditbeat](https://github.com/apolloclark/ansible-role-auditbeat)
+- [apolloclark.filebeat](https://github.com/apolloclark/ansible-role-filebeat)
+- [apolloclark.heartbeat](https://github.com/apolloclark/ansible-role-heartbeat)
+- [apolloclark.metricbeat](https://github.com/apolloclark/ansible-role-metricbeat)
+- [apolloclark.packetbeat](https://github.com/apolloclark/ansible-role-packetbeat)
 
 - **[packer-aws-webapp](https://github.com/apolloclark/packer-aws-webapp)**
+  - [geerlingguy.firewall](https://github.com/geerlingguy/ansible-role-firewall)
   - [geerlingguy.apache](https://github.com/geerlingguy/ansible-role-apache)
   - [apolloclark.apache-modsecurity](https://github.com/apolloclark/ansible-role-apache-modsecurity)
   - [apolloclark.mysql](https://github.com/apolloclark/ansible-role-mysql)
@@ -308,16 +309,18 @@ nano /var/log/kibana/kibana.log
   - [geerlingguy.php-versions](https://github.com/geerlingguy/ansible-role-php-versions)
   - [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php)
   - [geerlingguy.apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm)
+  - [geerlingguy.php-mysql](https://github.com/geerlingguy/ansible-role-php-mysql)
+  - [geerlingguy.composer](https://github.com/geerlingguy/ansible-role-composer)
 
 - **[packer-aws-java](https://github.com/apolloclark/packer-aws-java)**
   - [geerlingguy.java](https://github.com/geerlingguy/ansible-role-java)
 
   - **[packer-aws-elk](https://github.com/apolloclark/packer-aws-elk)**
+    - [apolloclark.zookeeper](https://github.com/apolloclark/ansible-role-zookeeper)
+    - [apolloclark.kafka](https://github.com/apolloclark/ansible-role-kafka)
     - [apolloclark.elasticsearch](https://github.com/apolloclark/ansible-role-elasticsearch)
     - [apolloclark.logstash](https://github.com/apolloclark/ansible-role-logstash)
-    - [apoloclark.kibana](https://github.com/apolloclark/ansible-role-kibana)
-    - [apolloclark.beats-dashboards]()
-    - X-Pack
+    - [apolloclark.kibana](https://github.com/apolloclark/ansible-role-kibana)
 ---
 
   - **packer-aws-kafka**
@@ -326,6 +329,12 @@ nano /var/log/kibana/kibana.log
     - Logstash node
   - **packer-aws-es_node**
     - Elasticsearch node
+    
+---
+
+  - **packer-aws-repo**
+    - gitlab
+    - apt-get repo
   - **packer-aws-builder**
     - Jenkins
     - Packer
@@ -338,15 +347,12 @@ nano /var/log/kibana/kibana.log
 
 ---
 
-- **packer-aws-repo**
-  - gitlab
-  - apt-get
+- **packer-aws-http_cache**
+  - Varnishcache
 - **packer-aws-tcp_proxy**
   - HAProxy
 - **packer-aws-sql_proxy**
   - ProxySQL
-- **packer-aws-http_cache**
-  - Varnishcache
 <br/><br/><br/>
 
 
