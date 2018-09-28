@@ -10,10 +10,10 @@ resource "aws_ssm_parameter" "database_password" {
   overwrite = true
 }
 
-resource "aws_ssm_parameter" "kafka-ec2_private_ip" {
-  name      = "/elk/kafka-ec2_private_ip"
+resource "aws_ssm_parameter" "kafka_eip-private_ip" {
+  name      = "/elk/kafka_eip-private_ip"
   type      = "SecureString"
-  value     = "${var.elk-ec2_private_ip}"
+  value     = "${var.kafka_eip-private_ip}"
   key_id    = "${var.kms_key_parameter-store_id}"
   overwrite = true
 }

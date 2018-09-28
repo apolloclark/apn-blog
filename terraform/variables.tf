@@ -33,7 +33,7 @@ variable "bastion_amis" {
     us-east-2 = "ami-2581aa40"
   }
 }
-variable "base_ami_id" {
+variable "beats_ami_id" {
   default = "ami-41e0b93b"
 }
 variable "elk_ami_id" {

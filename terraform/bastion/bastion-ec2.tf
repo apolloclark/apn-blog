@@ -2,18 +2,18 @@
 # Bastion EC2 Instance
 #
 # https://www.terraform.io/docs/providers/aws/r/instance.html
-resource "aws_instance" "bastion-ec2" {
+resource "aws_instance" "bastion_ec2" {
   key_name      = "${var.key_name}"
-  ami           = "${lookup(var.amis, var.region)}"
+  ami           = "${var.beats_ami_id}"
   instance_type = "${var.instance_type}"
-  iam_instance_profile = "${var.iam_profile_parameter-store_name}"
+  iam_instance_profile = "${var.iam_profile_parameter_store-name}"
 
   subnet_id                   = "${element(var.public_subnet_ids, 0)}"
   associate_public_ip_address = true
   vpc_security_group_ids      = [
-    "${aws_security_group.sg_ssh_to_bastion.id}",
-    "${aws_security_group.sg_ssh_from_bastion.id}",
-    "${aws_security_group.sg_tcp_to_elk.id}"
+    "${var.sg_ssh_to_bastion-id}",
+    "${var.sg_ssh_from_bastion-id}",
+    "${var.sg_tcp_to_elk-id}"
   ]
   user_data                   = "${file("./bastion/userdata.sh")}"
 
@@ -22,10 +22,10 @@ resource "aws_instance" "bastion-ec2" {
   }
 }
 
-output "bastion-ec2_private_ip" {
-  value = "${aws_instance.bastion-ec2.private_ip}"
+output "bastion_ec2-private_ip" {
+  value = "${aws_instance.bastion_ec2.private_ip}"
 }
 
-output "bastion-ec2_id" {
-  value = "${aws_instance.bastion-ec2.id}"
+output "bastion_ec2-id" {
+  value = "${aws_instance.bastion_ec2.id}"
 }

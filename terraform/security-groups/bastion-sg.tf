@@ -3,7 +3,7 @@
 #
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
 resource "aws_security_group" "sg_ssh_to_bastion" {
-  name        = "tf_ssh_to_bastion"
+  name        = "sg_ssh_to_bastion"
   description = "Allow SSH to Bastion host from approved IP ranges"
 
   ingress {
@@ -23,18 +23,18 @@ resource "aws_security_group" "sg_ssh_to_bastion" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "tf_ssh_to_bastion"
+    Name = "sg_ssh_to_bastion"
   }
 }
 
-output "sg_ssh_to_bastion_id" {
+output "sg_ssh_to_bastion-id" {
   value = "${aws_security_group.sg_ssh_to_bastion.id}"
 }
 
 
 
 resource "aws_security_group" "sg_ssh_from_bastion" {
-  name        = "tf_ssh_from_bastion"
+  name        = "sg_ssh_from_bastion"
   description = "Allow SSH from Bastion host"
 
   ingress {
@@ -44,7 +44,7 @@ resource "aws_security_group" "sg_ssh_from_bastion" {
 
     security_groups = [
       "${aws_security_group.sg_ssh_to_bastion.id}",
-      "${var.nat_sg_id}",
+      "${var.nat_sg-id}",
     ]
   }
 
@@ -58,10 +58,10 @@ resource "aws_security_group" "sg_ssh_from_bastion" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "tf_ssh_from_bastion"
+    Name = "sg_ssh_from_bastion"
   }
 }
 
-output "sg_ssh_from_bastion_id" {
+output "sg_ssh_from_bastion-id" {
   value = "${aws_security_group.sg_ssh_from_bastion.id}"
 }

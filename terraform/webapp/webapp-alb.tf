@@ -9,22 +9,22 @@
 resource "aws_alb" "webapp_alb" {
   name    = "tf-webapp-alb"
   internal = false
-  security_groups = ["${aws_security_group.sg_http_for_webapp_alb.id}"]
+  security_groups = ["${var.sg_http_to_webapp_alb-id}"]
   subnets = ["${var.public_subnet_ids}"]
   tags {
     Name = "tf_webapp_alb"
   }
 }
 
-output "webapp_alb_id" {
+output "webapp_alb-id" {
   value = "${aws_alb.webapp_alb.id}"
 }
 
-output "webapp_alb_arn" {
+output "webapp_alb-arn" {
   value = "${aws_alb.webapp_alb.arn}"
 }
 
-output "webapp_alb_dns" {
+output "webapp_alb-dns" {
   value = "${aws_alb.webapp_alb.dns_name}"
 }
 
@@ -38,11 +38,11 @@ resource "aws_alb_target_group" "webapp_alb_tg" {
   vpc_id   = "${var.vpc_id}"
 }
 
-output "webapp_alb_tg_id" {
+output "webapp_alb_tg-id" {
   value = "${aws_alb_target_group.webapp_alb_tg.id}"
 }
 
-output "webapp_alb_tg_arn" {
+output "webapp_alb_tg-arn" {
   value = "${aws_alb_target_group.webapp_alb_tg.arn}"
 }
 
@@ -60,11 +60,11 @@ resource "aws_alb_listener" "webapp_alb_listener" {
   }
 }
 
-output "webapp_alb_listener_id" {
+output "webapp_alb_listener-id" {
   value = "${aws_alb_listener.webapp_alb_listener.id}"
 }
 
-output "webapp_alb_listener_arn" {
+output "webapp_alb_listener-arn" {
   value = "${aws_alb_listener.webapp_alb_listener.arn}"
 }
 

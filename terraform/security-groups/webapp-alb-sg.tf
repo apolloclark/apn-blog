@@ -9,8 +9,8 @@
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under the License.
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
-resource "aws_security_group" "sg_http_for_webapp_alb" {
-  name        = "tf_http_for_webapp_alb"
+resource "aws_security_group" "sg_http_to_webapp_alb" {
+  name        = "sg_http_to_webapp_alb"
   description = "Allow HTTP from anywhere to the webapp_alb"
 
   ingress {
@@ -30,10 +30,10 @@ resource "aws_security_group" "sg_http_for_webapp_alb" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "tf_http_for_webapp_alb"
+    Name = "sg_http_to_webapp_alb"
   }
 }
 
-output "sg_http_for_webapp_alb_id" {
-  value = "${aws_security_group.sg_http_for_webapp_alb.id}"
+output "sg_http_to_webapp_alb-id" {
+  value = "${aws_security_group.sg_http_to_webapp_alb.id}"
 }

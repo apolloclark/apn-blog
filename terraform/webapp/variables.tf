@@ -18,14 +18,17 @@ variable "availability_zones" {
 
 variable "webapp_ami_id" {}
 variable "instance_type" {}
-variable "iam_profile_parameter-store_name" {}
+variable "iam_profile_parameter_store-name" {}
+variable "sg_ssh_from_bastion-id" {}
+variable "sg_tcp_to_elk-id" {}
+variable "sg_http_to_webapp_alb-id" {}
+variable "sg_http_webapp_alb_to_webapp_ec2-id" {}
 
 variable "vpc_id" {}
 variable "public_subnet_ids" {
   type = "list"
 }
 variable "private_subnet_id" {}
-variable "sg_ssh_from_bastion_id" {}
 variable "asg_min" {}
 variable "asg_max" {}
 variable "asg_desired" {}

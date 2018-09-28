@@ -20,5 +20,5 @@ variable "instance_type" {}
 
 variable "vpc_id" {}
 variable "private_subnet_id" {}
-variable "sg_ssh_from_bastion_id" {}
+variable "sg_ssh_from_bastion-id" {}
 variable "sg_nat-public_to_nat-private_id" {}

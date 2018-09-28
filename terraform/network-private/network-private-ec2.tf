@@ -12,7 +12,7 @@ resource "aws_instance" "private_subnet_instance" {
   subnet_id = "${var.private_subnet_id}"
 
   vpc_security_group_ids = [
-    "${var.sg_ssh_from_bastion_id}",
+    "${var.sg_ssh_from_bastion-id}",
     "${var.sg_nat-public_to_nat-private_id}",
   ]
 

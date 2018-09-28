@@ -36,7 +36,7 @@ terraform output -module=bastion | grep "ip" --color=never
 printf "\n"
 terraform output -module=elk | grep "ip" --color=never
 printf "\n"
-terraform output -module=webapp | grep -F "webapp_alb_dns" --color=never
+terraform output -module=webapp | grep -F "webapp_alb-dns" --color=never
 printf "\n"
 
 # print the Private IP and Name of all running EC2 instances

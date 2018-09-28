@@ -47,9 +47,11 @@ resource "aws_security_group" "nat_sg" {
   }
 }
 
-output "nat_sg_id" {
+output "nat_sg-id" {
   value = "${aws_security_group.nat_sg.id}"
 }
+
+
 
 resource "aws_security_group" "sg_nat-public_to_nat-private" {
   name        = "tf_nat-public_to_nat-private"

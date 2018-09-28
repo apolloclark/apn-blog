@@ -10,11 +10,11 @@ resource "aws_launch_configuration" "webapp_lc" {
 
   image_id      = "${var.webapp_ami_id}"
   instance_type = "${var.instance_type}"
-  iam_instance_profile = "${var.iam_profile_parameter-store_name}"
+  iam_instance_profile = "${var.iam_profile_parameter_store-name}"
 
   security_groups = [
-    "${aws_security_group.sg_http_webapp_alb_and_webapp_ec2.id}",
-    "${aws_security_group.sg_ssh_bastion_and_webapp-ec2.id}",
+    "${var.sg_ssh_from_bastion-id}",
+    "${var.sg_http_webapp_alb_to_webapp_ec2-id}",
   ]
 
   user_data                   = "${file("./webapp/userdata.sh")}"
