@@ -6,6 +6,15 @@ resource "aws_security_group" "sg_tcp_to_elk" {
   name        = "sg_tcp_to_elk"
   description = "Allow TCP to ELK host from internal IP ranges"
 
+  # Zookeeper
+  ingress {
+    from_port   = 2181
+    to_port     = 2181
+    protocol    = "tcp"
+    cidr_blocks = ["${var.vpc_cidr}"]
+  }
+
+  # Logstash
   ingress {
     from_port   = 5044
     to_port     = 5044
@@ -13,6 +22,7 @@ resource "aws_security_group" "sg_tcp_to_elk" {
     cidr_blocks = ["${var.vpc_cidr}"]
   }
 
+  # Kibana
   ingress {
     from_port   = 5601
     to_port     = 5601
@@ -20,6 +30,15 @@ resource "aws_security_group" "sg_tcp_to_elk" {
     cidr_blocks = ["${var.vpc_cidr}"]
   }
 
+  # Kafka
+  ingress {
+    from_port   = 9092
+    to_port     = 9092
+    protocol    = "tcp"
+    cidr_blocks = ["${var.vpc_cidr}"]
+  }
+
+  # Elasticsearch
   ingress {
     from_port   = 9200
     to_port     = 9200
@@ -27,9 +46,10 @@ resource "aws_security_group" "sg_tcp_to_elk" {
     cidr_blocks = ["${var.vpc_cidr}"]
   }
 
+  # Elasticsearch
   ingress {
-    from_port   = 9092
-    to_port     = 9092
+    from_port   = 9300
+    to_port     = 9300
     protocol    = "tcp"
     cidr_blocks = ["${var.vpc_cidr}"]
   }
