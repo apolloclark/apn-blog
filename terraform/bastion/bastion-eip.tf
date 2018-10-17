@@ -5,6 +5,10 @@
 resource "aws_eip" "bastion_eip" {
   instance = "${aws_instance.bastion_ec2.id}"
   vpc      = true
+
+  tags = {
+    Name = "tf-bastion_eip"
+  }
 }
 
 output "bastion_ec2-eip" {

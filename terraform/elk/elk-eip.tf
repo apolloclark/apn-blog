@@ -1,9 +1,14 @@
 #
-# Bastion Elatic IP
+# ELK Elastic IP
 #
+# https://www.terraform.io/docs/providers/aws/r/eip.html
 resource "aws_eip" "kafka_eip" {
   instance = "${aws_instance.elk_ec2.id}"
   vpc      = true
+
+  tags = {
+    Name = "tf-kafka_eip"
+  }
 }
 
 output "kafka_eip-id" {
