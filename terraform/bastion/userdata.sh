@@ -17,6 +17,3 @@ ansible-playbook playbook.yml
 # run serverspec tests
 cd ../
 rake spec
-
-# add custom steps to install your website here
-# git clone <url>
