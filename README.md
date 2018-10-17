@@ -75,6 +75,8 @@ chmod 0600 ~/.ssh/packer.pem
 # add the newly created key to the keychain
 ssh-add ~/.ssh/packer.pem
 
+
+
 # download project, and the nested submodules
 git clone --recurse-submodules https://github.com/apolloclark/tf-aws
 cd tf-aws
@@ -84,13 +86,33 @@ cd tf-aws
 
 # deploy AWS infrastructure with Terraform, takes ~ 5 minutes
 ./build_terraform.sh
+
+
+
+# Add the packer.pem to the local ssh agent
+ssh-add -k ss~/.ssh/packer.pem
+ssh-add -l
+
+# Retrieve the Bastion host Public IP, and Kibana host Private IP
+BASTION_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-bastion_eip' --query 'Addresses[].PublicIp' --output text);
+KAFKA_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-kafka_eip' --query 'Addresses[].PrivateIpAddress' --output text);
+
+# SSH into the Bastion host, creating a tunnel to view Kibana
+ssh -L 5601:$KAFKA_IP:5601 ubuntu@$BASTION_IP
+
+# Open a Browser, to view Kibana
+127.0.0.1:5601
 ```
+
+
 
 ## Update
 ```shell
 # update submodules
 git submodule update --recursive --remote
 ```
+
+
 
 ## Custom website
 ```shell
