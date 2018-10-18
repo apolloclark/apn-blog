@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eux
 
 # set the HOME variable, https://github.com/ansible/ansible/issues/31617
 export HOME=/root
@@ -12,7 +12,7 @@ cd /root/packer-aws-webapp/config/ansible
 ansible-galaxy install --force -v --roles-path='./roles' --role-file='./requirements.yml'
 
 # run the playbook, against localhost
-ansible-playbook playbook.yml
+ansible-playbook playbook_local.yml
 
 # run serverspec tests
 cd ../
