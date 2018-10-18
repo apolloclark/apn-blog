@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash -ex
 
 # set the HOME variable, https://github.com/ansible/ansible/issues/31617
 export HOME=/root
