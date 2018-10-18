@@ -90,18 +90,27 @@ cd tf-aws
 
 
 # Add the packer.pem to the local ssh agent
-ssh-add -k ss~/.ssh/packer.pem
+ssh-add -k ~/.ssh/packer.pem
 ssh-add -l
 
 # Retrieve the Bastion host Public IP, and Kibana host Private IP
-BASTION_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-bastion_eip' --query 'Addresses[].PublicIp' --output text);
-KAFKA_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-kafka_eip' --query 'Addresses[].PrivateIpAddress' --output text);
+export BASTION_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-bastion_eip' --query 'Addresses[].PublicIp' --output text);
+export KAFKA_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-kafka_eip' --query 'Addresses[].PrivateIpAddress' --output text);
+printenv | grep "_IP"
+
+# SSH into the Bastion host, forwarding the packer key
+ssh -A ubuntu@$BASTION_IP
+
+# check the user data startup script log
+sudo nano /var/log/cloud-init-output.log
+
+
 
 # SSH into the Bastion host, creating a tunnel to view Kibana
 ssh -L 5601:$KAFKA_IP:5601 ubuntu@$BASTION_IP
 
 # Open a Browser, to view Kibana
-127.0.0.1:5601
+chrome 127.0.0.1:5601
 ```
 
 
