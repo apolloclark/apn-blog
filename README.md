@@ -60,6 +60,8 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 curl -s https://raw.githubusercontent.com/apolloclark/tf-aws/master/single_step_deploy.sh | bash -
 ```
 
+
+
 ## Deploy
 ```shell
 
@@ -110,7 +112,7 @@ sudo nano /var/log/cloud-init-output.log
 ssh -L 5601:$KAFKA_IP:5601 ubuntu@$BASTION_IP
 
 # Open a Browser, to view Kibana
-chrome 127.0.0.1:5601
+google-chrome 127.0.0.1:5601
 ```
 
 
