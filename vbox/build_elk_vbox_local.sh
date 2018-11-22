@@ -6,7 +6,7 @@ cd ../packer
 
 # build Virtualbox ubuntu image
 cd ./packer-ubuntu
-source ./build_ubuntu1604-server_local.sh
+source ./build_ubuntu1604-server_virtualbox_local.sh
 
 # build Virtualbox beats image
 cd ../packer-aws-beats/base

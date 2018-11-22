@@ -19,6 +19,6 @@
 [submodule "packer/packer-aws-elk"]
 	path = packer/packer-aws-elk
 	url = https://github.com/apolloclark/packer-aws-elk
-[submodule "docker/packer-aws-k8s"]
-	path = docker/packer-aws-k8s
-	url = https://github.com/apolloclark/packer-aws-k8s
+[submodule "docker/packer-elk-docker"]
+	path = docker/packer-elk-docker
+	url = https://github.com/apolloclark/packer-elk-docker
