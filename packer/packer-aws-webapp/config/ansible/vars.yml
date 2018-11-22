@@ -1,0 +1,65 @@
+# http://docs.ansible.com/ansible/latest/playbooks_variables.html#variable-file-separation
+---
+hostname: all
+
+# apolloclark/mysql_deploy
+mysql_db_name: "testdb"
+mysql_db_file: "{{ playbook_dir }}/files/database.sql"
+mysql_login_user: "root"
+mysql_login_password: "root"
+
+
+
+# apolloclark/auditbeat
+auditbeat:
+  version: "6.4.0"
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/filebeat
+filebeat:
+  version: "6.4.0"
+  output:
+    elasticsearch:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/metricbeat
+metricbeat:
+  version: "6.4.0"
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+       
+# apolloclark/heartbeat
+heartbeat:
+  version: "6.4.0"
+  monitors:
+    http:
+      schedule: "'@every 5s'"
+      urls: '["http://localhost:80"]'
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/packetbeat
+packetbeat:
+  version: "6.4.0"
+  protocols:
+    http:
+      enabled: true
+      ports: '[80]'
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"

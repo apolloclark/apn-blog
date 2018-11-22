@@ -1,0 +1,11 @@
+{
+    "require": {
+        "phpunit/phpunit": "5.7.*",
+        "guzzlehttp/guzzle": "6.2.*",
+        "pdepend/pdepend" : "2.5.0",
+        "giorgiosironi/eris": "dev-master"
+    },
+    "scripts": {
+    	"test": "./vendor/bin/phpunit"
+    }
+}

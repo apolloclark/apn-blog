@@ -1,0 +1,85 @@
+{
+  "variables": {
+    "ansible_user": "vagrant",
+  	"atlas_box_tag": "apolloclark/ubuntu16.04-bastion",
+    "atlas_token": "{{ env `ATLAS_TOKEN` }}",
+    "cpus": "1",
+    "headless": "true",
+    "memory": "4096",
+    "hostname": "vagrant",
+    "source_path": "../packer-aws-beats/output/vbox/ubuntu1604-java.ovf",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "vagrantfile_template": "vagrantfile.tpl",
+    "vm_name": "packer-aws-bastion-config",
+    "version": "{{isotime \"20060102.030405\"}}"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "source_path": "{{ user `source_path` }}",
+      "headless": "{{ user `headless` }}",
+      "output_directory": "output/vbox",
+      "post_shutdown_delay": "1m",
+      "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "600s",
+      "vboxmanage": [
+        [
+          "modifyvm", "{{.Name}}", "--nictype1", "virtio"
+        ],
+        [
+          "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
+        ],
+        [
+          "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "{{user `vm_name`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell-local",
+      "command": "ansible-galaxy install --force -v --roles-path='./ansible/roles' --role-file='./ansible/requirements.yml'"
+    },
+    {
+      "type": "ansible",
+      "user": "{{ user `ansible_user` }}",
+      "playbook_file": "./ansible/playbook.yml"
+    },
+    {
+	  "type": "file",
+	  "source": "restart_elk_services.sh",
+	  "destination": "/home/vagrant/restart_elk_services.sh"
+	},
+    {
+	  "type": "file",
+	  "source": "check_elk_services.sh",
+	  "destination": "/home/vagrant/check_elk_services.sh"
+	},
+    {
+      "type": "shell-local",
+      "command": "export PACKER_BUILDER='virtualbox-ovf'; export VM_NAME='{{ user `vm_name` }}'; rake spec"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": true,
+        "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `version`}}.box",
+        "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+      },
+	  {
+	    "type": "vagrant-cloud",
+	    "box_tag": "{{user `atlas_box_tag`}}",
+	    "access_token": "{{user `atlas_token`}}",
+	    "no_release": "true",
+	    "version": "{{user `version`}}"
+	  }
+	]
+  ]
+}

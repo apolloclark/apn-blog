@@ -1,0 +1,66 @@
+# http://docs.ansible.com/ansible/latest/playbooks_variables.html#variable-file-separation
+---
+hostname: all
+
+# geerlingguy/firewall
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+
+
+
+# kafka_ip: "127.0.0.1"
+
+
+# apolloclark/auditbeat
+auditbeat:
+  version: "6.4.0"
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/filebeat
+filebeat:
+  version: "6.4.0"
+  output:
+    elasticsearch:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/heartbeat
+heartbeat:
+  version: "6.4.0"
+  monitors:
+    tcp:
+      schedule: "'@every 5s'"
+      hosts: '["127.0.0.1"]'
+      check.send: "Check"
+      check.receive: "Check"
+      ports: '[22]'
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/metricbeat
+metricbeat:
+  version: "6.4.0"
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"
+
+# apolloclark/packetbeat
+packetbeat:
+  version: "6.4.0"
+  output:
+    kafka:
+      enabled: true
+      hosts:
+       - "{{ kafka_ip }}:9092"

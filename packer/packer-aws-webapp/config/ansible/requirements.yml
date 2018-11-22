@@ -1,0 +1,9 @@
+# http://docs.ansible.com/ansible/latest/galaxy.html#installing-multiple-roles-from-a-file
+---
+- src: apolloclark.mysql_deploy       # https://github.com/apolloclark/ansible-role-mysql-deploy
+- src: apolloclark.osquery            # https://github.com/apolloclark/ansible-role-osquery
+- src: apolloclark.auditbeat          # https://github.com/apolloclark/ansible-role-auditbeat
+- src: apolloclark.filebeat           # https://github.com/apolloclark/ansible-role-filebeat
+- src: apolloclark.heartbeat          # https://github.com/apolloclark/ansible-role-heartbeat
+- src: apolloclark.metricbeat         # https://github.com/apolloclark/ansible-role-metricbeat
+- src: apolloclark.packetbeat         # https://github.com/apolloclark/ansible-role-packetbeat

@@ -1,0 +1,83 @@
+{
+  "variables": {
+    "vpc": "{{env `BUILD_VPC_ID`}}",
+    "subnet": "{{env `BUILD_SUBNET_ID`}}",
+    "aws_region": "{{env `AWS_REGION`}}",
+    "ssh_keypair_name": "{{env `SSH_KEYPAIR_NAME`}}",
+    "ssh_private_key_file": "{{env `SSH_PRIVATE_KEY_FILE`}}",
+    "ami_name": "packer-aws-beats-{{isotime \"2006-01-02_15-04-06\"}}",
+    "version": "{{isotime \"20060102.030405\"}}"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "{{user `aws_region`}}",
+      "source_ami_filter": {
+          "filters": {
+              "name": "ubuntu/images/hvm-ssd/ubuntu-xenial*",
+              "virtualization-type": "hvm",
+              "root-device-type": "ebs"
+          },
+          "owners": ["099720109477"],
+          "most_recent": true
+      },
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ssh_keypair_name": "{{user `ssh_keypair_name`}}",
+      "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
+      "ami_name": "{{user `ami_name` | clean_ami_name}}",
+      "tags": {
+        "Name": "{{user `ami_name`}}"
+      },
+      "run_tags": { 
+        "Name": "{{user `ami_name`}}"
+      },
+      "run_volume_tags": {
+        "Name": "{{user `ami_name`}}"
+      },
+      "ami_description": "Base Image, with Elastic monitoring agents",
+      "associate_public_ip_address": "true",
+      "vpc_id": "{{user `vpc`}}",
+      "subnet_id": "{{user `subnet`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get update",
+        "sudo apt-get install -y aptitude jq python-minimal python-pip git",
+        "sudo -H pip install pip --upgrade",
+        "sudo -H pip install git+https://github.com/ansible/ansible.git@devel boto3",
+        "echo 'PATH=\"/root/bin:/root/.local/bin:$PATH\"' | sudo tee --append /root/.profile"
+      ]
+    },
+    {
+      "type": "shell-local",
+  	  "command": "ansible-galaxy install --force -v --roles-path='./ansible/roles' --role-file='./ansible/requirements.yml'"
+    },
+    {
+      "type": "ansible",
+      "user": "ubuntu",
+      "playbook_file": "./ansible/playbook.yml"
+    },
+    {
+      "type": "shell-local",
+  	  "command": "export PACKER_BUILDER='amazon-ebs'; export AMI_NAME='{{ user `ami_name` }}'; export SSH_PRIVATE_KEY_FILE='{{ user `ssh_private_key_file` }}'; rake spec"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo su - root -c 'rvm -v' 2>/dev/null",
+        "sudo su - root -c 'ruby -v' 2>/dev/null",
+        "sudo rm -f .ssh/authorized_keys ; sudo rm -f /root/.ssh/authorized_keys"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "manifest.json",
+      "strip_path": true
+    }  ]
+}

@@ -1,0 +1,80 @@
+# http://docs.ansible.com/ansible/latest/playbooks_variables.html#variable-file-separation
+---
+hostname: all
+
+# geerlingguy/firewall
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+  - "2181" # Zookeeper
+  - "5044" # Logstash
+  - "5601" # Kibana
+  - "9092" # Kafka
+  - "9200" # Elasticsearch
+  - "9300" # Elasticsearch
+
+# geerlingguy/java
+java_packages:
+  - openjdk-8-jre
+
+
+
+es_ip: "127.0.0.1"
+kafka_ip: "127.0.0.1"
+logstash_ip: "127.0.0.1"
+kibana_ip: "127.0.0.1"
+
+
+
+# apolloclark/crontab
+crontab:
+  global:
+    - "@reboot root /home/vagrant/restart_elk_services.sh"
+
+# apolloclark/kafka
+kafka:
+  version: "2.0.0"
+  scala_version: "2.11"
+
+# apolloclark/heartbeat
+heartbeat:
+  version: "6.4.0"
+  install_only: true
+
+# apolloclark/metricbeat
+metricbeat:
+  version: "6.4.0"
+  install_only: true
+
+# apolloclark/packetbeat
+packetbeat:
+  version: "6.4.0"
+  install_only: true
+
+# apolloclark/filebeat
+filebeat:
+  version: "6.4.0"
+  install_only: true
+
+# apolloclark/auditbeat
+auditbeat:
+  version: "6.4.0"
+  install_only: true
+
+# apolloclark/elasticsearch
+# BINDING TO 0.0.0.0 IS DANGEROUS, UNLESS YOU ENFORCE FIREWALL RULES
+# OR USE X-PACK
+elasticsearch:
+  version: "6.4.0"
+  install_only: true
+      
+# apolloclark/logstash
+logstash:
+  version: "6.4.0"
+  install_only: true
+
+# apolloclark/kibana
+kibana:
+  version: "6.4.0"
+  install_only: true

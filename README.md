@@ -81,7 +81,7 @@ ssh-add ~/.ssh/packer.pem
 
 # download project, and the nested submodules
 git clone --recurse-submodules https://github.com/apolloclark/tf-aws
-cd tf-aws
+cd ./tf-aws/aws-ec2
 
 # use Packer to build the AWS AMI's, takes ~ 40 minutes
 ./build_packer_aws.sh

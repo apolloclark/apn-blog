@@ -1,0 +1,18 @@
+# http://docs.ansible.com/ansible/latest/playbooks_best_practices.html#directory-layout
+---
+# playbook_local.yml
+
+- hosts: 127.0.0.1
+  connection: local
+  gather_facts: yes
+  become: true
+  vars_files:
+    - "vars_ssm.yml"
+    - "vars.yml"
+  roles:
+    - apolloclark.osquery
+    - apolloclark.auditbeat
+    - apolloclark.filebeat
+    - apolloclark.heartbeat
+    - apolloclark.packetbeat
+    - apolloclark.metricbeat

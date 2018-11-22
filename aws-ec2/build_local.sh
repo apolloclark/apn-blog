@@ -4,6 +4,9 @@
 
 
 
+# go up to parent
+cd ../
+
 # check if aws-cli is installed
 if ! [ -x "$(command -v aws)" ]; then
 	echo "[ERROR] aws-cli is not installed: https://docs.aws.amazon.com/cli/latest/userguide/installing.html"
@@ -52,13 +55,9 @@ if ! aws ec2 describe-key-pairs --output=text | grep 'packer'; then
 	ssh-add ~/.ssh/packer.pem
 fi
 
-
-# clone the project, and sub-modules
-git clone --recurse-submodules https://github.com/apolloclark/tf-aws
-cd ./tf-aws/aws-ec2
-
 # use Packer to build the AWS AMI's
-./build_packer_aws.sh
+source ./build_packer_aws.sh
+cd ../../
 
 # deploy AWS infrastructure with Terraform
-./build_terraform.sh
+source ./build_terraform.sh

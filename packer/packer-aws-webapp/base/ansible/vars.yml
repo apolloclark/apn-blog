@@ -1,0 +1,83 @@
+# http://docs.ansible.com/ansible/latest/playbooks_variables.html#variable-file-separation
+---
+hostname: all
+
+# geerlingguy/firewall
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+
+# geerlingguy/ansible-role-apache
+# https://github.com/geerlingguy/ansible-role-apache/blob/master/defaults/main.yml
+# https://github.com/geerlingguy/ansible-role-apache/blob/master/vars/Debian.yml
+# https://github.com/geerlingguy/ansible-role-apache/blob/master/tasks/main.yml
+# https://github.com/geerlingguy/ansible-role-apache/blob/master/tasks/setup-Debian.yml
+# https://github.com/geerlingguy/ansible-role-apache/blob/master/templates/vhosts.conf.j2
+apache_packages:
+  - apache2
+  - apache2-utils
+  - libapache2-mod-security2
+apache_remove_default_vhost: true
+apache_vhosts:
+  - servername: "127.0.0.1"
+    documentroot: "/var/www/html/public/"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/html/public/"
+      ErrorLog /var/log/apache2/error.log
+      CustomLog /var/log/apache2/access.log common
+      SetEnv APPLICATION_ENV production
+      Header set Access-Control-Allow-Origin "*"
+apache_mods_enabled:
+  - expires.load
+  - ssl.load
+  - rewrite.load
+  - proxy.load
+  - proxy_fcgi.load
+  - headers.load
+  - security2.load
+  
+# apolloclark/ansible-role-apache-modsecurity
+sec_audit_log: "/var/log/apache2/audit.log"
+
+
+
+# https://github.com/geerlingguy/ansible-role-php/blob/master/defaults/main.yml
+php_version: '5.6'
+php_enable_apc: false
+php_packages:
+  - php5.6
+  - php5.6-cli
+  - php5.6-common
+  - php5.6-dev
+  - php5.6-gd
+  - php5.6-fpm
+  - php5.6-json
+  - php5.6-mcrypt
+  - php5.6-opcache
+  - php5.6-readline
+  - php5.6-xml
+  - php5.6-zip
+php_enable_php_fpm: true
+php_fpm_listen: "127.0.0.1:9000"
+php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_pm_max_children: 50
+php_fpm_pm_start_servers: 5
+php_fpm_pm_min_spare_servers: 5
+php_fpm_pm_max_spare_servers: 5
+
+
+
+# https://github.com/geerlingguy/ansible-role-mysql/blob/master/defaults/main.yml
+# https://github.com/geerlingguy/ansible-role-mysql/blob/master/templates/my.cnf.j2
+mysql_version: "5.7.18"
+mysql_packages:
+  - mysql-common
+  - mysql-community-server
+mysql_bind_address: "127.0.0.1"
+mysql_user_password_update: true
+mysql_root_password_update: true
+
+# apolloclark/mysql-mcafee-audit
+mcafee_plugin_version: "1.1.4-725"
+audit_json_log_file: "/var/log/mysql/audit.log"

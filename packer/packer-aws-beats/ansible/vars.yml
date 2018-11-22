@@ -1,0 +1,58 @@
+# http://docs.ansible.com/ansible/latest/playbooks_variables.html#variable-file-separation
+---
+hostname: all
+
+# geerlingguy/ntp
+ntp_timezone: America/New_York
+
+# geerlingguy/firewall
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+
+# apolloclark/aws-cli
+awscli:
+  pip_user: 
+    - root
+    - ubuntu
+
+# rvm.ruby
+rvm1_bundler_install: True
+rvm1_user: 'root'
+rvm1_rvm_version: 'stable'
+rvm1_install_path: /usr/local/rvm
+
+# geerlingguy.ruby
+ruby_install_gems:
+  - serverspec
+
+
+
+# apolloclark/osquery
+osquery:
+  version: "2.11.0-1.linux"
+
+# apolloclark/filebeat
+filebeat:
+ version: "6.4.0"
+ install_only: "true"
+
+# apolloclark/metricbeat
+metricbeat:
+ version: "6.4.0"
+ install_only: "true"
+
+# apolloclark/heartbeat
+heartbeat:
+ version: "6.4.0"
+ install_only: "true"
+
+# apolloclark/packetbeat
+packetbeat:
+  version: "6.4.0"
+  install_only: "true"
+
+# apolloclark/auditbeat
+auditbeat:
+  version: "6.4.0"
+  install_only: "true"

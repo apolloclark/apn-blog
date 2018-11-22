@@ -1,0 +1,13 @@
+.project
+.vagrant
+.rspec
+manifest.json
+vagrant.json
+Gemfile.lock
+composer.lock
+
+**/ansible/roles/*
+**/playbook.retry
+box/*
+output*/*
+packer_cache/*

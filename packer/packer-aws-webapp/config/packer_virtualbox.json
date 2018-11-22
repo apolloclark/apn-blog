@@ -1,0 +1,76 @@
+{
+  "variables": {
+    "atlas_token": "{{ env `ATLAS_TOKEN` }}",
+    "cpus": "1",
+    "headless": "",
+    "memory": "1024",
+    "hostname": "vagrant",
+    "source_path": "../packer-aws-beats/output-ubuntu1604-virtualbox-ovf/ubuntu1604-beats.ovf",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "vagrantfile_template": "",
+    "vm_name": "packer-aws-webapp-config",
+    "version": "{{isotime \"20060102.030405\"}}"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "source_path": "{{ user `source_path` }}",
+      "headless": "{{ user `headless` }}",
+      "output_directory": "output-{{ user `vm_name` }}-virtualbox-ovf",
+      "post_shutdown_delay": "1m",
+      "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "600s",
+      "vboxmanage": [
+        [
+          "modifyvm", "{{.Name}}", "--nictype1", "virtio"
+        ],
+        [
+          "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
+        ],
+        [
+          "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "{{user `vm_name`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell-local",
+  	  "command": "ansible-galaxy install --force -v --roles-path='./ansible/roles' --role-file='./ansible/requirements.yml'"
+    },
+    {
+      "type": "ansible",
+      "user": "{{ user `ansible_user` }}",
+      "playbook_file": "./ansible/playbook.yml"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo mkdir -p /var/www/html/public",
+        "sudo cp /var/www/html/index.html /var/www/html/public/index.html"
+      ]
+    },
+    {
+      "type": "shell-local",
+  	  "command": "export PACKER_BUILDER='virtualbox-ovf'; export VM_NAME='{{ user `vm_name` }}'; rake spec"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "manifest.json",
+      "strip_path": true
+    },
+	{
+	  "type": "vagrant",
+	  "keep_input_artifact": true,
+      "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `version`}}.box",
+	  "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+	}
+  ]
+}

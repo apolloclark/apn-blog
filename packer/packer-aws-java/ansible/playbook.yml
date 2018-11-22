@@ -1,0 +1,12 @@
+# http://docs.ansible.com/ansible/latest/playbooks_best_practices.html#directory-layout
+---
+# playbook.yml
+
+- hosts: all
+  connection: ssh
+  gather_facts: yes
+  become: true
+  vars_files:
+    - "vars.yml"
+  roles:
+    - geerlingguy.java

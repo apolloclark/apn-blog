@@ -1,0 +1,18 @@
+# http://docs.ansible.com/ansible/latest/galaxy.html#installing-multiple-roles-from-a-file
+---
+- src: geerlingguy.firewall
+- src: geerlingguy.git                # https://github.com/geerlingguy/ansible-role-git
+- src: apolloclark.nano_highlighting  # https://github.com/apolloclark/ansible-role-nano-highlighting
+- src: geerlingguy.java               # https://github.com/geerlingguy/ansible-role-java
+- src: apolloclark.zookeeper          # https://github.com/apolloclark/ansible-role-zookeeper
+- src: apolloclark.kafka              # https://github.com/apolloclark/ansible-role-kafka
+- src: apolloclark.elasticsearch      # https://github.com/apolloclark/ansible-role-elasticsearch
+- src: apolloclark.logstash           # https://github.com/apolloclark/ansible-role-logstash
+- src: apolloclark.kibana             # https://github.com/apolloclark/ansible-role-kibana
+- src: apolloclark.metricbeat         # https://github.com/apolloclark/ansible-role-metricbeat
+- src: apolloclark.heartbeat          # https://github.com/apolloclark/ansible-role-heartbeat
+- src: apolloclark.packetbeat         # https://github.com/apolloclark/ansible-role-packetbeat
+- src: apolloclark.filebeat           # https://github.com/apolloclark/ansible-role-filebeat
+- src: apolloclark.auditbeat          # https://github.com/apolloclark/ansible-role-auditbeat
+- src: apolloclark.osquery            # https://github.com/apolloclark/ansible-role-osquery
+- src: apolloclark.crontab            # https://github.com/apolloclark/ansible-role-crontab
