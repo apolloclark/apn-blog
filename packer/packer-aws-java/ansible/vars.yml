@@ -1,7 +1,0 @@
-# http://docs.ansible.com/ansible/latest/playbooks_variables.html#variable-file-separation
----
-hostname: all
-
-# geerlingguy/java
-java_packages:
-  - openjdk-8-jre

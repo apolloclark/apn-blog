@@ -1,21 +1,21 @@
-[submodule "packer-aws-base"]
-	path = packer-aws-base
-	url = https://github.com/apolloclark/packer-aws-base
-[submodule "packer-aws-webapp"]
-	path = packer-aws-webapp
-	url = https://github.com/apolloclark/packer-aws-webapp
-[submodule "packer-aws-java"]
-	path = packer-aws-java
-	url = https://github.com/apolloclark/packer-aws-java
-[submodule "packer-aws-elk"]
-	path = packer-aws-elk
-	url = https://github.com/apolloclark/packer-aws-elk
-[submodule "packer-aws-beats"]
-	path = packer-aws-beats
+[submodule "packer/packer-aws-beats"]
+	path = packer/packer-aws-beats
 	url = https://github.com/apolloclark/packer-aws-beats
-[submodule "packer-ubuntu"]
-	path = packer-ubuntu
+[submodule "packer/packer-aws-webapp"]
+	path = packer/packer-aws-webapp
+	url = https://github.com/apolloclark/packer-aws-webapp
+[submodule "packer/packer-aws-java"]
+	path = packer/packer-aws-java
+	url = https://github.com/apolloclark/packer-aws-java
+[submodule "packer/packer-aws-k8s"]
+	path = packer/packer-aws-k8s
+	url = https://github.com/apolloclark/packer-aws-k8s
+[submodule "packer/packer-ubuntu"]
+	path = packer/packer-ubuntu
 	url = https://github.com/apolloclark/packer-ubuntu
-[submodule "packer-aws-bastion"]
-	path = packer-aws-bastion
+[submodule "packer/packer-aws-bastion"]
+	path = packer/packer-aws-bastion
 	url = https://github.com/apolloclark/packer-aws-bastion
+[submodule "packer/packer-aws-elk"]
+	path = packer/packer-aws-elk
+	url = https://github.com/apolloclark/packer-aws-elk
