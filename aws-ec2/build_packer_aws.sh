@@ -5,7 +5,7 @@ global_start=`date +%s`
 cd ../packer
 
 # build base image, output BEATS_AMI_ID
-cd ./packer-aws-beats
+cd ./packer-aws-beats/base
 source ./build_packer_aws.sh
 
 # build AWS webapp image, output WEBAPP_AMI_ID
@@ -13,7 +13,7 @@ cd ../packer-aws-webapp/base
 source ./build_packer_aws.sh
 
 # build AWS java image, output JAVA_AMI_ID
-cd ../../packer-aws-java
+cd ../../packer-aws-java/base
 source ./build_packer_aws.sh
 
 # build AWS kafka image, output KAFKA_AMI_ID
