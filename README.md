@@ -459,7 +459,7 @@ Process:
   - [attach Policy Document to Role, by Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L103-L107)
 - IAM Instance Profile
   - [attach Role to Instance Profile, by Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L120-L123)
-- [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/main.tf#L40-L74)
+- [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/main.tf#L52-L87)
 - SSM Parameter(s)
   - [store parameters, by KMS Key Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/parameter-store/parameter-store.tf)
 - EC2 / ASG
