@@ -464,7 +464,7 @@ Process:
   - [store parameters, by KMS Key Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/parameter-store/parameter-store.tf)
 - EC2 / ASG
   - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/webapp-lc.tf#L13)
-  - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/webapp-lc.tf#L20) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/webapp-lc.tf#L17) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - [retrieve Parameter(s), with Ansible, using IAM Instance Profile](https://github.com/apolloclark/packer-aws-webapp/blob/master/config/ansible/vars_ssm.yml#L5)
   - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/userdata.sh#L15)
   - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/userdata.sh#L19)
