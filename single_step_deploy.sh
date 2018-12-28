@@ -47,15 +47,15 @@ if ! aws ec2 describe-key-pairs --output=text | grep 'packer'; then
 
 	# configure key file permissions
 	chmod 0600 ~/.ssh/packer.pem
-	
+
 	# add the newly created key to the keychain
 	ssh-add ~/.ssh/packer.pem
 fi
 
 
 # clone the project, and sub-modules
-git clone --recurse-submodules https://github.com/apolloclark/tf-aws
-cd ./tf-aws/aws-ec2
+git submodule update --recursive --remote
+cd ./aws-ec2
 
 # use Packer to build the AWS AMI's
 ./build_packer_aws.sh
