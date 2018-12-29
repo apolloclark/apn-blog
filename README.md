@@ -92,8 +92,9 @@ cd ./tf-aws/aws-ec2
 
 
 # Add the packer.pem to the local ssh agent
+chmod 0600 ~/.ssh/packer.pem
 ssh-add -k ~/.ssh/packer.pem
-ssh-add -l
+ssh-add -l | grep "packer"
 
 # Retrieve the Bastion host Public IP, and Kibana host Private IP
 export BASTION_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-bastion_eip' --query 'Addresses[].PublicIp' --output text);
