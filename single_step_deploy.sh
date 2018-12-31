@@ -61,4 +61,5 @@ cd ./aws-ec2
 ./build_packer_aws.sh
 
 # deploy AWS infrastructure with Terraform
+terraform init
 ./build_terraform.sh
