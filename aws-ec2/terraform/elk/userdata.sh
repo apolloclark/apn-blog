@@ -1,10 +1,11 @@
-#!/bin/bash -eux
+#!/bin/bash -ex
 
 # set the HOME variable, https://github.com/ansible/ansible/issues/31617
 export HOME=/root
+cd /root
 
 # download the packer-aws-elk-monitoring project
-git clone https://github.com/apolloclark/packer-aws-elk /root/packer-aws-elk
+git clone https://github.com/apolloclark/packer-aws-elk ./packer-aws-elk
 cd ./packer-aws-elk/config/ansible
 
 # download the ansible playbooks into the "roles" folder
