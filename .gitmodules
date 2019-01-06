@@ -31,3 +31,6 @@
 [submodule "packer/packer-aws-es"]
 	path = packer/packer-aws-es
 	url = https://github.com/apolloclark/packer-aws-es
+[submodule "packer/packer-aws-kibana"]
+	path = packer/packer-aws-kibana
+	url = https://github.com/apolloclark/packer-aws-kibana
