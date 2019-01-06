@@ -17,3 +17,19 @@ resource "aws_ssm_parameter" "kafka_eip-private_ip" {
   key_id    = "${var.kms_key_parameter-store_id}"
   overwrite = true
 }
+
+resource "aws_ssm_parameter" "logstash_eip-private_ip" {
+  name      = "/elk/logstash_eip-private_ip"
+  type      = "SecureString"
+  value     = "${var.logstash_eip-private_ip}"
+  key_id    = "${var.kms_key_parameter-store_id}"
+  overwrite = true
+}
+
+resource "aws_ssm_parameter" "es_eip-private_ip" {
+  name      = "/elk/es_eip-private_ip"
+  type      = "SecureString"
+  value     = "${var.es_eip-private_ip}"
+  key_id    = "${var.kms_key_parameter-store_id}"
+  overwrite = true
+}

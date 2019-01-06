@@ -1,38 +1,38 @@
 #
-# Webapp Auto-scaling Group
+# Layer-ASG Auto-scaling Group
 #
 
 # http://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-register-targets.html
 # http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html#as-add-load-balancer-aws-cli
 # https://www.terraform.io/docs/providers/aws/r/autoscaling_group.html
-resource "aws_autoscaling_group" "webapp_asg" {
+resource "aws_autoscaling_group" "layer-asg_asg" {
+  name                  = "tf_layer-asg_${aws_launch_configuration.layer-asg_lc.name}"
+  
   lifecycle {
     create_before_destroy = true
   }
-
   vpc_zone_identifier   = ["${var.public_subnet_ids}"]
-  name                  = "tf_webapp-asg_${aws_launch_configuration.webapp_lc.name}"
+
   max_size              = "${var.asg_max}"
   min_size              = "${var.asg_min}"
   wait_for_elb_capacity = false
   force_delete          = true
-  launch_configuration  = "${aws_launch_configuration.webapp_lc.id}"
-  # load_balancers        = ["${aws_alb.webapp_alb.name}"]
-  target_group_arns      = ["${aws_alb_target_group.webapp_alb_tg.arn}"]
+  launch_configuration  = "${aws_launch_configuration.layer-asg_lc.id}"
+  target_group_arns      = ["${aws_alb_target_group.layer-asg_alb_tg.arn}"]
 
   tag {
     key                 = "Name"
-    value               = "tf_webapp_asg"
+    value               = "${var.asg_tag_name}"
     propagate_at_launch = "true"
   }
 }
 
-output "webapp_asg_id" {
-  value = "${aws_autoscaling_group.webapp_asg.id}"
+output "layer-asg_asg_id" {
+  value = "${aws_autoscaling_group.layer-asg_asg.id}"
 }
 
-output "webapp_asg_arn" {
-  value = "${aws_autoscaling_group.webapp_asg.arn}"
+output "layer-asg_asg_arn" {
+  value = "${aws_autoscaling_group.layer-asg_asg.arn}"
 }
 
 
@@ -41,15 +41,15 @@ output "webapp_asg_arn" {
 # Scale Up Policy and Alarm
 #
 resource "aws_autoscaling_policy" "scale_up" {
-  name                   = "tf_asg_scale_up"
+  name                   = "tf_layer-asg_scale_up"
   scaling_adjustment     = 2
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
-  autoscaling_group_name = "${aws_autoscaling_group.webapp_asg.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.layer-asg_asg.name}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
-  alarm_name                = "tf-webapp-high-asg-cpu"
+  alarm_name                = "tf-layer-asg-high-asg-cpu"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = "2"
   metric_name               = "CPUUtilization"
@@ -60,7 +60,7 @@ resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
   insufficient_data_actions = []
 
   dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.webapp_asg.name}"
+    AutoScalingGroupName = "${aws_autoscaling_group.layer-asg_asg.name}"
   }
 
   alarm_description = "EC2 CPU Utilization"
@@ -73,15 +73,15 @@ resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
 # Scale Down Policy and Alarm
 #
 resource "aws_autoscaling_policy" "scale_down" {
-  name                   = "tf_asg_scale_down"
+  name                   = "tf_layer-asg_scale_down"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 600
-  autoscaling_group_name = "${aws_autoscaling_group.webapp_asg.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.layer-asg_asg.name}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "scale_down_alarm" {
-  alarm_name                = "tf-webapp-low-asg-cpu"
+  alarm_name                = "tf-layer-asg-low-asg-cpu"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = "5"
   metric_name               = "CPUUtilization"
@@ -92,7 +92,7 @@ resource "aws_cloudwatch_metric_alarm" "scale_down_alarm" {
   insufficient_data_actions = []
 
   dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.webapp_asg.name}"
+    AutoScalingGroupName = "${aws_autoscaling_group.layer-asg_asg.name}"
   }
 
   alarm_description = "EC2 CPU Utilization"

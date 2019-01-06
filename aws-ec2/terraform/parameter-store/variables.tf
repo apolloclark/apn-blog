@@ -11,12 +11,8 @@
 
 variable "kms_key_parameter-store_id" {}
 
-# variable database_name {}
-# variable database_user {}
 variable "database_password" {}
-# variable database_port {}
 
 variable "kafka_eip-private_ip" {}
-# variable elk_elasticsearch_port {}
-# variable elk_logstash_port {}
-# variable elk_kibana_port {}
+variable "logstash_eip-private_ip" {}
+variable "es_eip-private_ip" {}

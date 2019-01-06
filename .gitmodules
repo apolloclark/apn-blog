@@ -22,3 +22,12 @@
 [submodule "docker/packer-elk-docker"]
 	path = docker/packer-elk-docker
 	url = https://github.com/apolloclark/packer-elk-docker
+[submodule "packer/packer-aws-logstash"]
+	path = packer/packer-aws-logstash
+	url = https://github.com/apolloclark/packer-aws-logstash
+[submodule "packer/packer-aws-kafka"]
+	path = packer/packer-aws-kafka
+	url = https://github.com/apolloclark/packer-aws-kafka
+[submodule "packer/packer-aws-es"]
+	path = packer/packer-aws-es
+	url = https://github.com/apolloclark/packer-aws-es

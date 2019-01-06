@@ -14,11 +14,23 @@ export TF_VAR_beats_ami_id=$(aws ec2 describe-images \
   --query 'Images[].[ImageId, Name]' \
   --output text | sort -k2 | grep 'packer-aws-beats' | tail -1 | cut -f1);
 
-# get the newest "packer-aws-elk" AMI ID
-export TF_VAR_elk_ami_id=$(aws ec2 describe-images \
+# get the newest "packer-aws-kafka" AMI ID
+export TF_VAR_es_ami_id=$(aws ec2 describe-images \
   --filter 'Name=is-public,Values=false'  \
   --query 'Images[].[ImageId, Name]' \
-  --output text | sort -k2 | grep 'packer-aws-elk' | tail -1 | cut -f1);
+  --output text | sort -k2 | grep 'packer-aws-kafka' | tail -1 | cut -f1);
+
+# get the newest "packer-aws-logstash" AMI ID
+export TF_VAR_es_ami_id=$(aws ec2 describe-images \
+  --filter 'Name=is-public,Values=false'  \
+  --query 'Images[].[ImageId, Name]' \
+  --output text | sort -k2 | grep 'packer-aws-es' | tail -1 | cut -f1);
+
+# get the newest "packer-aws-logstash" AMI ID
+export TF_VAR_es_ami_id=$(aws ec2 describe-images \
+  --filter 'Name=is-public,Values=false'  \
+  --query 'Images[].[ImageId, Name]' \
+  --output text | sort -k2 | grep 'packer-aws-es' | tail -1 | cut -f1);
 
 # get the newest "packer-aws-webapp" AMI ID
 export TF_VAR_webapp_ami_id=$(aws ec2 describe-images \
@@ -26,9 +38,17 @@ export TF_VAR_webapp_ami_id=$(aws ec2 describe-images \
   --query 'Images[].[ImageId, Name]' \
   --output text | sort -k2 | grep "packer-aws-webapp" | tail -1 | cut -f1);
 
+# get the newest "packer-aws-kibana" AMI ID
+export TF_VAR_es_ami_id=$(aws ec2 describe-images \
+  --filter 'Name=is-public,Values=false'  \
+  --query 'Images[].[ImageId, Name]' \
+  --output text | sort -k2 | grep 'packer-aws-kibana' | tail -1 | cut -f1);
+
 printenv | grep "TF_VAR"
 
 terraform get
+terraform init
+terraform validate
 terraform plan
 terraform apply -auto-approve
 

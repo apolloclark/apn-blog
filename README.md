@@ -99,6 +99,7 @@ ssh-add -l | grep "packer"
 # Retrieve the Bastion host Public IP, and Kibana host Private IP
 export BASTION_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-bastion_eip' --query 'Addresses[].PublicIp' --output text);
 export KAFKA_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-kafka_eip' --query 'Addresses[].PrivateIpAddress' --output text);
+export LOGSTASH_IP=$(aws ec2 describe-addresses --filters 'Name=tag:Name,Values=tf-logstash_eip' --query 'Addresses[].PrivateIpAddress' --output text);
 printenv | grep "_IP"
 
 # SSH into the Bastion host, forwarding the packer key
