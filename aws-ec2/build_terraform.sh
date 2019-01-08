@@ -14,23 +14,23 @@ export TF_VAR_beats_ami_id=$(aws ec2 describe-images \
   --query 'Images[].[ImageId, Name]' \
   --output text | sort -k2 | grep 'packer-aws-beats' | tail -1 | cut -f1);
 
-# get the newest "packer-aws-kafka" AMI ID
+# get the newest "packer-aws-es" AMI ID
 export TF_VAR_es_ami_id=$(aws ec2 describe-images \
+  --filter 'Name=is-public,Values=false'  \
+  --query 'Images[].[ImageId, Name]' \
+  --output text | sort -k2 | grep 'packer-aws-es' | tail -1 | cut -f1);
+
+# get the newest "packer-aws-kafka" AMI ID
+export TF_VAR_kafka_ami_id=$(aws ec2 describe-images \
   --filter 'Name=is-public,Values=false'  \
   --query 'Images[].[ImageId, Name]' \
   --output text | sort -k2 | grep 'packer-aws-kafka' | tail -1 | cut -f1);
 
 # get the newest "packer-aws-logstash" AMI ID
-export TF_VAR_es_ami_id=$(aws ec2 describe-images \
+export TF_VAR_logstash_ami_id=$(aws ec2 describe-images \
   --filter 'Name=is-public,Values=false'  \
   --query 'Images[].[ImageId, Name]' \
-  --output text | sort -k2 | grep 'packer-aws-es' | tail -1 | cut -f1);
-
-# get the newest "packer-aws-logstash" AMI ID
-export TF_VAR_es_ami_id=$(aws ec2 describe-images \
-  --filter 'Name=is-public,Values=false'  \
-  --query 'Images[].[ImageId, Name]' \
-  --output text | sort -k2 | grep 'packer-aws-es' | tail -1 | cut -f1);
+  --output text | sort -k2 | grep 'packer-aws-logstash' | tail -1 | cut -f1);
 
 # get the newest "packer-aws-webapp" AMI ID
 export TF_VAR_webapp_ami_id=$(aws ec2 describe-images \
@@ -39,7 +39,7 @@ export TF_VAR_webapp_ami_id=$(aws ec2 describe-images \
   --output text | sort -k2 | grep "packer-aws-webapp" | tail -1 | cut -f1);
 
 # get the newest "packer-aws-kibana" AMI ID
-export TF_VAR_es_ami_id=$(aws ec2 describe-images \
+export TF_VAR_kibana_ami_id=$(aws ec2 describe-images \
   --filter 'Name=is-public,Values=false'  \
   --query 'Images[].[ImageId, Name]' \
   --output text | sort -k2 | grep 'packer-aws-kibana' | tail -1 | cut -f1);
