@@ -7,7 +7,7 @@
 
 # https://www.terraform.io/docs/providers/aws/r/alb.html
 resource "aws_alb" "layer-asg_alb" {
-  name    = "tf-layer-asg-alb"
+  # name    = "tf-layer-asg-alb"
 
   internal = false
   subnets = ["${var.public_subnet_ids}"]
@@ -35,7 +35,7 @@ output "layer-asg_alb-dns" {
 
 # https://www.terraform.io/docs/providers/aws/r/alb_target_group.html
 resource "aws_alb_target_group" "layer-asg_alb_tg" {
-  name     = "tf-layer-asg-alb-tg"
+  # name     = "tf-layer-asg-alb-tg"
 
   port     = 80
   protocol = "HTTP"

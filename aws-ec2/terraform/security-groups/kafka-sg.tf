@@ -3,7 +3,7 @@
 #
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
 resource "aws_security_group" "sg_tcp_to_kafka" {
-  name        = "sg_tcp_to_elk"
+  name        = "sg_tcp_to_kafka"
   description = "Allow TCP to KAFKA host from internal IP ranges"
 
   # Kafka
