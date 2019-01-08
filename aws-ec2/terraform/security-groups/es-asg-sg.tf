@@ -1,24 +1,27 @@
 #
-# ES Security Groups
+# ES ASG Security Group
 #
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
-resource "aws_security_group" "sg_tcp_to_es" {
+resource "aws_security_group" "sg_tcp_es_alb_to_es_asg" {
   name        = "sg_tcp_to_es"
-  description = "Allow TCP to ES host from internal IP ranges"
-  # Elasticsearch
+  description = "Allow TCP from ES ALB to ES ASG"
+
   ingress {
     from_port   = 9200
     to_port     = 9200
     protocol    = "tcp"
-    cidr_blocks = ["${var.vpc_cidr}"]
+    security_groups = [
+    	"${aws_security_group.sg_tcp_to_es_alb.id}"
+    ]
   }
 
-  # Elasticsearch
   ingress {
     from_port   = 9300
     to_port     = 9300
     protocol    = "tcp"
-    cidr_blocks = ["${var.vpc_cidr}"]
+    security_groups = [
+    	"${aws_security_group.sg_tcp_to_es_alb.id}"
+    ]
   }
 
   egress {
@@ -31,10 +34,10 @@ resource "aws_security_group" "sg_tcp_to_es" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "sg_tcp_to_es"
+    Name = "tf_tcp_es_alb_to_es_asg"
   }
 }
 
-output "sg_tcp_to_es-id" {
-  value = "${aws_security_group.sg_tcp_to_es.id}"
+output "sg_tcp_es_alb_to_es_asg-id" {
+  value = "${aws_security_group.sg_tcp_es_alb_to_es_asg.id}"
 }

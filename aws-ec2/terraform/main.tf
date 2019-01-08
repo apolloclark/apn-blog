@@ -122,11 +122,11 @@ module "es" {
   iam_profile_parameter_store-name  = "${module.iam.iam_profile_parameter_store-name}"
   layer_tag_name                    = "tf_layer-asg_es"
   alb_sgs                           = [
-  	"${module.security-groups.sg_http_to_es_alb-id}"
+  	"${module.security-groups.sg_tcp_to_es_alb-id}"
   ]
   lc_sgs                            = [
     "${module.security-groups.sg_ssh_from_bastion-id}",
-    "${module.security-groups.sg_tcp_to_es-id}"
+    "${module.security-groups.sg_tcp_es_alb_to_es_asg-id}"
   ]
   alb_tag_name                      = "tf_es_alb"
   asg_tag_name                      = "tf_es_asg"
@@ -155,11 +155,12 @@ module "kafka" {
   iam_profile_parameter_store-name  = "${module.iam.iam_profile_parameter_store-name}"
   layer_tag_name                    = "tf_layer-asg_kafka"
   alb_sgs                           = [
-  	"${module.security-groups.sg_http_to_kafka_alb-id}"
+  	"${module.security-groups.sg_tcp_to_kafka_alb-id}"
   ]
   lc_sgs                            = [
     "${module.security-groups.sg_ssh_from_bastion-id}",
-    "${module.security-groups.sg_tcp_to_kafka-id}"
+    "${module.security-groups.sg_tcp_to_kafka_alb-id}",
+    "${module.security-groups.sg_tcp_kafka_alb_to_kafka_asg-id}"
   ]
   alb_tag_name                      = "tf_kafka_alb"
   asg_tag_name                      = "tf_kafka_asg"
@@ -188,12 +189,12 @@ module "logstash" {
   iam_profile_parameter_store-name  = "${module.iam.iam_profile_parameter_store-name}"
   layer_tag_name                    = "tf_layer-asg_logstash"
   alb_sgs                           = [
-  	"${module.security-groups.sg_http_to_webapp_alb-id}"
+  	"${module.security-groups.sg_tcp_to_logstash_alb-id}"
   ]
   lc_sgs                            = [
     "${module.security-groups.sg_ssh_from_bastion-id}",
-    "${module.security-groups.sg_tcp_to_kafka-id}",
-    "${module.security-groups.sg_tcp_to_logstash-id}"
+    "${module.security-groups.sg_tcp_to_kafka_alb-id}",
+    "${module.security-groups.sg_tcp_logstash_alb_to_logstash_asg-id}"
   ]
   alb_tag_name                      = "tf_logstash_alb"
   asg_tag_name                      = "tf_logstash_asg"
@@ -218,7 +219,8 @@ module "kibana" {
   iam_profile_parameter_store-name = "${module.iam.iam_profile_parameter_store-name}"
   security_group_ids               = [
     "${module.security-groups.sg_ssh_from_bastion-id}",
-    "${module.security-groups.sg_tcp_to_kafka-id}",
+    "${module.security-groups.sg_tcp_to_kafka_alb-id}",
+    "${module.security-groups.sg_tcp_to_es_alb-id}",
     "${module.security-groups.sg_tcp_to_kibana-id}"
   ]
   ec2_tag_name                     = "tf_ec2_kibana"
@@ -257,7 +259,7 @@ module "bastion" {
   security_group_ids               = [
     "${module.security-groups.sg_ssh_to_bastion-id}",
     "${module.security-groups.sg_ssh_from_bastion-id}",
-    "${module.security-groups.sg_tcp_to_kafka-id}"
+    "${module.security-groups.sg_tcp_to_kafka_alb-id}"
   ]
   ec2_tag_name                     = "tf_ec2_bastion"
   eip_tag_name                     = "tf_eip_bastion"
@@ -284,9 +286,9 @@ module "webapp" {
   	"${module.security-groups.sg_http_to_webapp_alb-id}"
   ]
   lc_sgs                            = [
-    "${module.security-groups.sg_http_webapp_alb_to_webapp_ec2-id}",
     "${module.security-groups.sg_ssh_from_bastion-id}",
-    "${module.security-groups.sg_tcp_to_kafka-id}"
+    "${module.security-groups.sg_tcp_to_kafka_alb-id}",
+    "${module.security-groups.sg_http_webapp_alb_to_webapp_asg-id}"
   ]
 
   # Auto-scaling Group

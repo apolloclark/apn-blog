@@ -1,17 +1,10 @@
-# Copyright 2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file
-# except in compliance with the License. A copy of the License is located at
+# Logstash ALB Security Group
 #
-#     http://aws.amazon.com/apache2.0/
-#
-# or in the "license" file accompanying this file. This file is distributed on an "AS IS"
-# BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-# License for the specific language governing permissions and limitations under the License.
 # https://www.terraform.io/docs/providers/aws/r/security_group.html
-resource "aws_security_group" "sg_http_to_logstash_alb" {
-  name        = "sg_kafka_to_logstash_alb"
-  description = "Allow HTTP from the internal network to the logstash_alb"
+resource "aws_security_group" "sg_tcp_to_logstash_alb" {
+  name        = "sg_tcp_to_logstash_alb"
+  description = "Allow TCP from the internal network to the logstash_alb"
 
   ingress {
     from_port   = 5044
@@ -30,10 +23,10 @@ resource "aws_security_group" "sg_http_to_logstash_alb" {
   vpc_id = "${var.vpc_id}"
 
   tags {
-    Name = "sg_http_to_logstash_alb"
+    Name = "sg_tcp_to_logstash_alb"
   }
 }
 
-output "sg_http_to_logstash_alb-id" {
-  value = "${aws_security_group.sg_http_to_logstash_alb.id}"
+output "sg_tcp_to_logstash_alb-id" {
+  value = "${aws_security_group.sg_tcp_to_logstash_alb.id}"
 }
