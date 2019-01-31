@@ -461,15 +461,15 @@ Process:
   - [attach Policy Document to Role, by Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L103-L107)
 - IAM Instance Profile
   - [attach Role to Instance Profile, by Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L120-L123)
-- [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/main.tf#L52-L87)
+- [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/main.tf)
 - SSM Parameter(s)
   - [store parameters, by KMS Key Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/parameter-store/parameter-store.tf)
 - EC2 / ASG
-  - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/webapp-lc.tf#L13)
-  - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/webapp-lc.tf#L17) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/layer-asg/layer-lc.tf#L16)
+  - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/layer-asg/layer-lc.tf#L15) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - [retrieve Parameter(s), with Ansible, using IAM Instance Profile](https://github.com/apolloclark/packer-aws-webapp/blob/master/config/ansible/vars_ssm.yml#L5)
-  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/userdata.sh#L15)
-  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/webapp/userdata.sh#L19)
+  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/files/webapp_user_data.sh#L7-L15)
+  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/files/webapp_user_data.sh#L17-L20)
 <br/><br/><br/>
 
 
