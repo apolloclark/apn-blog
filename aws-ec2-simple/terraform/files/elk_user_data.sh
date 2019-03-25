@@ -18,3 +18,5 @@ ansible-playbook playbook.yml
 cd ../serverspec
 source /home/root/.rvm/scripts/rvm
 rake spec
+
+./restart-elk_services.sh
