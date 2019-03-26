@@ -174,6 +174,8 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 ## Roadmap:
 
 - [ElastAlert](https://github.com/Yelp/elastalert)
+- [AWS S3 bucket for log collection](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html)
+- [AWS IAM role for accessing S3 logs bucket](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-identity-based-access-control-cwl.html#w2ab1c21c13c23b9)
 - [AWS CloudTrail Logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
 - [AWS VPC Flow Logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html)
 <br/>
@@ -182,10 +184,6 @@ Terraform project for deploying and monitoring a multi-tier webservice including
 - [AWS WAF (Web Application Firewall)](https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html)
 - [AWS Lamda rules for dynamic WAF rules](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
 - [AWS SES (Simple Email Service) for alerts](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-using-notifications.html)
-<br/>
-
-- [AWS S3 bucket for log collection](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html)
-- [AWS IAM role for accessing S3 logs bucket](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-identity-based-access-control-cwl.html#w2ab1c21c13c23b9)
 <br/>
 
 - [AWS S3 bucket for file hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html)
@@ -407,7 +405,7 @@ weak login, or reused login is easily exploited.
 If you're running End-of-Life (EOL) operating systems or packages that are more
 than 1 month old, you are vulnerable to CRITICAL and HIGH severity vulnerabilities.
 
-**4. Resource State Management**
+**4. Configuration Management**
 
 Accounting for everything, keeping logins secure, and patching everything, is
 useless if the service is configured in an insecure way. All configuration
@@ -419,7 +417,7 @@ How will you know something is being attacked if you're not monitoring it? Logs
 provide a lot of value, and should be easily correlated with metrics to
 add more context to the event.
 
-**6. Automated Alerts**
+**6. Alerts**
 
 Baseline the system, and create alerts for anything that's out of the ordinary.
 
