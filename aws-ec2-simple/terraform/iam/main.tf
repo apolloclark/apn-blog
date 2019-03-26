@@ -25,6 +25,7 @@ resource "aws_iam_role" "iam_role_parameter_store" {
   ]
 }
 EOF
+  tags = "${var.iam_role_tags}"
 }
 
 output "iam_role_parameter_store-id" {

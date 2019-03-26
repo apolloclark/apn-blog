@@ -30,17 +30,17 @@ module "network" {
   availability_zones  = "${var.availability_zones}"
   key_name            = "${var.key_name}"
 
-  vpc_tags            = {
+  vpc_tags = {
     Name = "tf_vpc_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"
   }
-  gateway_tags         = {
+  gateway_tags = {
     Name = "tf_gateway_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"
   }
-  subnet_public_tags     = {
+  subnet_public_tags = {
     Name = "tf_subnet_public_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"
@@ -60,7 +60,7 @@ module "security-groups" {
   vpc_cidr               = "${var.vpc_cidr}"
   public_subnet_ids      = "${module.network.public_subnet_ids}"
 
-  sg_tags            = {
+  sg_tags = {
     Name = "tf_sg_tcp_to_elk_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"
@@ -73,7 +73,7 @@ module "security-groups" {
 module "kms" {
   source = "./kms"
 
-  kms_tags            = {
+  kms_tags = {
     Name = "tf_kms_key_parameter-store_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"
@@ -83,6 +83,12 @@ module "kms" {
 module "iam" {
   source = "./iam"
   kms_key_parameter-store_arn = "${module.kms.kms_key_parameter-store_arn}"
+
+  iam_role_tags = {
+    Name = "tf_iam_key_parameter-store_${var.deploy_id}",
+    Owner = "${var.tag_owner}",
+    OwnerEmail = "${var.tag_owner_email}"
+  }
 }
 
 
@@ -103,12 +109,12 @@ module "elk" {
   security_group_ids               = [
     "${module.security-groups.sg_tcp_to_elk-id}"
   ]
-  ec2_tags            = {
+  ec2_tags = {
     Name = "tf_ec2_elk_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"
   }
-  eip_tags            = {
+  eip_tags = {
     Name = "tf_eip_elk_${var.deploy_id}",
     Owner = "${var.tag_owner}",
     OwnerEmail = "${var.tag_owner_email}"

@@ -14,3 +14,4 @@
 #
 
 variable "kms_key_parameter-store_arn" {}
+variable "iam_role_tags" { type = "map" }
