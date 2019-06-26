@@ -55,7 +55,7 @@ fi
 
 # clone the project, and sub-modules
 git submodule update --recursive --remote
-cd ./aws-ec2
+cd ./aws-ec2-simple
 
 # use Packer to build the AWS AMI's
 ./build_packer_aws.sh

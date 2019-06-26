@@ -17,12 +17,12 @@ cd ../../packer-aws-java/base
 source ./build_packer_aws.sh
 
 # build AWS kafka image, output KAFKA_AMI_ID
-#cd ../packer-aws-kafka
-#source ./build_packer_aws.sh
+cd ../packer-aws-kafka
+source ./build_packer_aws.sh
 
 # build AWS logstash image, output LOGSTASH_AMI_ID
-#cd ../packer-aws-logstash
-#source ./build_packer_aws.sh
+cd ../packer-aws-logstash
+source ./build_packer_aws.sh
 
 # build AWS elk image, output ELK_AMI_ID
 cd ../../packer-aws-elk/base
