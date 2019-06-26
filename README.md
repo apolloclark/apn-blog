@@ -1,4 +1,4 @@
-# tf-aws
+# argos
 
 ## Description
 
@@ -38,7 +38,7 @@ Components:
 
 The firewall rules are set to only allow your **personal IP address**. You can
 customize configuration by changing the **var.yml** files in the **ansbible
-folders**. The central Terraform config file is [here](https://github.com/apolloclark/tf-aws/blob/master/terraform/variables.tf#L60).
+folders**. The central Terraform config file is [here](https://github.com/apolloclark/argos/blob/master/terraform/variables.tf#L60).
 
 <br/><br/><br/>
 
@@ -57,7 +57,7 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 ## Single-step Deploy
 ```shell
 # you trust rando scripts from the internet, right? 😎
-curl -s https://raw.githubusercontent.com/apolloclark/tf-aws/master/single_step_deploy.sh | bash -
+curl -s https://raw.githubusercontent.com/apolloclark/argos/master/single_step_deploy.sh | bash -
 ```
 
 
@@ -80,8 +80,8 @@ ssh-add ~/.ssh/packer.pem
 
 
 # download project, and the nested submodules
-git clone --recurse-submodules https://github.com/apolloclark/tf-aws
-cd ./tf-aws/aws-ec2
+git clone --recurse-submodules https://github.com/apolloclark/argos
+cd ./argos/aws-ec2
 
 # use Packer to build the AWS AMI's, takes ~ 40 minutes
 ./build_packer_aws.sh
@@ -130,7 +130,7 @@ git submodule update --recursive --remote
 ## Custom website
 ```shell
 # edit the contents of the webapp "EC2 User Data" startup script:
-https://github.com/apolloclark/tf-aws/blob/master/terraform/webapp/userdata.sh#L21
+https://github.com/apolloclark/argos/blob/master/terraform/webapp/userdata.sh#L21
 
 OR
 
@@ -449,25 +449,25 @@ the Amazon Parameter Store (released Jan 2017), which allows up to [4096 bytes](
 
 Process:
 
-- [KMS Key](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/kms/main.tf#L5-L10)
+- [KMS Key](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/kms/main.tf#L5-L10)
 - IAM Role
-  - [allow services to assume role](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L7-L28)
+  - [allow services to assume role](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/iam/main.tf#L7-L28)
 - IAM Policy Document
-  - [allow access to KMS Key, by ARN](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L67-L76)
-  - [allow access to Parameter Store, by Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L89-L99)
+  - [allow access to KMS Key, by ARN](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/iam/main.tf#L67-L76)
+  - [allow access to Parameter Store, by Name](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/iam/main.tf#L89-L99)
 - IAM Role Policy
-  - [attach Policy Document to Role, by Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L103-L107)
+  - [attach Policy Document to Role, by Id](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/iam/main.tf#L103-L107)
 - IAM Instance Profile
-  - [attach Role to Instance Profile, by Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/iam/main.tf#L120-L123)
-- [Deploy AWS resources](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/main.tf)
+  - [attach Role to Instance Profile, by Name](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/iam/main.tf#L120-L123)
+- [Deploy AWS resources](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/main.tf)
 - SSM Parameter(s)
-  - [store parameters, by KMS Key Id](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/parameter-store/parameter-store.tf)
+  - [store parameters, by KMS Key Id](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/parameter-store/parameter-store.tf)
 - EC2 / ASG
-  - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/layer-asg/layer-lc.tf#L16)
-  - [configure User Data shell script](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/layer-asg/layer-lc.tf#L15) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
+  - [attach IAM Instance Profile, by Profile Name](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/layer-asg/layer-lc.tf#L16)
+  - [configure User Data shell script](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/layer-asg/layer-lc.tf#L15) [(docs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts)
   - [retrieve Parameter(s), with Ansible, using IAM Instance Profile](https://github.com/apolloclark/packer-aws-webapp/blob/master/config/ansible/vars_ssm.yml#L5)
-  - [run Ansible, configure services](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/files/webapp_user_data.sh#L7-L15)
-  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/tf-aws/blob/master/aws-ec2/terraform/files/webapp_user_data.sh#L17-L20)
+  - [run Ansible, configure services](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/files/webapp_user_data.sh#L7-L15)
+  - [run Serverspec tests, confirm configuration](https://github.com/apolloclark/argos/blob/master/aws-ec2/terraform/files/webapp_user_data.sh#L17-L20)
 <br/><br/><br/>
 
 
